@@ -1,0 +1,24 @@
+//
+//  PrefixHeader.pch
+//  AipOcrDemo
+//
+//  Created by Tolecen on 2017/6/17.
+//  Copyright © 2017年 Baidu. All rights reserved.
+//
+
+#ifdef __OBJC__
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+
+#endif
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+
+#define ODSScreenWidth  [UIScreen mainScreen].bounds.size.width
+#define ODSScreenHeight  [UIScreen mainScreen].bounds.size.height
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#endif /* PrefixHeader_pch */
