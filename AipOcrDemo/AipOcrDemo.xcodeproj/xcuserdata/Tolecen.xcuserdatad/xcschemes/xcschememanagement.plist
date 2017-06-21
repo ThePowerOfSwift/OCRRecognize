@@ -9,9 +9,29 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>PhotoInAlbumOCR.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>3</integer>
+		</dict>
+		<key>PicOcr.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>975215341EF9F746009272B2</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>978549691EF7A97500D621C5</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>FFDAF4131E49C99000AB65B7</key>
 		<dict>
 			<key>primary</key>

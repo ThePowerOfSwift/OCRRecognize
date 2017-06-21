@@ -8,7 +8,7 @@
 
 #import "ViewController.h"
 #import <objc/runtime.h>
-#import <AipOcrSdk/AipOcrSdk.h>
+#import "AipOcrSdk.h"
 
 @interface ViewController ()<UITableViewDelegate, UITableViewDataSource, UIAlertViewDelegate, AipOcrDelegate>
 
