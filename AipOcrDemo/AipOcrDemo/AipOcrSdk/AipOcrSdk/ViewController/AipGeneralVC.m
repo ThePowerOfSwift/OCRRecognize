@@ -261,28 +261,6 @@
     if(result[@"words_result"]){
         for(NSDictionary *obj in result[@"words_result"]){
             
-//            float oneWordW = [obj[@"location"][@"width"] floatValue]/[obj[@"words"] length];
-//            
-//            float thisLeft = [obj[@"location"][@"left"] floatValue];
-//            float thisEndY = [obj[@"location"][@"left"] floatValue]+thisLeft;
-//            
-//            NSString * lastWord = [obj[@"words"] substringFromIndex:[obj[@"words"] length]-1];
-//            
-//            if (lastLeft>0 && thisLeft-lastLeft>oneWordW*2) {
-//                [message appendFormat:@"__%@", obj[@"words"]];
-//                
-//            }
-//            
-//            else if (lastEndY>0 && thisEndY<lastEndY && lastEndY-thisEndY>2*oneWordW && [self isEndBiaodian:lastWord]) {
-//                [message appendFormat:@"%@\n", obj[@"words"]];
-//            }
-//            else
-//            {
-//                [message appendFormat:@"%@", obj[@"words"]];
-//            }
-//            
-//            lastLeft = [obj[@"location"][@"left"] floatValue];
-//            lastEndY = [obj[@"location"][@"width"] floatValue]+lastLeft;
             
             if (([obj[@"location"][@"left"] floatValue]+[obj[@"location"][@"width"] floatValue])/self.finalImgWidth<(9.f/10.f)) {
                 [message appendFormat:@"%@\n", obj[@"words"]];
