@@ -63,7 +63,7 @@
     [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
     [SVProgressHUD showSuccessWithStatus:@"复制成功"];
     
-    [self showMoreAction];
+//    [self showMoreAction];
 }
 
 -(void)showMoreAction
