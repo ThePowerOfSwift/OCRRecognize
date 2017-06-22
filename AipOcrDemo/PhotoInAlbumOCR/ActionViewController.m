@@ -173,7 +173,7 @@
     self.loadingView.layer.masksToBounds = YES;
     [self.view addSubview:self.loadingView];
     
-    self.indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+    self.indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     self.indicator.center = self.loadingView.center;
     [self.view addSubview:self.indicator];
     [self.indicator startAnimating];
