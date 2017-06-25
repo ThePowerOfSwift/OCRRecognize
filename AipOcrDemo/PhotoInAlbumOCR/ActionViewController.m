@@ -27,6 +27,7 @@
 {
     CGFloat originBottomConstant;
     CGFloat originBottomToolBarContstant;
+    AipOcrManager *_aipOcrManager;
 }
 
 @property(strong,nonatomic) IBOutlet UIImageView *imageView;
@@ -62,6 +63,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    _aipOcrManager = [[AipOcrManager alloc] initWithAK:@"SenZ7A8G8LfUfALOScIDtnPP" andSK:@"iOsmqKm7GUVKE0tf56M58wzFCM9W8CrZ"];
+    
+
     
 //    [self prefersStatusBarHidden];
     
@@ -272,7 +277,7 @@
     
     NSDictionary *options = @{@"language_type": @"CHN_ENG", @"detect_direction": @"true"};
     __weak __typeof__(self) weakSelf = self;
-    AipOcrManager *_aipOcrManager = [[AipOcrManager alloc] initWithAK:@"SenZ7A8G8LfUfALOScIDtnPP" andSK:@"iOsmqKm7GUVKE0tf56M58wzFCM9W8CrZ"];
+    
     [_aipOcrManager detectTextFromImage:finalImage withOptions:options successHandler:^(id result) {
         NSLog(@"%@", result);
         dispatch_async(dispatch_get_main_queue(), ^{

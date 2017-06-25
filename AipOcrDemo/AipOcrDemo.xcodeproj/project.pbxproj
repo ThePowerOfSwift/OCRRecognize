@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		973A80E31EFFAF7B00C00D1C /* UMMobClick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 973A80E21EFFAF7B00C00D1C /* UMMobClick.framework */; };
+		973A80E41EFFAF7B00C00D1C /* UMMobClick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 973A80E21EFFAF7B00C00D1C /* UMMobClick.framework */; };
+		973A80E61EFFAFA700C00D1C /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 973A80E51EFFAFA700C00D1C /* CoreTelephony.framework */; };
+		973A80E81EFFAFAC00C00D1C /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 973A80E71EFFAFAC00C00D1C /* libz.tbd */; };
+		973A80EA1EFFAFC700C00D1C /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 973A80E91EFFAFC700C00D1C /* libsqlite3.tbd */; };
 		975215391EF9F746009272B2 /* ActionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 975215381EF9F746009272B2 /* ActionViewController.m */; };
 		9752153C1EF9F746009272B2 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9752153A1EF9F746009272B2 /* MainInterface.storyboard */; };
 		975215401EF9F746009272B2 /* PhotoInAlbumOCR.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 975215351EF9F746009272B2 /* PhotoInAlbumOCR.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -128,6 +133,10 @@
 		9727A5A51EF4E9CE00E63E99 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		9727A5AA1EF513F700E63E99 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		9727A5AB1EF513F700E63E99 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		973A80E21EFFAF7B00C00D1C /* UMMobClick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UMMobClick.framework; sourceTree = "<group>"; };
+		973A80E51EFFAFA700C00D1C /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		973A80E71EFFAFAC00C00D1C /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		973A80E91EFFAFC700C00D1C /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		975215351EF9F746009272B2 /* PhotoInAlbumOCR.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = PhotoInAlbumOCR.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		975215371EF9F746009272B2 /* ActionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ActionViewController.h; sourceTree = "<group>"; };
 		975215381EF9F746009272B2 /* ActionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ActionViewController.m; sourceTree = "<group>"; };
@@ -259,6 +268,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				973A80E41EFFAF7B00C00D1C /* UMMobClick.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -266,8 +276,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				973A80EA1EFFAFC700C00D1C /* libsqlite3.tbd in Frameworks */,
+				973A80E81EFFAFAC00C00D1C /* libz.tbd in Frameworks */,
+				973A80E61EFFAFA700C00D1C /* CoreTelephony.framework in Frameworks */,
 				9753BC9A1EFA092300593950 /* Foundation.framework in Frameworks */,
 				9753BC981EFA091F00593950 /* CoreFoundation.framework in Frameworks */,
+				973A80E31EFFAF7B00C00D1C /* UMMobClick.framework in Frameworks */,
 				9753BC961EFA091900593950 /* UIKit.framework in Frameworks */,
 				9753BC941EFA091400593950 /* CoreImage.framework in Frameworks */,
 			);
@@ -520,6 +534,7 @@
 		FFDAF40B1E49C99000AB65B7 = {
 			isa = PBXGroup;
 			children = (
+				973A80E21EFFAF7B00C00D1C /* UMMobClick.framework */,
 				97FEE1801EFA578900D3585E /* AipBase.framework */,
 				FFDAF4161E49C99000AB65B7 /* AipOcrDemo */,
 				975215361EF9F746009272B2 /* PhotoInAlbumOCR */,
@@ -568,6 +583,9 @@
 		FFDAF4431E519F2700AB65B7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				973A80E91EFFAFC700C00D1C /* libsqlite3.tbd */,
+				973A80E71EFFAFAC00C00D1C /* libz.tbd */,
+				973A80E51EFFAFA700C00D1C /* CoreTelephony.framework */,
 				9753BC991EFA092300593950 /* Foundation.framework */,
 				9753BC971EFA091F00593950 /* CoreFoundation.framework */,
 				9753BC951EFA091900593950 /* UIKit.framework */,
