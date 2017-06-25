@@ -36,11 +36,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PhotoInAlbumOCR/ActionViewController.m"
-            timestampString = "519751473.081076"
+            timestampString = "520072749.289071"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "628"
-            endingLineNumber = "628"
+            startingLineNumber = "699"
+            endingLineNumber = "699"
             landmarkName = "-deviceOrientationCanChange"
             landmarkType = "7">
          </BreakpointContent>
@@ -52,11 +52,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PhotoInAlbumOCR/ActionViewController.m"
-            timestampString = "519751473.081076"
+            timestampString = "520072749.289071"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "634"
-            endingLineNumber = "634"
+            startingLineNumber = "705"
+            endingLineNumber = "705"
             landmarkName = "-deviceOrientationCanChange"
             landmarkType = "7">
          </BreakpointContent>

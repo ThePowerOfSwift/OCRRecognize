@@ -24,6 +24,10 @@
 
 
 @interface ActionViewController ()<AipCutImageEXDelegate>
+{
+    CGFloat originBottomConstant;
+    CGFloat originBottomToolBarContstant;
+}
 
 @property(strong,nonatomic) IBOutlet UIImageView *imageView;
 
@@ -46,6 +50,11 @@
 @property (assign, nonatomic) CGSize size;
 
 @property (assign,nonatomic)float finalImgWidth;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *textbottomCons;
+@property (weak, nonatomic) IBOutlet UIView *toolBarView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomToolbarConstant;
+
+
 
 @end
 
@@ -105,6 +114,55 @@
             break;
         }
     }
+    
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                            selector:@selector(keyboardWasShow:)
+                                                name:UIKeyboardDidShowNotification
+                                              object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                            selector:@selector(keyboardWillBeHidden:)
+                                                name:UIKeyboardWillHideNotification
+                                              object:nil];
+    
+    originBottomConstant = _textbottomCons.constant;
+    originBottomToolBarContstant = _bottomToolbarConstant.constant;
+}
+
+
+
+- (IBAction)doneBtnClicked:(UIButton *)sender {
+    [self.textv resignFirstResponder];
+}
+
+
+- (void)keyboardWasShow:(NSNotification *)notification {
+    // 取得键盘的frame，注意，因为键盘在window的层面弹出来的，所以它的frame坐标也是对应window窗口的。
+
+    
+    NSValue* aValue = [[notification userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey];
+    CGRect keyboardRect = [aValue CGRectValue];
+    NSNumber *durationValue = [notification userInfo][UIKeyboardAnimationDurationUserInfoKey];
+    NSTimeInterval animationDuration = durationValue.doubleValue;
+    
+    _toolBarView.hidden = NO;
+    
+    [UIView animateWithDuration:animationDuration delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        _textbottomCons.constant = (keyboardRect.size.height+40);//修改距离底部的约束
+        _bottomToolbarConstant.constant = keyboardRect.size.height;
+    } completion:^(BOOL finished) {
+    }];
+    [self.view setNeedsLayout]; //更新视图
+    [self.view layoutIfNeeded];
+}
+
+- (void)keyboardWillBeHidden:(NSNotification *)notification{
+    // 恢复原理的大小
+    _toolBarView.hidden = YES;
+    _bottomToolbarConstant.constant = originBottomToolBarContstant;
+    _textbottomCons.constant = originBottomConstant;
+    [self.view setNeedsLayout]; //更新视图
+    [self.view layoutIfNeeded];
 }
 
 
@@ -230,11 +288,22 @@
 
 -(void)addSuccessResult:(id)result
 {
-    self.textv.hidden = NO;
-    self.bottomView.hidden = YES;
-    self.rightItem.enabled = YES;
+    [self.loadingView removeFromSuperview];
+    [self.indicator removeFromSuperview];
     NSMutableString *message = [NSMutableString string];
     if(result[@"words_result"]){
+        if ([result[@"words_result"] count]==0) {
+            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示"
+                                                                                     message:@"没有识别出文字哦"
+                                                                              preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *doneAlertAction = [UIAlertAction actionWithTitle:@"知道了" style:UIAlertActionStyleDefault handler:^(UIAlertAction *  action) {
+                [alertController dismissViewControllerAnimated:YES completion:nil];
+            }];
+            [alertController addAction:doneAlertAction];
+            [self presentViewController:alertController animated:YES completion:nil];
+            return;
+        }
+
         for(NSDictionary *obj in result[@"words_result"]){
             
             
@@ -249,8 +318,10 @@
         [message appendFormat:@"%@", result];
     }
     
-    [self.loadingView removeFromSuperview];
-    [self.indicator removeFromSuperview];
+    self.textv.hidden = NO;
+    self.bottomView.hidden = YES;
+    self.rightItem.enabled = YES;
+
     
 
     

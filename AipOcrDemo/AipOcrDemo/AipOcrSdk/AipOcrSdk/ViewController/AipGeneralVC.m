@@ -255,10 +255,21 @@
 
 -(void)toResultVC:(id)result
 {
-    float lastEndY = -1;
-    float lastLeft = -1;
+//    float lastEndY = -1;
+//    float lastLeft = -1;
     NSMutableString *message = [NSMutableString string];
     if(result[@"words_result"]){
+        if ([result[@"words_result"] count]==0) {
+            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示"
+                                                                                     message:@"没有识别出文字哦"
+                                                                              preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *doneAlertAction = [UIAlertAction actionWithTitle:@"知道了" style:UIAlertActionStyleDefault handler:^(UIAlertAction *  action) {
+                [alertController dismissViewControllerAnimated:YES completion:nil];
+            }];
+            [alertController addAction:doneAlertAction];
+            [self presentViewController:alertController animated:YES completion:nil];
+            return;
+        }
         for(NSDictionary *obj in result[@"words_result"]){
             
             

@@ -58,6 +58,30 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dIQ-KK-FVU">
+                                <rect key="frame" x="0.0" y="488" width="320" height="40"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ml6-JW-eQ5">
+                                        <rect key="frame" x="232" y="0.0" width="88" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="88" id="Czc-cW-dNQ"/>
+                                            <constraint firstAttribute="height" constant="40" id="zut-FM-8Ah"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <state key="normal" title="完成"/>
+                                        <connections>
+                                            <action selector="doneBtnClicked:" destination="ObA-dk-sSI" eventType="touchUpInside" id="NCH-hT-bHI"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.8377734375" green="0.8377734375" blue="0.8377734375" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="ml6-JW-eQ5" secondAttribute="bottom" id="d3F-lB-7Ys"/>
+                                    <constraint firstAttribute="trailing" secondItem="ml6-JW-eQ5" secondAttribute="trailing" id="iCe-5B-IZd"/>
+                                    <constraint firstItem="ml6-JW-eQ5" firstAttribute="top" secondItem="dIQ-KK-FVU" secondAttribute="top" id="q9I-hU-ESA"/>
+                                    <constraint firstAttribute="height" constant="40" id="ztJ-S1-V7n"/>
+                                </constraints>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JXa-M8-xYO">
                                 <rect key="frame" x="0.0" y="468" width="320" height="60"/>
                                 <subviews>
@@ -146,14 +170,17 @@
                             <constraint firstItem="n38-gi-rB5" firstAttribute="top" secondItem="9ga-4F-77Z" secondAttribute="bottom" id="eQg-nn-Zy4"/>
                             <constraint firstItem="eyK-Vo-ffz" firstAttribute="top" secondItem="NOA-Dm-cuz" secondAttribute="bottom" id="hyC-5G-bc8"/>
                             <constraint firstItem="OJm-u8-uZM" firstAttribute="top" secondItem="NOA-Dm-cuz" secondAttribute="bottom" id="jqg-NO-wvX"/>
+                            <constraint firstItem="dIQ-KK-FVU" firstAttribute="leading" secondItem="zMn-AG-sqS" secondAttribute="leading" id="nXU-PW-DTL"/>
                             <constraint firstItem="bum-Qf-R3q" firstAttribute="leading" secondItem="zMn-AG-sqS" secondAttribute="leading" id="nhh-SB-Jii"/>
                             <constraint firstItem="n38-gi-rB5" firstAttribute="top" secondItem="JXa-M8-xYO" secondAttribute="bottom" id="o9e-B6-o1N"/>
                             <constraint firstItem="n38-gi-rB5" firstAttribute="top" secondItem="OJm-u8-uZM" secondAttribute="bottom" constant="60" id="ozb-Uj-gsi"/>
                             <constraint firstItem="n38-gi-rB5" firstAttribute="top" secondItem="eyK-Vo-ffz" secondAttribute="bottom" id="qq5-rM-Vcu"/>
+                            <constraint firstAttribute="bottom" secondItem="dIQ-KK-FVU" secondAttribute="bottom" id="tNU-5s-FnH"/>
                             <constraint firstAttribute="trailing" secondItem="ZNW-XE-07N" secondAttribute="trailing" constant="100" id="uov-Ee-XIb"/>
                             <constraint firstAttribute="trailing" secondItem="OJm-u8-uZM" secondAttribute="trailing" id="vS8-Rh-flM"/>
                             <constraint firstAttribute="trailing" secondItem="JXa-M8-xYO" secondAttribute="trailing" id="wE7-FK-Li3"/>
                             <constraint firstItem="NOA-Dm-cuz" firstAttribute="top" secondItem="qkL-Od-lgU" secondAttribute="bottom" id="we0-1t-bgp"/>
+                            <constraint firstAttribute="trailing" secondItem="dIQ-KK-FVU" secondAttribute="trailing" id="yG2-V2-omB"/>
                             <constraint firstItem="OJm-u8-uZM" firstAttribute="leading" secondItem="zMn-AG-sqS" secondAttribute="leading" id="zxt-tD-kmj"/>
                         </constraints>
                     </view>
@@ -161,6 +188,7 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="528"/>
                     <connections>
+                        <outlet property="bottomToolbarConstant" destination="tNU-5s-FnH" id="kCe-DQ-24J"/>
                         <outlet property="bottomView" destination="JXa-M8-xYO" id="ol6-FB-vpb"/>
                         <outlet property="cutImageView" destination="fjt-qf-ucp" id="6Pu-XO-pi5"/>
                         <outlet property="imageView" destination="9ga-4F-77Z" id="5y6-5w-9QO"/>
@@ -168,7 +196,9 @@
                         <outlet property="rightItem" destination="rIt-FS-zVs" id="HFG-vc-Clj"/>
                         <outlet property="successLabel" destination="DOg-3b-zvw" id="HIG-KW-1HV"/>
                         <outlet property="successView" destination="ZNW-XE-07N" id="EIk-IY-tfC"/>
+                        <outlet property="textbottomCons" destination="qq5-rM-Vcu" id="kMJ-WD-yTC"/>
                         <outlet property="textv" destination="eyK-Vo-ffz" id="JoU-aG-xhr"/>
+                        <outlet property="toolBarView" destination="dIQ-KK-FVU" id="yEY-Dg-gh1"/>
                         <outlet property="topWhite" destination="bum-Qf-R3q" id="Rwv-Kg-yJL"/>
                         <outlet property="view" destination="zMn-AG-sqS" id="Qma-de-2ek"/>
                     </connections>
