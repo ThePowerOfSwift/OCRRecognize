@@ -55,9 +55,8 @@
                                     <outlet property="delegate" destination="60x-hL-W0U" id="Icp-nN-e9b"/>
                                 </connections>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Waiting..." textAlignment="center" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bLQ-uG-uOu">
-                                <rect key="frame" x="0.0" y="311" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Waiting..." textAlignment="center" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bLQ-uG-uOu">
+                                <rect key="frame" x="0.0" y="323" width="375" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -67,8 +66,12 @@
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="zbl-pW-mVr" secondAttribute="trailing" id="3xo-fu-wXh"/>
                             <constraint firstItem="zbl-pW-mVr" firstAttribute="leading" secondItem="lJM-vt-vNq" secondAttribute="leading" id="9Jb-Ig-o1P"/>
+                            <constraint firstItem="bLQ-uG-uOu" firstAttribute="centerX" secondItem="lJM-vt-vNq" secondAttribute="centerX" id="DK7-qt-c3C"/>
+                            <constraint firstItem="bLQ-uG-uOu" firstAttribute="centerY" secondItem="lJM-vt-vNq" secondAttribute="centerY" id="Kr5-eS-Omh"/>
                             <constraint firstAttribute="bottom" secondItem="zbl-pW-mVr" secondAttribute="bottom" id="adY-gx-DJp"/>
                             <constraint firstItem="zbl-pW-mVr" firstAttribute="top" secondItem="lJM-vt-vNq" secondAttribute="top" id="hms-8z-Y4I"/>
+                            <constraint firstItem="bLQ-uG-uOu" firstAttribute="leading" secondItem="lJM-vt-vNq" secondAttribute="leading" id="xaM-nf-w0O"/>
+                            <constraint firstAttribute="trailing" secondItem="bLQ-uG-uOu" secondAttribute="trailing" id="zzk-l9-9lV"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Ehc-pq-izO"/>
