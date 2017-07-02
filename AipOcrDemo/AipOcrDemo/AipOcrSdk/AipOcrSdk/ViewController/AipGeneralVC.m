@@ -228,7 +228,7 @@
     
     self.finalImgWidth = finalImage.size.width;
     
-    NSDictionary *options = @{@"language_type": @"CHN_ENG", @"detect_direction": @"true"};
+    NSDictionary *options = @{@"language_type": @"ENG", @"detect_direction": @"true"};
     
     __weak __typeof__(self) weakSelf = self;
     [[AipOcrService shardService] detectTextFromImage:finalImage withOptions:options successHandler:^(id result) {
