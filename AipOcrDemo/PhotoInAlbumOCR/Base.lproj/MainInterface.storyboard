@@ -86,14 +86,22 @@
                                 <rect key="frame" x="0.0" y="468" width="320" height="60"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QEf-kA-M1J" customClass="IOSpeScaleLayoutButton">
-                                        <rect key="frame" x="32" y="19" width="21" height="22"/>
+                                        <rect key="frame" x="20" y="10" width="40" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="40" id="DAb-kh-01k"/>
+                                            <constraint firstAttribute="height" constant="40" id="IkK-mZ-9qY"/>
+                                        </constraints>
                                         <state key="normal" image="trans.png"/>
                                         <connections>
                                             <action selector="transferClicked:" destination="ObA-dk-sSI" eventType="touchUpInside" id="sSk-k8-26g"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NOA-N8-oyo" customClass="IOSpeScaleLayoutButton">
-                                        <rect key="frame" x="267" y="19" width="21" height="22"/>
+                                        <rect key="frame" x="260" y="10" width="40" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="40" id="kay-04-KlQ"/>
+                                            <constraint firstAttribute="height" constant="40" id="yWa-SE-jFM"/>
+                                        </constraints>
                                         <state key="normal" image="surebtn.png"/>
                                         <connections>
                                             <action selector="pressOkBtn:" destination="ObA-dk-sSI" eventType="touchUpInside" id="ErD-Tv-N3R"/>
@@ -102,10 +110,10 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="NOA-N8-oyo" secondAttribute="trailing" constant="32" id="Qtz-kj-rKh"/>
+                                    <constraint firstAttribute="trailing" secondItem="NOA-N8-oyo" secondAttribute="trailing" constant="20" id="Qtz-kj-rKh"/>
                                     <constraint firstItem="NOA-N8-oyo" firstAttribute="centerY" secondItem="JXa-M8-xYO" secondAttribute="centerY" id="aRY-Ue-Mk3"/>
                                     <constraint firstItem="QEf-kA-M1J" firstAttribute="centerY" secondItem="JXa-M8-xYO" secondAttribute="centerY" id="eUI-nn-qNQ"/>
-                                    <constraint firstItem="QEf-kA-M1J" firstAttribute="leading" secondItem="JXa-M8-xYO" secondAttribute="leading" constant="32" id="hhi-lA-7Pu"/>
+                                    <constraint firstItem="QEf-kA-M1J" firstAttribute="leading" secondItem="JXa-M8-xYO" secondAttribute="leading" constant="20" id="hhi-lA-7Pu"/>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="prQ-c0-L2S"/>
                                     <constraint firstAttribute="height" constant="60" id="yOP-w2-KeN" customClass="IOSpeScaleLayoutConstraint"/>
                                 </constraints>

@@ -170,6 +170,34 @@
     [self.view layoutIfNeeded];
 }
 
+//- (IBAction)liangduClicked:(UIButton *)sender {
+//    CGImageRef ref = self.cutImageView.bgImageView.image.CGImage;
+//    //使用CGImage初始化CIImage对象
+//    CIImage *image = [CIImage imageWithCGImage:ref];
+//    //创建一个滤镜对象
+//    
+//    
+//    CIFilter *filter = [CIFilter filterWithName:@"CIColorControls"];
+//    //利用键值对来设置滤镜的属性（后面的key在CIFilter中都可以找到，然后拿到这些key进行相应的赋值即可）
+//    [filter setValue:image forKey:kCIInputImageKey];
+//    //设置图片的亮度
+////    [filter setValue:@0.35 forKey:kCIInputEVKey];
+//    [filter setValue:@0.81 forKey:kCIInputBrightnessKey];
+//    [filter setValue:@0.35 forKey:kCIInputContrastKey];
+//
+//    //得到滤镜处理后的CIImage
+//    CIImage *imageOut = [filter outputImage];
+//    //初始化CIContext对象
+//    CIContext *context = [CIContext contextWithOptions:nil];
+//    //利用CIContext对象渲染后得到CGImage，最后将它转成UIImage
+//    CGImageRef outImage = [context createCGImage:imageOut fromRect:imageOut.extent];
+//    UIImage *outPutImage = [UIImage imageWithCGImage:outImage];
+//    
+//    [self setupCutImageView:outPutImage fromPhotoLib:YES];
+//
+//    //释放CGImage对象，一定不要忘记自己释放
+//    CGImageRelease(outImage);
+//}
 
 
 - (void)setUpMaskImageView {
@@ -177,8 +205,8 @@
     self.maskImageView.showMidLines = YES;
     self.maskImageView.needScaleCrop = YES;
     self.maskImageView.showCrossLines = YES;
-    self.maskImageView.cropAreaCornerWidth = 30;
-    self.maskImageView.cropAreaCornerHeight = 30;
+    self.maskImageView.cropAreaCornerWidth = 40;
+    self.maskImageView.cropAreaCornerHeight = 40;
     self.maskImageView.minSpace = 30;
     self.maskImageView.cropAreaCornerLineColor = [UIColor colorWithWhite:1 alpha:1];
     self.maskImageView.cropAreaBorderLineColor = [UIColor colorWithWhite:1 alpha:0.7];

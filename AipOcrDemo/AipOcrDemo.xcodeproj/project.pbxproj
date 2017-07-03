@@ -56,6 +56,7 @@
 		9753BC961EFA091900593950 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9753BC951EFA091900593950 /* UIKit.framework */; };
 		9753BC981EFA091F00593950 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9753BC971EFA091F00593950 /* CoreFoundation.framework */; };
 		9753BC9A1EFA092300593950 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9753BC991EFA092300593950 /* Foundation.framework */; };
+		976B46251F09F47500BB9BB0 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9753BC931EFA091400593950 /* CoreImage.framework */; };
 		97ADFDB01EFA57B400C5E461 /* AipBase.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 97FEE1801EFA578900D3585E /* AipBase.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		97ADFDD11EFA5B7500C5E461 /* SVIndefiniteAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 97ADFDC81EFA5B7500C5E461 /* SVIndefiniteAnimatedView.m */; };
 		97ADFDD21EFA5B7500C5E461 /* SVProgressAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 97ADFDCA1EFA5B7500C5E461 /* SVProgressAnimatedView.m */; };
@@ -268,6 +269,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				976B46251F09F47500BB9BB0 /* CoreImage.framework in Frameworks */,
 				973A80E41EFFAF7B00C00D1C /* UMMobClick.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
