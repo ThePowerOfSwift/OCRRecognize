@@ -7,6 +7,29 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9739D11C1F0DA5AB00DEEE45 /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9739D11B1F0DA5AB00DEEE45 /* opencv2.framework */; };
+		9739D11D1F0DA5AB00DEEE45 /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9739D11B1F0DA5AB00DEEE45 /* opencv2.framework */; };
+		9739D11F1F0DA7F100DEEE45 /* libjpeg.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9739D11E1F0DA7F100DEEE45 /* libjpeg.a */; };
+		9739D1201F0DA7F100DEEE45 /* libjpeg.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9739D11E1F0DA7F100DEEE45 /* libjpeg.a */; };
+		9739D1221F0DA84700DEEE45 /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9739D1211F0DA84700DEEE45 /* libstdc++.tbd */; };
+		9739D1231F0DA85500DEEE45 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9753BC931EFA091400593950 /* CoreImage.framework */; };
+		9739D1251F0DA85A00DEEE45 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9739D1241F0DA85A00DEEE45 /* AssetsLibrary.framework */; };
+		9739D1271F0DA86500DEEE45 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9739D1261F0DA86500DEEE45 /* CoreGraphics.framework */; };
+		9739D1281F0DA88300DEEE45 /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9739D1211F0DA84700DEEE45 /* libstdc++.tbd */; };
+		9739D1291F0DA88900DEEE45 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9739D1241F0DA85A00DEEE45 /* AssetsLibrary.framework */; };
+		9739D12A1F0DA88F00DEEE45 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9739D1261F0DA86500DEEE45 /* CoreGraphics.framework */; };
+		9739D1391F0DF43D00DEEE45 /* MMCropView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9739D12D1F0DF43D00DEEE45 /* MMCropView.m */; };
+		9739D13A1F0DF43D00DEEE45 /* MMCropView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9739D12D1F0DF43D00DEEE45 /* MMCropView.m */; };
+		9739D13B1F0DF43D00DEEE45 /* MMOpenCVHelper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9739D12F1F0DF43D00DEEE45 /* MMOpenCVHelper.mm */; };
+		9739D13C1F0DF43D00DEEE45 /* MMOpenCVHelper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9739D12F1F0DF43D00DEEE45 /* MMOpenCVHelper.mm */; };
+		9739D13D1F0DF43D00DEEE45 /* MTGeometry.c in Sources */ = {isa = PBXBuildFile; fileRef = 9739D1301F0DF43D00DEEE45 /* MTGeometry.c */; };
+		9739D13E1F0DF43D00DEEE45 /* MTGeometry.c in Sources */ = {isa = PBXBuildFile; fileRef = 9739D1301F0DF43D00DEEE45 /* MTGeometry.c */; };
+		9739D13F1F0DF43D00DEEE45 /* UIColor+HexRepresentation.m in Sources */ = {isa = PBXBuildFile; fileRef = 9739D1341F0DF43D00DEEE45 /* UIColor+HexRepresentation.m */; };
+		9739D1401F0DF43D00DEEE45 /* UIColor+HexRepresentation.m in Sources */ = {isa = PBXBuildFile; fileRef = 9739D1341F0DF43D00DEEE45 /* UIColor+HexRepresentation.m */; };
+		9739D1411F0DF43D00DEEE45 /* UIImage+fixOrientation.m in Sources */ = {isa = PBXBuildFile; fileRef = 9739D1361F0DF43D00DEEE45 /* UIImage+fixOrientation.m */; };
+		9739D1421F0DF43D00DEEE45 /* UIImage+fixOrientation.m in Sources */ = {isa = PBXBuildFile; fileRef = 9739D1361F0DF43D00DEEE45 /* UIImage+fixOrientation.m */; };
+		9739D1431F0DF43D00DEEE45 /* UIImageView+ContentFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 9739D1381F0DF43D00DEEE45 /* UIImageView+ContentFrame.m */; };
+		9739D1441F0DF43D00DEEE45 /* UIImageView+ContentFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 9739D1381F0DF43D00DEEE45 /* UIImageView+ContentFrame.m */; };
 		973A80E31EFFAF7B00C00D1C /* UMMobClick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 973A80E21EFFAF7B00C00D1C /* UMMobClick.framework */; };
 		973A80E41EFFAF7B00C00D1C /* UMMobClick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 973A80E21EFFAF7B00C00D1C /* UMMobClick.framework */; };
 		973A80E61EFFAFA700C00D1C /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 973A80E51EFFAFA700C00D1C /* CoreTelephony.framework */; };
@@ -25,7 +48,7 @@
 		9753BC561EFA067900593950 /* AipImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9753BC2B1EFA067900593950 /* AipImageView.m */; };
 		9753BC571EFA067900593950 /* AipCameraController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9753BC2E1EFA067900593950 /* AipCameraController.m */; };
 		9753BC581EFA067900593950 /* AipCaptureCardVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9753BC301EFA067900593950 /* AipCaptureCardVC.m */; };
-		9753BC591EFA067900593950 /* AipGeneralVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9753BC321EFA067900593950 /* AipGeneralVC.m */; };
+		9753BC591EFA067900593950 /* AipGeneralVC.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9753BC321EFA067900593950 /* AipGeneralVC.mm */; };
 		9753BC5A1EFA067900593950 /* AipNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9753BC341EFA067900593950 /* AipNavigationController.m */; };
 		9753BC5B1EFA067900593950 /* ResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9753BC361EFA067900593950 /* ResultViewController.m */; };
 		9753BC601EFA07FC00593950 /* AipOcrSdk.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9753BC5F1EFA07FC00593950 /* AipOcrSdk.storyboard */; };
@@ -56,7 +79,6 @@
 		9753BC961EFA091900593950 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9753BC951EFA091900593950 /* UIKit.framework */; };
 		9753BC981EFA091F00593950 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9753BC971EFA091F00593950 /* CoreFoundation.framework */; };
 		9753BC9A1EFA092300593950 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9753BC991EFA092300593950 /* Foundation.framework */; };
-		976B46251F09F47500BB9BB0 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9753BC931EFA091400593950 /* CoreImage.framework */; };
 		97ADFDB01EFA57B400C5E461 /* AipBase.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 97FEE1801EFA578900D3585E /* AipBase.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		97ADFDD11EFA5B7500C5E461 /* SVIndefiniteAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 97ADFDC81EFA5B7500C5E461 /* SVIndefiniteAnimatedView.m */; };
 		97ADFDD21EFA5B7500C5E461 /* SVProgressAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 97ADFDCA1EFA5B7500C5E461 /* SVProgressAnimatedView.m */; };
@@ -80,6 +102,7 @@
 		97ADFE4C1EFAB0E500C5E461 /* IQKeyboardManager.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 97ADFE3D1EFAB0E500C5E461 /* IQKeyboardManager.bundle */; };
 		97ADFE551EFAC5C300C5E461 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FFDAF4231E49C99000AB65B7 /* Assets.xcassets */; };
 		97ADFE561EFAC5C500C5E461 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FFDAF4231E49C99000AB65B7 /* Assets.xcassets */; };
+		97D0552C1F1073E70018D843 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97D0552B1F1073E70018D843 /* CoreMotion.framework */; };
 		97FEE16E1EFA0B6F00D3585E /* AipOcrSdk.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9753BC371EFA067900593950 /* AipOcrSdk.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		97FEE1731EFA143700D3585E /* AipCutImageEXView.m in Sources */ = {isa = PBXBuildFile; fileRef = 97FEE1701EFA143700D3585E /* AipCutImageEXView.m */; };
 		97FEE1741EFA143700D3585E /* AipImageEXView.m in Sources */ = {isa = PBXBuildFile; fileRef = 97FEE1721EFA143700D3585E /* AipImageEXView.m */; };
@@ -134,6 +157,23 @@
 		9727A5A51EF4E9CE00E63E99 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		9727A5AA1EF513F700E63E99 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		9727A5AB1EF513F700E63E99 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		9739D11B1F0DA5AB00DEEE45 /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = opencv2.framework; sourceTree = "<group>"; };
+		9739D11E1F0DA7F100DEEE45 /* libjpeg.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libjpeg.a; sourceTree = "<group>"; };
+		9739D1211F0DA84700DEEE45 /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
+		9739D1241F0DA85A00DEEE45 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		9739D1261F0DA86500DEEE45 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		9739D12C1F0DF43D00DEEE45 /* MMCropView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMCropView.h; sourceTree = "<group>"; };
+		9739D12D1F0DF43D00DEEE45 /* MMCropView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMCropView.m; sourceTree = "<group>"; };
+		9739D12E1F0DF43D00DEEE45 /* MMOpenCVHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMOpenCVHelper.h; sourceTree = "<group>"; };
+		9739D12F1F0DF43D00DEEE45 /* MMOpenCVHelper.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MMOpenCVHelper.mm; sourceTree = "<group>"; };
+		9739D1301F0DF43D00DEEE45 /* MTGeometry.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = MTGeometry.c; sourceTree = "<group>"; };
+		9739D1311F0DF43D00DEEE45 /* MTGeometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTGeometry.h; sourceTree = "<group>"; };
+		9739D1331F0DF43D00DEEE45 /* UIColor+HexRepresentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+HexRepresentation.h"; sourceTree = "<group>"; };
+		9739D1341F0DF43D00DEEE45 /* UIColor+HexRepresentation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+HexRepresentation.m"; sourceTree = "<group>"; };
+		9739D1351F0DF43D00DEEE45 /* UIImage+fixOrientation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+fixOrientation.h"; sourceTree = "<group>"; };
+		9739D1361F0DF43D00DEEE45 /* UIImage+fixOrientation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+fixOrientation.m"; sourceTree = "<group>"; };
+		9739D1371F0DF43D00DEEE45 /* UIImageView+ContentFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+ContentFrame.h"; sourceTree = "<group>"; };
+		9739D1381F0DF43D00DEEE45 /* UIImageView+ContentFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+ContentFrame.m"; sourceTree = "<group>"; };
 		973A80E21EFFAF7B00C00D1C /* UMMobClick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UMMobClick.framework; sourceTree = "<group>"; };
 		973A80E51EFFAFA700C00D1C /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		973A80E71EFFAFAC00C00D1C /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
@@ -166,7 +206,7 @@
 		9753BC2F1EFA067900593950 /* AipCaptureCardVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AipCaptureCardVC.h; sourceTree = "<group>"; };
 		9753BC301EFA067900593950 /* AipCaptureCardVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AipCaptureCardVC.m; sourceTree = "<group>"; };
 		9753BC311EFA067900593950 /* AipGeneralVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AipGeneralVC.h; sourceTree = "<group>"; };
-		9753BC321EFA067900593950 /* AipGeneralVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AipGeneralVC.m; sourceTree = "<group>"; };
+		9753BC321EFA067900593950 /* AipGeneralVC.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AipGeneralVC.mm; sourceTree = "<group>"; };
 		9753BC331EFA067900593950 /* AipNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AipNavigationController.h; sourceTree = "<group>"; };
 		9753BC341EFA067900593950 /* AipNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AipNavigationController.m; sourceTree = "<group>"; };
 		9753BC351EFA067900593950 /* ResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultViewController.h; sourceTree = "<group>"; };
@@ -241,6 +281,7 @@
 		97ADFE3A1EFAB0E500C5E461 /* IQUIView+IQKeyboardToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IQUIView+IQKeyboardToolbar.h"; sourceTree = "<group>"; };
 		97ADFE3B1EFAB0E500C5E461 /* IQUIView+IQKeyboardToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "IQUIView+IQKeyboardToolbar.m"; sourceTree = "<group>"; };
 		97ADFE3D1EFAB0E500C5E461 /* IQKeyboardManager.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = IQKeyboardManager.bundle; sourceTree = "<group>"; };
+		97D0552B1F1073E70018D843 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		97FEE16F1EFA143700D3585E /* AipCutImageEXView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AipCutImageEXView.h; sourceTree = "<group>"; };
 		97FEE1701EFA143700D3585E /* AipCutImageEXView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AipCutImageEXView.m; sourceTree = "<group>"; };
 		97FEE1711EFA143700D3585E /* AipImageEXView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AipImageEXView.h; sourceTree = "<group>"; };
@@ -269,8 +310,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				976B46251F09F47500BB9BB0 /* CoreImage.framework in Frameworks */,
+				9739D1271F0DA86500DEEE45 /* CoreGraphics.framework in Frameworks */,
+				9739D1251F0DA85A00DEEE45 /* AssetsLibrary.framework in Frameworks */,
+				9739D1231F0DA85500DEEE45 /* CoreImage.framework in Frameworks */,
+				9739D1221F0DA84700DEEE45 /* libstdc++.tbd in Frameworks */,
+				9739D11D1F0DA5AB00DEEE45 /* opencv2.framework in Frameworks */,
 				973A80E41EFFAF7B00C00D1C /* UMMobClick.framework in Frameworks */,
+				9739D1201F0DA7F100DEEE45 /* libjpeg.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -278,9 +324,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				97D0552C1F1073E70018D843 /* CoreMotion.framework in Frameworks */,
+				9739D12A1F0DA88F00DEEE45 /* CoreGraphics.framework in Frameworks */,
+				9739D1291F0DA88900DEEE45 /* AssetsLibrary.framework in Frameworks */,
+				9739D1281F0DA88300DEEE45 /* libstdc++.tbd in Frameworks */,
 				973A80EA1EFFAFC700C00D1C /* libsqlite3.tbd in Frameworks */,
 				973A80E81EFFAFAC00C00D1C /* libz.tbd in Frameworks */,
 				973A80E61EFFAFA700C00D1C /* CoreTelephony.framework in Frameworks */,
+				9739D11F1F0DA7F100DEEE45 /* libjpeg.a in Frameworks */,
+				9739D11C1F0DA5AB00DEEE45 /* opencv2.framework in Frameworks */,
 				9753BC9A1EFA092300593950 /* Foundation.framework in Frameworks */,
 				9753BC981EFA091F00593950 /* CoreFoundation.framework in Frameworks */,
 				973A80E31EFFAF7B00C00D1C /* UMMobClick.framework in Frameworks */,
@@ -292,6 +344,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9739D12B1F0DF43D00DEEE45 /* opencvtool */ = {
+			isa = PBXGroup;
+			children = (
+				9739D12C1F0DF43D00DEEE45 /* MMCropView.h */,
+				9739D12D1F0DF43D00DEEE45 /* MMCropView.m */,
+				9739D12E1F0DF43D00DEEE45 /* MMOpenCVHelper.h */,
+				9739D12F1F0DF43D00DEEE45 /* MMOpenCVHelper.mm */,
+				9739D1301F0DF43D00DEEE45 /* MTGeometry.c */,
+				9739D1311F0DF43D00DEEE45 /* MTGeometry.h */,
+			);
+			path = opencvtool;
+			sourceTree = "<group>";
+		};
+		9739D1321F0DF43D00DEEE45 /* UIImageCategories */ = {
+			isa = PBXGroup;
+			children = (
+				9739D1331F0DF43D00DEEE45 /* UIColor+HexRepresentation.h */,
+				9739D1341F0DF43D00DEEE45 /* UIColor+HexRepresentation.m */,
+				9739D1351F0DF43D00DEEE45 /* UIImage+fixOrientation.h */,
+				9739D1361F0DF43D00DEEE45 /* UIImage+fixOrientation.m */,
+				9739D1371F0DF43D00DEEE45 /* UIImageView+ContentFrame.h */,
+				9739D1381F0DF43D00DEEE45 /* UIImageView+ContentFrame.m */,
+			);
+			path = UIImageCategories;
+			sourceTree = "<group>";
+		};
 		975215361EF9F746009272B2 /* PhotoInAlbumOCR */ = {
 			isa = PBXGroup;
 			children = (
@@ -324,6 +402,8 @@
 		9753BBE11EFA067900593950 /* AipOcrBundle */ = {
 			isa = PBXGroup;
 			children = (
+				9739D12B1F0DF43D00DEEE45 /* opencvtool */,
+				9739D1321F0DF43D00DEEE45 /* UIImageCategories */,
 				97ADFE191EFAB0E500C5E461 /* IQKeyboardManager */,
 				97ADFDC61EFA5B7500C5E461 /* SVProgressHUD */,
 				9753BC611EFA084100593950 /* 切图 */,
@@ -374,7 +454,7 @@
 				9753BC2F1EFA067900593950 /* AipCaptureCardVC.h */,
 				9753BC301EFA067900593950 /* AipCaptureCardVC.m */,
 				9753BC311EFA067900593950 /* AipGeneralVC.h */,
-				9753BC321EFA067900593950 /* AipGeneralVC.m */,
+				9753BC321EFA067900593950 /* AipGeneralVC.mm */,
 				9753BC331EFA067900593950 /* AipNavigationController.h */,
 				9753BC341EFA067900593950 /* AipNavigationController.m */,
 				9753BC351EFA067900593950 /* ResultViewController.h */,
@@ -536,6 +616,8 @@
 		FFDAF40B1E49C99000AB65B7 = {
 			isa = PBXGroup;
 			children = (
+				9739D11E1F0DA7F100DEEE45 /* libjpeg.a */,
+				9739D11B1F0DA5AB00DEEE45 /* opencv2.framework */,
 				973A80E21EFFAF7B00C00D1C /* UMMobClick.framework */,
 				97FEE1801EFA578900D3585E /* AipBase.framework */,
 				FFDAF4161E49C99000AB65B7 /* AipOcrDemo */,
@@ -585,6 +667,10 @@
 		FFDAF4431E519F2700AB65B7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				97D0552B1F1073E70018D843 /* CoreMotion.framework */,
+				9739D1261F0DA86500DEEE45 /* CoreGraphics.framework */,
+				9739D1241F0DA85A00DEEE45 /* AssetsLibrary.framework */,
+				9739D1211F0DA84700DEEE45 /* libstdc++.tbd */,
 				973A80E91EFFAFC700C00D1C /* libsqlite3.tbd */,
 				973A80E71EFFAFAC00C00D1C /* libz.tbd */,
 				973A80E51EFFAFA700C00D1C /* CoreTelephony.framework */,
@@ -744,7 +830,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9739D13A1F0DF43D00DEEE45 /* MMCropView.m in Sources */,
 				975215391EF9F746009272B2 /* ActionViewController.m in Sources */,
+				9739D1421F0DF43D00DEEE45 /* UIImage+fixOrientation.m in Sources */,
+				9739D1401F0DF43D00DEEE45 /* UIColor+HexRepresentation.m in Sources */,
+				9739D13E1F0DF43D00DEEE45 /* MTGeometry.c in Sources */,
+				9739D1441F0DF43D00DEEE45 /* UIImageView+ContentFrame.m in Sources */,
+				9739D13C1F0DF43D00DEEE45 /* MMOpenCVHelper.mm in Sources */,
 				97FEE1731EFA143700D3585E /* AipCutImageEXView.m in Sources */,
 				97FEE1741EFA143700D3585E /* AipImageEXView.m in Sources */,
 			);
@@ -756,18 +848,22 @@
 			files = (
 				97ADFE401EFAB0E500C5E461 /* IQUITextFieldView+Additions.m in Sources */,
 				9753BC561EFA067900593950 /* AipImageView.m in Sources */,
+				9739D13B1F0DF43D00DEEE45 /* MMOpenCVHelper.mm in Sources */,
 				9753BC5A1EFA067900593950 /* AipNavigationController.m in Sources */,
 				9753BC521EFA067900593950 /* IOSpeScaleLayoutConstraint.m in Sources */,
 				97ADFDD11EFA5B7500C5E461 /* SVIndefiniteAnimatedView.m in Sources */,
 				97ADFE3E1EFAB0E500C5E461 /* IQNSArray+Sort.m in Sources */,
 				9753BC551EFA067900593950 /* AipCutImageView.m in Sources */,
 				97ADFE411EFAB0E500C5E461 /* IQUIView+Hierarchy.m in Sources */,
+				9739D13F1F0DF43D00DEEE45 /* UIColor+HexRepresentation.m in Sources */,
 				97ADFE481EFAB0E500C5E461 /* IQPreviousNextView.m in Sources */,
 				9753BC581EFA067900593950 /* AipCaptureCardVC.m in Sources */,
+				9739D1411F0DF43D00DEEE45 /* UIImage+fixOrientation.m in Sources */,
 				97ADFDD41EFA5B7500C5E461 /* SVProgressHUD.m in Sources */,
 				97ADFE441EFAB0E500C5E461 /* IQKeyboardManager.m in Sources */,
 				97ADFE471EFAB0E500C5E461 /* IQBarButtonItem.m in Sources */,
 				97ADFE421EFAB0E500C5E461 /* IQUIViewController+Additions.m in Sources */,
+				9739D1431F0DF43D00DEEE45 /* UIImageView+ContentFrame.m in Sources */,
 				97ADFDD51EFA5B7500C5E461 /* SVRadialGradientLayer.m in Sources */,
 				97ADFE461EFAB0E500C5E461 /* IQTextView.m in Sources */,
 				97ADFE451EFAB0E500C5E461 /* IQKeyboardReturnKeyHandler.m in Sources */,
@@ -778,12 +874,14 @@
 				9753BC531EFA067900593950 /* IOSpeScaleLayoutLabel.m in Sources */,
 				9753BC541EFA067900593950 /* AipCameraPreviewView.m in Sources */,
 				97ADFE431EFAB0E500C5E461 /* IQUIWindow+Hierarchy.m in Sources */,
+				9739D1391F0DF43D00DEEE45 /* MMCropView.m in Sources */,
+				9739D13D1F0DF43D00DEEE45 /* MTGeometry.c in Sources */,
 				97ADFE491EFAB0E500C5E461 /* IQTitleBarButtonItem.m in Sources */,
 				97ADFE4B1EFAB0E500C5E461 /* IQUIView+IQKeyboardToolbar.m in Sources */,
 				FFDAF4191E49C99000AB65B7 /* main.m in Sources */,
 				9753BC5B1EFA067900593950 /* ResultViewController.m in Sources */,
 				97ADFE3F1EFAB0E500C5E461 /* IQUIScrollView+Additions.m in Sources */,
-				9753BC591EFA067900593950 /* AipGeneralVC.m in Sources */,
+				9753BC591EFA067900593950 /* AipGeneralVC.mm in Sources */,
 				9753BC571EFA067900593950 /* AipCameraController.m in Sources */,
 				9753BC4F1EFA067900593950 /* AipOcrService.m in Sources */,
 				97ADFDD21EFA5B7500C5E461 /* SVProgressAnimatedView.m in Sources */,
@@ -844,6 +942,10 @@
 				INFOPLIST_FILE = PhotoInAlbumOCR/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.uzero.ocrrec.PhotoInAlbumOCR;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -866,6 +968,10 @@
 				INFOPLIST_FILE = PhotoInAlbumOCR/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.uzero.ocrrec.PhotoInAlbumOCR;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -985,6 +1091,10 @@
 				INFOPLIST_FILE = AipOcrDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lstdc++",
@@ -1017,6 +1127,10 @@
 				INFOPLIST_FILE = AipOcrDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lstdc++",

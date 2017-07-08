@@ -222,11 +222,11 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </view>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mOa-jl-1X9" customClass="AipCutImageView">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="40" width="375" height="559"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ekk-cC-N2A" customClass="AipImageView">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="40" width="375" height="559"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JDl-3I-2O3">
@@ -315,16 +315,16 @@
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="K13-8J-9JA" secondAttribute="bottom" id="4LN-WC-B5D"/>
                             <constraint firstItem="9eE-H5-UtU" firstAttribute="top" secondItem="pEK-B6-uAC" secondAttribute="top" constant="14" id="Bfo-3B-drP" customClass="IOSpeScaleLayoutConstraint"/>
-                            <constraint firstItem="mOa-jl-1X9" firstAttribute="top" secondItem="pEK-B6-uAC" secondAttribute="top" id="C4B-RP-auY"/>
+                            <constraint firstItem="mOa-jl-1X9" firstAttribute="top" secondItem="pEK-B6-uAC" secondAttribute="top" constant="40" id="C4B-RP-auY"/>
                             <constraint firstItem="JDl-3I-2O3" firstAttribute="leading" secondItem="pEK-B6-uAC" secondAttribute="leading" id="Mdh-Zv-d2H"/>
                             <constraint firstItem="9eE-H5-UtU" firstAttribute="leading" secondItem="pEK-B6-uAC" secondAttribute="leading" constant="14" id="N9l-8Q-045" customClass="IOSpeScaleLayoutConstraint"/>
                             <constraint firstItem="K13-8J-9JA" firstAttribute="leading" secondItem="pEK-B6-uAC" secondAttribute="leading" id="NVm-1B-5Se"/>
                             <constraint firstAttribute="trailing" secondItem="mOa-jl-1X9" secondAttribute="trailing" id="O57-cY-FIc"/>
-                            <constraint firstAttribute="bottom" secondItem="Ekk-cC-N2A" secondAttribute="bottom" id="SV5-eq-imr"/>
+                            <constraint firstAttribute="bottom" secondItem="Ekk-cC-N2A" secondAttribute="bottom" constant="68" id="SV5-eq-imr"/>
                             <constraint firstAttribute="trailing" secondItem="JDl-3I-2O3" secondAttribute="trailing" id="UyB-nj-d5G"/>
                             <constraint firstAttribute="bottom" secondItem="JDl-3I-2O3" secondAttribute="bottom" id="VKK-aj-d68"/>
-                            <constraint firstItem="Ekk-cC-N2A" firstAttribute="top" secondItem="pEK-B6-uAC" secondAttribute="top" id="Zhv-lz-OA8"/>
-                            <constraint firstAttribute="bottom" secondItem="mOa-jl-1X9" secondAttribute="bottom" id="aXv-Ln-LcJ"/>
+                            <constraint firstItem="Ekk-cC-N2A" firstAttribute="top" secondItem="pEK-B6-uAC" secondAttribute="top" constant="40" id="Zhv-lz-OA8"/>
+                            <constraint firstAttribute="bottom" secondItem="mOa-jl-1X9" secondAttribute="bottom" constant="68" id="aXv-Ln-LcJ"/>
                             <constraint firstItem="c7U-eV-ZOX" firstAttribute="leading" secondItem="pEK-B6-uAC" secondAttribute="leading" id="ase-wr-53q"/>
                             <constraint firstItem="K13-8J-9JA" firstAttribute="top" secondItem="pEK-B6-uAC" secondAttribute="top" id="cCo-kH-vlv"/>
                             <constraint firstAttribute="trailing" secondItem="K13-8J-9JA" secondAttribute="trailing" id="dJL-Wj-tBF"/>

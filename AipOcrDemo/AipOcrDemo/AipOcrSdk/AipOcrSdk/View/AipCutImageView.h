@@ -10,6 +10,7 @@
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
 #import "AipImageView.h"
+#import "UIImageView+ContentFrame.h"
 
 @protocol AipCutImageDelegate <NSObject>
 @optional

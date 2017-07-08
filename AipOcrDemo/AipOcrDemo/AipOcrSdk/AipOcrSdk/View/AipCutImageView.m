@@ -371,16 +371,17 @@ static CGFloat const pinchMinscale = 0.5;
     self.bgImageView = [[UIImageView alloc] initWithFrame:self.bounds];
     [self.bgImageView setBackgroundColor:[UIColor blackColor]];
     self.bgImageView.userInteractionEnabled = YES;
+    [self.bgImageView setContentMode:UIViewContentModeScaleAspectFit];
     self.bgImageView.tag = TAG_IMAGEVIEW;
     CALayer *layer = self.bgImageView.layer;
-    layer.contentsGravity = @"resizeAspectFill";
+//    layer.contentsGravity = @"resizeAspectFill";
     [self addSubview:self.bgImageView];
     
-    if (isFromLib) {
-        layer.contentsGravity = @"resizeAspect";
-    } else {
-        layer.contentsGravity = @"resizeAspectFill";
-    }
+//    if (isFromLib) {
+//        layer.contentsGravity = @"resizeAspect";
+//    } else {
+//        layer.contentsGravity = @"resizeAspectFill";
+//    }
     
     self.isImageFromLib = isFromLib;
     self.bgImageView.image = aImage;

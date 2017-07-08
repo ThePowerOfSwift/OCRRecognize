@@ -16,6 +16,14 @@
 #import "ResultViewController.h"
 #import "SVProgressHUD.h"
 
+#include <vector>
+#import "MMOpenCVHelper.h"
+#define backgroundHex @"2196f3"
+#define kCameraToolBarHeight 68
+#import "UIColor+HexRepresentation.h"
+#import "MMCropView.h"
+#import <CoreMotion/CoreMotion.h>
+
 #define MyLocal(x, ...) NSLocalizedString(x, nil)
 
 #define V_X(v)      v.frame.origin.x
@@ -45,7 +53,12 @@
 @property (assign, nonatomic) UIImageOrientation imageOrientation;
 @property (assign, nonatomic) CGSize size;
 
+@property(nonatomic,strong) CMMotionManager *cmmotionManager;
+
 @property (assign,nonatomic)float finalImgWidth;
+
+
+@property (strong, nonatomic) MMCropView *cropRect;
 
 @end
 
@@ -62,15 +75,36 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    firstIn = YES;
+    
     self.cameraController = [[AipCameraController alloc] initWithCameraPosition:AVCaptureDevicePositionBack];
     
     [self setupViews];
+    
+    
     [self setUpMaskImageView];
-    //delegate 用做传递手势事件
-    self.maskImageView.delegate = self.cutImageView;
-    self.cutImageView.imgDelegate = self;
+//    //delegate 用做传递手势事件
+//    self.maskImageView.delegate = self.cutImageView;
+//    self.cutImageView.imgDelegate = self;
+    
+    
+    self.maskImageView.hidden = YES;
+    self.cutImageView.hidden = YES;
+    
+    
+    
+
+    
+   
+    
+    
+    
+    
     
     self.imageDeviceOrientation = UIDeviceOrientationPortrait;
+    
+    
+    [self getDeviceOrientation];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -78,6 +112,30 @@
     
     [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(orientationChanged:) name:UIDeviceOrientationDidChangeNotification object:nil];
+    
+    
+    if (!firstIn) {
+        return;
+    }
+    
+    [self initCropFrame];
+    //    [self adjustPossition];
+    
+    
+    _cropRect= [[MMCropView alloc] initWithFrame:CGRectZero];
+    [self.view addSubview:_cropRect];
+    
+    UIPanGestureRecognizer *singlePan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(singlePan:)];
+    singlePan.maximumNumberOfTouches = 1;
+    [_cropRect addGestureRecognizer:singlePan];
+    
+    //    [self setCropUI];
+    [self.view bringSubviewToFront:_cropRect];
+    
+    _cropRect.hidden = YES;
+
+    firstIn = NO;
+   
 }
 
 - (void)viewDidAppear:(BOOL)animated{
@@ -93,11 +151,76 @@
     [self.cameraController stopRunningCamera];
 }
 
+-(void)getDeviceOrientation
+{
+    if([self.cmmotionManager isDeviceMotionAvailable]) {
+        [self.cmmotionManager startAccelerometerUpdatesToQueue:[NSOperationQueue currentQueue] withHandler:^(CMAccelerometerData * _Nullable accelerometerData, NSError * _Nullable error) {
+            AVCaptureVideoOrientation orientationNew;
+            if (accelerometerData.acceleration.x >= 0.75) {//home button left
+//                orientationNew = UIDeviceOrientationLandscapeRight;
+                NSLog(@"home button left");
+            }
+            else if (accelerometerData.acceleration.x <= -0.75) {//home button right
+//                orientationNew = UIDeviceOrientationLandscapeLeft;
+                NSLog(@"home button right");
+            }
+            else if (accelerometerData.acceleration.y <= -0.75) {
+//                orientationNew = UIDeviceOrientationPortrait;
+                NSLog(@"UIDeviceOrientationPortrait");
+            }
+            else if (accelerometerData.acceleration.y >= 0.75) {
+//                orientationNew = UIDeviceOrientationPortraitUpsideDown;
+                NSLog(@"UIDeviceOrientationPortraitUpsideDown");
+            }
+            else {
+                // Consider same as last time
+                return;
+            }
+            
+        }];
+    }
+}
+
 
 #pragma mark - SetUp
 
+
+-(void)initCropFrame{
+    _sourceImageView = [[UIImageView alloc] initWithFrame:CGRectMake(15, 40, self.view.bounds.size.width-30, self.view.bounds.size.height-kCameraToolBarHeight-40)];
+//    _sourceImageView.backgroundColor = [UIColor redColor];
+    [_sourceImageView setContentMode:UIViewContentModeScaleAspectFit];
+//    [_sourceImageView setImage:_adjustedImage];
+    //     [_sourceImageView setImage:[UIImage imageNamed:@"testtwo.jpg"]];
+    _sourceImageView.clipsToBounds=YES;
+    
+    
+    [self.view addSubview:_sourceImageView];
+    
+    _sourceImageView.hidden = YES;
+    
+    //    NSLog(@"%f %f",_sourceImageView.contentFrame.size.height,_sourceImageView.contentFrame.size.height);
+    
+    
+//    [self buttonsScroll];
+//    
+//    [UIView animateWithDuration:0.5 animations:^{
+//        scrollView.frame=CGRectMake(0, -64, self.view.bounds.size.width, 64);
+//    }];
+    
+}
+
+
 //还原初始值
 - (void)reset{
+    
+    _cropImage = nil;
+    
+    self.sourceImageView.hidden = YES;
+    self.cropRect.hidden = YES;
+    
+    _adjustedImage = nil;
+    
+    [self.sourceImageView setImage:nil];
     
     self.imageOrientation = UIImageOrientationUp;
     self.closeButton.hidden = YES;
@@ -141,6 +264,7 @@
 //设置背景图
 - (void)setupCutImageView:(UIImage *)image fromPhotoLib:(BOOL)isFromLib {
     
+    fromLib = isFromLib;
     if (isFromLib) {
         
         self.cutImageView.userInteractionEnabled = YES;
@@ -151,9 +275,27 @@
         self.transformButton.hidden = YES;
     }
     self.previewView.hidden = YES;
-    [self.cutImageView setBGImage:image fromPhotoLib:isFromLib useGestureRecognizer:NO];
-    self.cutImageView.hidden = NO;
-    self.maskImageView.hidden = NO;
+   
+//    self.cutImageView.hidden = NO;
+//    self.maskImageView.hidden = NO;
+    
+    
+    self.sourceImageView.hidden = NO;
+    self.cropRect.hidden = NO;
+    
+    _adjustedImage = image;
+    
+    [self.sourceImageView setImage:_adjustedImage];
+    CGRect cropFrame=CGRectMake(_sourceImageView.contentFrame.origin.x,_sourceImageView.contentFrame.origin.y+40-15,_sourceImageView.contentFrame.size.width+30,_sourceImageView.contentFrame.size.height+30);
+    [_cropRect setFrame:cropFrame];
+    [_cropRect resetFrame];
+    
+    [self detectEdges];
+    _initialRect = self.sourceImageView.frame;
+    final_Rect =self.sourceImageView.frame;
+    
+    
+    
     self.closeButton.hidden = YES;
     self.checkViewBoom.constant = 0;
     self.toolViewBoom.constant = -V_H(self.toolsView);
@@ -212,21 +354,40 @@
     
     //ytodo tips: MyLocal(@"识别中...")
     
-    [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
+    if (!_cropImage) {
+        [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
+        [SVProgressHUD showWithStatus:@"裁剪图片..."];
+        
+        [self cropAction];
+    }
+    
+   
+//    return;
+    
+//    [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
     [SVProgressHUD showWithStatus:@"识别中..."];
     
-    CGRect rect  = [self TransformTheRect];
+//    self.cutImageView.bgImageView.image = _cropImage;
     
-    UIImage *cutImage = [self.cutImageView cutImageFromView:self.cutImageView.bgImageView withSize:self.size atFrame:rect];
+//    CGRect rect  = [self TransformTheRect];
+////    CGRect rect = CGRectMake(0, 0, <#CGFloat width#>, <#CGFloat height#>)
+//    
+//    UIImage *cutImage = [self.cutImageView cutImageFromView:self.cutImageView.bgImageView withSize:self.size atFrame:rect];
+//    
+//    UIImage *image = [self rotateImageEx:cutImage.CGImage byDeviceOrientation:self.imageDeviceOrientation];
+//    
+//    UIImage *finalImage = [self rotateImageEx:image.CGImage orientation:self.imageOrientation];
     
-    UIImage *image = [self rotateImageEx:cutImage.CGImage byDeviceOrientation:self.imageDeviceOrientation];
-    
-    UIImage *finalImage = [self rotateImageEx:image.CGImage orientation:self.imageOrientation];
+//    UIImage * finalImage = self.cutImageView.bgImageView.image;
     
     
+    UIImage * finalImage = _cropImage;
     NSLog(@"finalImageWidth:%f",finalImage.size.width);
     
     self.finalImgWidth = finalImage.size.width;
+    
+    
+//    return;
     
     NSDictionary *options = @{@"language_type": @"CHN_ENG", @"detect_direction": @"true"};
     
@@ -270,16 +431,49 @@
             [self presentViewController:alertController animated:YES completion:nil];
             return;
         }
+        
+        float maxHeight = 0.f;
+        float maxWidth = 0.f;
+        
         for(NSDictionary *obj in result[@"words_result"]){
             
             
-            if (([obj[@"location"][@"left"] floatValue]+[obj[@"location"][@"width"] floatValue])/self.finalImgWidth<(9.f/10.f)) {
-                [message appendFormat:@"%@\n", obj[@"words"]];
+            if ([obj[@"location"][@"width"] floatValue]>maxWidth) {
+                maxWidth = [obj[@"location"][@"width"] floatValue];
             }
-            else
-                [message appendFormat:@"%@", obj[@"words"]];
-            
+            if ([obj[@"location"][@"height"] floatValue]>maxHeight) {
+                maxHeight = [obj[@"location"][@"height"] floatValue];
+            }
+ 
         }
+        
+        if ([result[@"direction"] intValue]==0 || [result[@"direction"] intValue]==2) {
+            for(NSDictionary *obj in result[@"words_result"]){
+                
+                
+                if ([obj[@"location"][@"width"] floatValue]/maxWidth<(9.f/10.f)) {
+                    [message appendFormat:@"%@\n", obj[@"words"]];
+                }
+                else
+                    [message appendFormat:@"%@", obj[@"words"]];
+                
+            }
+        }
+        else
+        {
+            for(NSDictionary *obj in result[@"words_result"]){
+                
+                
+                if ([obj[@"location"][@"height"] floatValue]/maxHeight<(9.f/10.f)) {
+                    [message appendFormat:@"%@\n", obj[@"words"]];
+                }
+                else
+                    [message appendFormat:@"%@", obj[@"words"]];
+                
+            }
+        }
+        
+        
     }else{
         [message appendFormat:@"%@", result];
     }
@@ -841,6 +1035,390 @@
     [self.navigationController popViewControllerAnimated:YES];
     
 }
+
+-(void)singlePan:(UIPanGestureRecognizer *)gesture{
+    CGPoint posInStretch = [gesture locationInView:_cropRect];
+    if(gesture.state==UIGestureRecognizerStateBegan){
+        [_cropRect findPointAtLocation:posInStretch];
+    }
+    if(gesture.state==UIGestureRecognizerStateEnded){
+        _cropRect.activePoint.backgroundColor = [UIColor grayColor];
+        _cropRect.activePoint = nil;
+        [_cropRect checkangle:0];
+    }
+    [_cropRect moveActivePointToLocation:posInStretch];
+    
+}
+
+
+
+#pragma mark OpenCV
+- (void)detectEdges
+{
+    cv::Mat original = [MMOpenCVHelper cvMatFromUIImage:_sourceImageView.image];
+    CGSize targetSize = _sourceImageView.contentSize;
+    cv::resize(original, original, cvSize(targetSize.width, targetSize.height));
+    
+    
+    
+    std::vector<std::vector<cv::Point>>squares;
+    std::vector<cv::Point> largest_square;
+    
+    find_squares(original, squares);
+    find_largest_square(squares, largest_square);
+    
+    if (largest_square.size() == 4)
+    {
+        
+        // Manually sorting points, needs major improvement. Sorry.
+        
+        NSMutableArray *points = [NSMutableArray array];
+        NSMutableDictionary *sortedPoints = [NSMutableDictionary dictionary];
+        
+        for (int i = 0; i < 4; i++)
+        {
+            NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:[NSValue valueWithCGPoint:CGPointMake(largest_square[i].x, largest_square[i].y)], @"point" , [NSNumber numberWithInt:(largest_square[i].x + largest_square[i].y)], @"value", nil];
+            [points addObject:dict];
+        }
+        
+        int min = [[points valueForKeyPath:@"@min.value"] intValue];
+        int max = [[points valueForKeyPath:@"@max.value"] intValue];
+        
+        int minIndex = 0;
+        int maxIndex = 0;
+        
+        int missingIndexOne = 0;
+        int missingIndexTwo = 0;
+        
+        for (int i = 0; i < 4; i++)
+        {
+            NSDictionary *dict = [points objectAtIndex:i];
+            
+            if ([[dict objectForKey:@"value"] intValue] == min)
+            {
+                [sortedPoints setObject:[dict objectForKey:@"point"] forKey:@"0"];
+                minIndex = i;
+                continue;
+            }
+            
+            if ([[dict objectForKey:@"value"] intValue] == max)
+            {
+                [sortedPoints setObject:[dict objectForKey:@"point"] forKey:@"2"];
+                maxIndex = i;
+                continue;
+            }
+            
+            NSLog(@"MSSSING %i", i);
+            
+            missingIndexOne = i;
+        }
+        
+        for (int i = 0; i < 4; i++)
+        {
+            if (missingIndexOne != i && minIndex != i && maxIndex != i)
+            {
+                missingIndexTwo = i;
+            }
+        }
+        
+        
+        if (largest_square[missingIndexOne].x < largest_square[missingIndexTwo].x)
+        {
+            //2nd Point Found
+            [sortedPoints setObject:[[points objectAtIndex:missingIndexOne] objectForKey:@"point"] forKey:@"3"];
+            [sortedPoints setObject:[[points objectAtIndex:missingIndexTwo] objectForKey:@"point"] forKey:@"1"];
+        }
+        else
+        {
+            //4rd Point Found
+            [sortedPoints setObject:[[points objectAtIndex:missingIndexOne] objectForKey:@"point"] forKey:@"1"];
+            [sortedPoints setObject:[[points objectAtIndex:missingIndexTwo] objectForKey:@"point"] forKey:@"3"];
+        }
+        
+        CGPoint point0 = CGPointMake([(NSValue *)[sortedPoints objectForKey:@"0"] CGPointValue].x+15, [(NSValue *)[sortedPoints objectForKey:@"0"] CGPointValue].y+15);
+        CGPoint point1 = CGPointMake([(NSValue *)[sortedPoints objectForKey:@"1"] CGPointValue].x+15, [(NSValue *)[sortedPoints objectForKey:@"1"] CGPointValue].y+15);
+        CGPoint point2 = CGPointMake([(NSValue *)[sortedPoints objectForKey:@"2"] CGPointValue].x+15, [(NSValue *)[sortedPoints objectForKey:@"2"] CGPointValue].y+15);
+        CGPoint point3 = CGPointMake([(NSValue *)[sortedPoints objectForKey:@"3"] CGPointValue].x+15, [(NSValue *)[sortedPoints objectForKey:@"3"] CGPointValue].y+15);
+        
+        [_cropRect topLeftCornerToCGPoint:point0];
+        [_cropRect topRightCornerToCGPoint:point1];
+        [_cropRect bottomRightCornerToCGPoint:point2];
+        [_cropRect bottomLeftCornerToCGPoint:point3];
+        
+        NSLog(@"%@ Sorted Points",sortedPoints);
+        
+        
+        
+    }
+    else{
+        
+    }
+    
+    original.release();
+    
+    
+    
+}
+
+
+// http://stackoverflow.com/questions/8667818/opencv-c-obj-c-detecting-a-sheet-of-paper-square-detection
+void find_squares(cv::Mat& image, std::vector<std::vector<cv::Point>>&squares) {
+    
+    // blur will enhance edge detection
+    
+    cv::Mat blurred(image);
+    //    medianBlur(image, blurred, 9);
+    GaussianBlur(image, blurred, cvSize(11,11), 0);//change from median blur to gaussian for more accuracy of square detection
+    
+    cv::Mat gray0(blurred.size(), CV_8U), gray;
+    std::vector<std::vector<cv::Point> > contours;
+    
+    // find squares in every color plane of the image
+    for (int c = 0; c < 3; c++)
+    {
+        int ch[] = {c, 0};
+        mixChannels(&blurred, 1, &gray0, 1, ch, 1);
+        
+        // try several threshold levels
+        const int threshold_level = 2;
+        for (int l = 0; l < threshold_level; l++)
+        {
+            // Use Canny instead of zero threshold level!
+            // Canny helps to catch squares with gradient shading
+            if (l == 0)
+            {
+                Canny(gray0, gray, 10, 20, 3); //
+                //                Canny(gray0, gray, 0, 50, 5);
+                
+                // Dilate helps to remove potential holes between edge segments
+                dilate(gray, gray, cv::Mat(), cv::Point(-1,-1));
+            }
+            else
+            {
+                gray = gray0 >= (l+1) * 255 / threshold_level;
+            }
+            
+            // Find contours and store them in a list
+            findContours(gray, contours, CV_RETR_LIST, CV_CHAIN_APPROX_SIMPLE);
+            
+            // Test contours
+            std::vector<cv::Point> approx;
+            for (size_t i = 0; i < contours.size(); i++)
+            {
+                // approximate contour with accuracy proportional
+                // to the contour perimeter
+                approxPolyDP(cv::Mat(contours[i]), approx, arcLength(cv::Mat(contours[i]), true)*0.02, true);
+                
+                // Note: absolute value of an area is used because
+                // area may be positive or negative - in accordance with the
+                // contour orientation
+                if (approx.size() == 4 &&
+                    fabs(contourArea(cv::Mat(approx))) > 1000 &&
+                    isContourConvex(cv::Mat(approx)))
+                {
+                    double maxCosine = 0;
+                    
+                    for (int j = 2; j < 5; j++)
+                    {
+                        double cosine = fabs(angle(approx[j%4], approx[j-2], approx[j-1]));
+                        maxCosine = MAX(maxCosine, cosine);
+                    }
+                    
+                    if (maxCosine < 0.3)
+                        squares.push_back(approx);
+                }
+            }
+        }
+    }
+}
+
+void find_largest_square(const std::vector<std::vector<cv::Point> >& squares, std::vector<cv::Point>& biggest_square)
+{
+    if (!squares.size())
+    {
+        // no squares detected
+        return;
+    }
+    
+    int max_width = 0;
+    int max_height = 0;
+    int max_square_idx = 0;
+    
+    for (size_t i = 0; i < squares.size(); i++)
+    {
+        // Convert a set of 4 unordered Points into a meaningful cv::Rect structure.
+        cv::Rect rectangle = boundingRect(cv::Mat(squares[i]));
+        
+        //        cout << "find_largest_square: #" << i << " rectangle x:" << rectangle.x << " y:" << rectangle.y << " " << rectangle.width << "x" << rectangle.height << endl;
+        
+        // Store the index position of the biggest square found
+        if ((rectangle.width >= max_width) && (rectangle.height >= max_height))
+        {
+            max_width = rectangle.width;
+            max_height = rectangle.height;
+            max_square_idx = i;
+        }
+    }
+    
+    biggest_square = squares[max_square_idx];
+}
+
+
+double angle( cv::Point pt1, cv::Point pt2, cv::Point pt0 ) {
+    double dx1 = pt1.x - pt0.x;
+    double dy1 = pt1.y - pt0.y;
+    double dx2 = pt2.x - pt0.x;
+    double dy2 = pt2.y - pt0.y;
+    return (dx1*dx2 + dy1*dy2)/sqrt((dx1*dx1 + dy1*dy1)*(dx2*dx2 + dy2*dy2) + 1e-10);
+}
+
+cv::Mat debugSquares( std::vector<std::vector<cv::Point> > squares, cv::Mat image ){
+    
+    NSLog(@"DEBUG!/?!");
+    for ( unsigned int i = 0; i< squares.size(); i++ ) {
+        // draw contour
+        
+        NSLog(@"LOOP!");
+        
+        cv::drawContours(image, squares, i, cv::Scalar(255,0,0), 1, 8, std::vector<cv::Vec4i>(), 0, cv::Point());
+        
+        // draw bounding rect
+        cv::Rect rect = boundingRect(cv::Mat(squares[i]));
+        cv::rectangle(image, rect.tl(), rect.br(), cv::Scalar(0,255,0), 2, 8, 0);
+        
+        // draw rotated rect
+        cv::RotatedRect minRect = minAreaRect(cv::Mat(squares[i]));
+        cv::Point2f rect_points[4];
+        minRect.points( rect_points );
+        for ( int j = 0; j < 4; j++ ) {
+            cv::line( image, rect_points[j], rect_points[(j+1)%4], cv::Scalar(0,0,255), 1, 8 ); // blue
+        }
+    }
+    
+    return image;
+}
+
+
+- (void)cropAction {
+    
+    if([_cropRect frameEdited]){
+        
+        //Thanks To stackOverflow
+        CGFloat scaleFactor =  [_sourceImageView contentScale];
+        CGPoint ptBottomLeft = [_cropRect coordinatesForPoint:1 withScaleFactor:scaleFactor];
+        CGPoint ptBottomRight = [_cropRect coordinatesForPoint:2 withScaleFactor:scaleFactor];
+        CGPoint ptTopRight = [_cropRect coordinatesForPoint:3 withScaleFactor:scaleFactor];
+        CGPoint ptTopLeft = [_cropRect coordinatesForPoint:4 withScaleFactor:scaleFactor];
+        
+        
+        
+        CGFloat w1 = sqrt( pow(ptBottomRight.x - ptBottomLeft.x , 2) + pow(ptBottomRight.x - ptBottomLeft.x, 2));
+        CGFloat w2 = sqrt( pow(ptTopRight.x - ptTopLeft.x , 2) + pow(ptTopRight.x - ptTopLeft.x, 2));
+        
+        CGFloat h1 = sqrt( pow(ptTopRight.y - ptBottomRight.y , 2) + pow(ptTopRight.y - ptBottomRight.y, 2));
+        CGFloat h2 = sqrt( pow(ptTopLeft.y - ptBottomLeft.y , 2) + pow(ptTopLeft.y - ptBottomLeft.y, 2));
+        
+        CGFloat maxWidth = (w1 < w2) ? w1 : w2;
+        CGFloat maxHeight = (h1 < h2) ? h1 : h2;
+        
+        
+        
+        cv::Point2f src[4], dst[4];
+        src[0].x = ptTopLeft.x;
+        src[0].y = ptTopLeft.y;
+        src[1].x = ptTopRight.x;
+        src[1].y = ptTopRight.y;
+        src[2].x = ptBottomRight.x;
+        src[2].y = ptBottomRight.y;
+        src[3].x = ptBottomLeft.x;
+        src[3].y = ptBottomLeft.y;
+        
+        dst[0].x = 0;
+        dst[0].y = 0;
+        dst[1].x = maxWidth - 1;
+        dst[1].y = 0;
+        dst[2].x = maxWidth - 1;
+        dst[2].y = maxHeight - 1;
+        dst[3].x = 0;
+        dst[3].y = maxHeight - 1;
+        
+        cv::Mat undistorted = cv::Mat( cvSize(maxWidth,maxHeight), CV_8UC4);
+        cv::Mat original = [MMOpenCVHelper cvMatFromUIImage:_adjustedImage];
+        
+        NSLog(@"%f %f %f %f",ptBottomLeft.x,ptBottomRight.x,ptTopRight.x,ptTopLeft.x);
+        cv::warpPerspective(original, undistorted, cv::getPerspectiveTransform(src, dst), cvSize(maxWidth, maxHeight));
+        
+        
+            
+            
+            
+            _sourceImageView.image=[MMOpenCVHelper UIImageFromCVMat:undistorted];
+//            _cropImage=_sourceImageView.image;
+        
+        
+        
+         [self.cutImageView setBGImage:_sourceImageView.image fromPhotoLib:fromLib useGestureRecognizer:NO];
+        
+        _sourceImageView.hidden = YES;
+        _cropRect.hidden = YES;
+        self.cutImageView.hidden = NO;
+        self.maskImageView.hidden = NO;
+        
+        self.maskImageView.cropAreaView.frame = self.cutImageView.bgImageView.contentFrame;
+        
+//        UIImage * resultImage;
+//        CGSize size = self.cutImageView.bgImageView.contentFrame.size;
+//        
+//        UIGraphicsBeginImageContext(size);
+//        [_sourceImageView.image drawInRect:CGRectMake(0, 0, size.width, size.height)];
+//        _cropImage = UIGraphicsGetImageFromCurrentImageContext();
+//        UIGraphicsEndImageContext();
+        
+        NSData * data = UIImageJPEGRepresentation(_sourceImageView.image,1);
+        
+        NSData * data2;
+        if ([data length]<1000000) {
+            data2 = UIImageJPEGRepresentation(_sourceImageView.image,0.9);
+        }
+        else if ([data length]>=1000000 && [data length]<2000000)
+        {
+            data2 = UIImageJPEGRepresentation(_sourceImageView.image,0.8);
+        }
+        else if ([data length]>=2000000 && [data length]<4000000){
+            data2 = UIImageJPEGRepresentation(_sourceImageView.image,0.7);
+        }
+        else
+        {
+            data2 = UIImageJPEGRepresentation(_sourceImageView.image,0.6);
+        }
+        
+        NSLog(@"sourceImage:%lu",[data length]);
+        NSLog(@"resultImage:%lu",[data2 length]);
+        
+        _cropImage = [UIImage imageWithData:data2];
+        
+        [self.cutImageView setBGImage:_cropImage fromPhotoLib:fromLib useGestureRecognizer:NO];
+              
+             
+            
+            //         _sourceImageView.image = [MMOpenCVHelper UIImageFromCVMat:grayImage];//For gray image
+            
+       
+        
+        original.release();
+        undistorted.release();
+        
+        
+        
+    }
+    else{
+        UIAlertView  *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"无效的区域" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alertView show];
+        
+    }
+    
+}
+
 
 #pragma mark - function
 

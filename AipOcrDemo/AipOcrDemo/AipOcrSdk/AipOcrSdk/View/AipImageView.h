@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "UIImageView+ContentFrame.h"
 @interface CropAreaView : UIView
 
 @end
