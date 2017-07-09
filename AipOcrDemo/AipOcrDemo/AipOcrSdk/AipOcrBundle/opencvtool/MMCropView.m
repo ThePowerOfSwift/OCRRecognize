@@ -240,7 +240,7 @@
         CGContextSetRGBFillColor(context, 0.0f, 0.0f, 0.0f, 0.0f);
         if([self checkForNeighbouringPoints:currentIndex]>=0 ){
             frameMoved=YES;
-             CGContextSetRGBStrokeColor(context, 0.1294f, 0.588f, 0.9529f, 1.0f);
+             CGContextSetRGBStrokeColor(context, 107/255.f, 209/255.f, 71/255.f, 1.0f);
             
         }
         else{

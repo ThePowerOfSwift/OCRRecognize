@@ -434,29 +434,44 @@
         [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
         [SVProgressHUD showWithStatus:@"裁剪图片..."];
         
-        [self cropAction];
         
-        return;
+        
+        __weak __typeof(self) weakSelf = self;
+        dispatch_async(dispatch_queue_create(NULL, NULL), ^{
+            [self cropAction];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [weakSelf uploadAndRecText];
+            });
+        });
+        
     }
     
    
 //    return;
     
-//    [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
+    
+
+
+    
+}
+
+-(void)uploadAndRecText
+{
+    [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
     [SVProgressHUD showWithStatus:@"识别中..."];
     
-//    self.cutImageView.bgImageView.image = _cropImage;
+    //    self.cutImageView.bgImageView.image = _cropImage;
     
-//    CGRect rect  = [self TransformTheRect];
-////    CGRect rect = CGRectMake(0, 0, <#CGFloat width#>, <#CGFloat height#>)
-//    
-//    UIImage *cutImage = [self.cutImageView cutImageFromView:self.cutImageView.bgImageView withSize:self.size atFrame:rect];
-//    
-//    UIImage *image = [self rotateImageEx:cutImage.CGImage byDeviceOrientation:self.imageDeviceOrientation];
-//    
-//    UIImage *finalImage = [self rotateImageEx:image.CGImage orientation:self.imageOrientation];
+    //    CGRect rect  = [self TransformTheRect];
+    ////    CGRect rect = CGRectMake(0, 0, <#CGFloat width#>, <#CGFloat height#>)
+    //
+    //    UIImage *cutImage = [self.cutImageView cutImageFromView:self.cutImageView.bgImageView withSize:self.size atFrame:rect];
+    //
+    //    UIImage *image = [self rotateImageEx:cutImage.CGImage byDeviceOrientation:self.imageDeviceOrientation];
+    //
+    //    UIImage *finalImage = [self rotateImageEx:image.CGImage orientation:self.imageOrientation];
     
-//    UIImage * finalImage = self.cutImageView.bgImageView.image;
+    //    UIImage * finalImage = self.cutImageView.bgImageView.image;
     
     
     UIImage * finalImage = _cropImage;
@@ -465,31 +480,28 @@
     self.finalImgWidth = finalImage.size.width;
     
     
-//    return;
+    //    return;
     
     NSDictionary *options = @{@"language_type": @"CHN_ENG", @"detect_direction": @"true"};
     
     __weak __typeof__(self) weakSelf = self;
     [[AipOcrService shardService] detectTextFromImage:finalImage withOptions:options successHandler:^(id result) {
         NSLog(@"%@", result);
-//        if ([self.delegate respondsToSelector:@selector(ocrOnGeneralSuccessful:)]) {
-//            [self.delegate ocrOnGeneralSuccessful:result];
-//        }
+        //        if ([self.delegate respondsToSelector:@selector(ocrOnGeneralSuccessful:)]) {
+        //            [self.delegate ocrOnGeneralSuccessful:result];
+        //        }
         dispatch_async(dispatch_get_main_queue(), ^{
             [SVProgressHUD dismiss];
             [weakSelf toResultVC:result];
         });
     } failHandler:^(NSError *err) {
-//        if ([self.delegate respondsToSelector:@selector(ocrOnFail:)]) {
-//            [self.delegate ocrOnFail:err];
-//        }
+        //        if ([self.delegate respondsToSelector:@selector(ocrOnFail:)]) {
+        //            [self.delegate ocrOnFail:err];
+        //        }
         dispatch_async(dispatch_get_main_queue(), ^{
             [SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"识别失败 %li %@",[err code],[err localizedDescription]]];
         });
     }];
-
-
-    
 }
 
 -(void)toResultVC:(id)result
@@ -1470,56 +1482,74 @@ cv::Mat debugSquares( std::vector<std::vector<cv::Point> > squares, cv::Mat imag
         cv::warpPerspective(original, undistorted, cv::getPerspectiveTransform(src, dst), cvSize(maxWidth, maxHeight));
         
         
+        UIImage * cropedImage = [MMOpenCVHelper UIImageFromCVMat:undistorted];
             
             
-            
-            _sourceImageView.image=[MMOpenCVHelper UIImageFromCVMat:undistorted];
+//            _sourceImageView.image=cropedImage;
 //            _cropImage=_sourceImageView.image;
         
         
         
-         [self.cutImageView setBGImage:_sourceImageView.image fromPhotoLib:fromLib useGestureRecognizer:NO];
+//         [self.cutImageView setBGImage:_sourceImageView.image fromPhotoLib:fromLib useGestureRecognizer:NO];
         
-        _sourceImageView.hidden = YES;
-        _cropRect.hidden = YES;
-        self.cutImageView.hidden = NO;
-        self.maskImageView.hidden = NO;
-        
-        self.maskImageView.cropAreaView.frame = self.cutImageView.bgImageView.contentFrame;
-        
+//        _sourceImageView.hidden = YES;
+//        _cropRect.hidden = YES;
+//        self.cutImageView.hidden = NO;
+//        self.maskImageView.hidden = NO;
+//
+//        self.maskImageView.cropAreaView.frame = self.cutImageView.bgImageView.contentFrame;
+//
 //        UIImage * resultImage;
 //        CGSize size = self.cutImageView.bgImageView.contentFrame.size;
-//        
+//
 //        UIGraphicsBeginImageContext(size);
 //        [_sourceImageView.image drawInRect:CGRectMake(0, 0, size.width, size.height)];
 //        _cropImage = UIGraphicsGetImageFromCurrentImageContext();
 //        UIGraphicsEndImageContext();
         
-        NSData * data = UIImageJPEGRepresentation(_sourceImageView.image,1);
         
-        NSData * data2;
-        if ([data length]<1000000) {
-            data2 = UIImageJPEGRepresentation(_sourceImageView.image,0.9);
-        }
-        else if ([data length]>=1000000 && [data length]<2000000)
-        {
-            data2 = UIImageJPEGRepresentation(_sourceImageView.image,0.8);
-        }
-        else if ([data length]>=2000000 && [data length]<4000000){
-            data2 = UIImageJPEGRepresentation(_sourceImageView.image,0.7);
-        }
-        else
-        {
-            data2 = UIImageJPEGRepresentation(_sourceImageView.image,0.4);
-        }
+        CGSize size = CGSizeMake(self.view.bounds.size.width, self.view.bounds.size.width*cropedImage.size.height/cropedImage.size.width);
         
-        NSLog(@"_adjustedImage:%lu,sourceImage:%lu",[UIImageJPEGRepresentation(_adjustedImage,1) length],[data length]);
-        NSLog(@"resultImage:%lu",[data2 length]);
+//        NSLog(@"thisSize:%@",NSStringFromCGSize(size));
         
-        _cropImage = [UIImage imageWithData:data2];
         
-        [self.cutImageView setBGImage:_cropImage fromPhotoLib:fromLib useGestureRecognizer:NO];
-              
+        UIGraphicsBeginImageContextWithOptions(size, NO, [UIScreen mainScreen].scale);
+        
+        [cropedImage drawInRect:CGRectMake(0, 0, size.width, size.height)];
+        
+        _cropImage = UIGraphicsGetImageFromCurrentImageContext();
+        
+        UIGraphicsEndImageContext();
+        
+        
+        
+        
+        
+//        NSData * data = UIImageJPEGRepresentation(_sourceImageView.image,1);
+//
+//        NSData * data2 = UIImageJPEGRepresentation(_cropImage,1);;
+//        if ([data length]<1000000) {
+//            data2 = UIImageJPEGRepresentation(_sourceImageView.image,0.9);
+//        }
+//        else if ([data length]>=1000000 && [data length]<2000000)
+//        {
+//            data2 = UIImageJPEGRepresentation(_sourceImageView.image,0.8);
+//        }
+//        else if ([data length]>=2000000 && [data length]<4000000){
+//            data2 = UIImageJPEGRepresentation(_sourceImageView.image,0.7);
+//        }
+//        else
+//        {
+//            data2 = UIImageJPEGRepresentation(_sourceImageView.image,0.4);
+//        }
+        
+//        NSLog(@"_adjustedImage:%lu,sourceImage:%lu",[UIImageJPEGRepresentation(_adjustedImage,1) length],[data length]);
+//        NSLog(@"resultImage:%lu",[data2 length]);
+        
+//        _cropImage = [UIImage imageWithData:data2];
+        
+//        [self.cutImageView setBGImage:_cropImage fromPhotoLib:fromLib useGestureRecognizer:NO];
+        
              
             
             //         _sourceImageView.image = [MMOpenCVHelper UIImageFromCVMat:grayImage];//For gray image
