@@ -23,6 +23,7 @@
 #import "UIColor+HexRepresentation.h"
 #import "MMCropView.h"
 #import <CoreMotion/CoreMotion.h>
+#import "IPDFCameraViewController.h"
 
 
 
@@ -79,16 +80,20 @@
 @property (weak, nonatomic) IBOutlet UIView *toolsView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *toolViewBoom;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *checkViewBoom;
-@property (weak, nonatomic) IBOutlet AipCameraPreviewView *previewView;
+//@property (weak, nonatomic) IBOutlet AipCameraPreviewView *previewView;
 @property (weak, nonatomic) IBOutlet AipCutImageView *cutImageView;
 @property (weak, nonatomic) IBOutlet AipImageView *maskImageView;
-@property (strong, nonatomic) AipCameraController *cameraController;
+//@property (strong, nonatomic) AipCameraController *cameraController;
 @property (assign, nonatomic) UIDeviceOrientation curDeviceOrientation;
 @property (assign, nonatomic) UIDeviceOrientation imageDeviceOrientation;
 @property (assign, nonatomic) UIImageOrientation imageOrientation;
 @property (assign, nonatomic) CGSize size;
 
+@property (weak, nonatomic) IBOutlet IPDFCameraViewController *cameraViewController;
+
 @property(nonatomic,strong) CMMotionManager *cmmotionManager;
+@property (weak, nonatomic) IBOutlet UIImageView *focusIndicator;
+@property (weak, nonatomic) IBOutlet UILabel *titleL;
 
 @property (assign,nonatomic)float finalImgWidth;
 
@@ -113,7 +118,19 @@
     
     firstIn = YES;
     
-    self.cameraController = [[AipCameraController alloc] initWithCameraPosition:AVCaptureDevicePositionBack];
+    [self.cameraViewController setupCameraView];
+    [self.cameraViewController setEnableBorderDetection:YES];
+    [self.cameraViewController setCameraViewType:  IPDFCameraViewTypeNormal];
+    
+    
+//    UITapGestureRecognizer * tapGes = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(focusGesture:)];
+//    [self.cameraViewController addGestureRecognizer:tapGes];
+    
+    
+
+//    [self updateTitleLabel];
+    
+//    self.cameraController = [[AipCameraController alloc] initWithCameraPosition:AVCaptureDevicePositionBack];
     
     [self setupViews];
     
@@ -145,13 +162,58 @@
    
    
 }
+- (IBAction)gestureRec:(UITapGestureRecognizer *)sender {
+    
+    if (sender.state == UIGestureRecognizerStateRecognized)
+    {
+        CGPoint location = [sender locationInView:self.cameraViewController];
+        location.y+=70;
+        
+        [self focusIndicatorAnimateToPoint:location];
+        
+        [self.cameraViewController focusAtPoint:location completionHandler:^
+         {
+             [self focusIndicatorAnimateToPoint:location];
+         }];
+    }
+        
+    
+}
+
+
+
+
+- (void)focusIndicatorAnimateToPoint:(CGPoint)targetPoint
+{
+    [self.focusIndicator setCenter:targetPoint];
+    self.focusIndicator.alpha = 0.0;
+    self.focusIndicator.hidden = NO;
+    
+    [UIView animateWithDuration:0.4 animations:^
+     {
+         self.focusIndicator.alpha = 1.0;
+     }
+                     completion:^(BOOL finished)
+     {
+         [UIView animateWithDuration:0.4 animations:^
+          {
+              self.focusIndicator.alpha = 0.0;
+          }];
+     }];
+}
+
+
+//- (UIStatusBarStyle)preferredStatusBarStyle
+//{
+//    return UIStatusBarStyleLightContent;
+//}
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
     [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(orientationChanged:) name:UIDeviceOrientationDidChangeNotification object:nil];
-    
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
     
     if (!firstIn) {
         return;
@@ -180,14 +242,19 @@
 - (void)viewDidAppear:(BOOL)animated{
     
     [super viewDidAppear:animated];
-    [self.cameraController startRunningCamera];
+//    [self.cameraController startRunningCamera];
+    
+
+    
+    [self.cameraViewController start];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [[UIDevice currentDevice] endGeneratingDeviceOrientationNotifications];
-    [self.cameraController stopRunningCamera];
+//    [self.cameraController stopRunningCamera];
+    [self.cameraViewController stop];
 }
 
 -(void)getDeviceOrientation
@@ -263,7 +330,13 @@
     
     self.imageOrientation = UIImageOrientationUp;
     self.closeButton.hidden = YES;
-    self.previewView.hidden = NO;
+//    self.previewView.hidden = NO;
+    
+    self.cameraViewController.hidden = NO;
+    [self.cameraViewController start];
+    self.titleL.text = @"拍摄要识别的区域";
+    
+    
     self.cutImageView.hidden = YES;
     self.maskImageView.hidden = YES;
     self.checkViewBoom.constant = -V_H(self.checkView);
@@ -276,8 +349,8 @@
     
     self.navigationController.navigationBarHidden = YES;
     
-    self.previewView.translatesAutoresizingMaskIntoConstraints = NO;
-    self.previewView.session = self.cameraController.session;
+//    self.previewView.translatesAutoresizingMaskIntoConstraints = NO;
+//    self.previewView.session = self.cameraController.session;
 }
 
 - (void)setUpMaskImageView {
@@ -313,7 +386,9 @@
         self.cutImageView.userInteractionEnabled = NO;
         self.transformButton.hidden = YES;
     }
-    self.previewView.hidden = YES;
+    self.cameraViewController.hidden = YES;
+    [self.cameraViewController stop];
+    self.titleL.text = @"";
    
 //    self.cutImageView.hidden = NO;
 //    self.maskImageView.hidden = NO;
@@ -350,7 +425,7 @@
         //ytodo [self passport_showTextHUDWithTitle:@"暂不支持照明功能" hiddenAfterDelay:0.2];
         return;
     }
-    [self.previewView.session beginConfiguration];
+//    [self.previewView.session beginConfiguration];
     [device lockForConfiguration:nil];
     if (!self.lightButton.selected) { // 照明状态
         if (device.torchMode == AVCaptureTorchModeOff) {
@@ -365,7 +440,7 @@
     }
     self.lightButton.selected = !self.lightButton.selected;
     [device unlockForConfiguration];
-    [self.previewView.session commitConfiguration];
+//    [self.previewView.session commitConfiguration];
 }
 
 - (IBAction)pressTransform:(id)sender {
@@ -591,12 +666,21 @@
 
 - (IBAction)captureIDCard:(id)sender {
     
-    __weak __typeof (self) weakSelf = self;
-    [self.cameraController captureStillImageWithHandler:^(NSData *imageData) {
+//    __weak __typeof (self) weakSelf = self;
+//    [self.cameraController captureStillImageWithHandler:^(NSData *imageData) {
+//        
+//        
+//        [weakSelf setupCutImageView:[UIImage imageWithData:imageData]fromPhotoLib:NO];
+//    }];
+    
+    __weak typeof(self) weakSelf = self;
+    
+    [self.cameraViewController captureImageWithCompletionHander:^(NSString *imageFilePath)
+     {
+         UIImage * image = [UIImage imageWithContentsOfFile:imageFilePath];
+         [weakSelf setupCutImageView:image fromPhotoLib:NO];
         
-        
-        [weakSelf setupCutImageView:[UIImage imageWithData:imageData]fromPhotoLib:NO];
-    }];
+     }];
 }
 
 
@@ -832,13 +916,13 @@
 - (void)OffLight {
     if (self.lightButton.selected) {
         AVCaptureDevice * device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
-        [self.previewView.session beginConfiguration];
+//        [self.previewView.session beginConfiguration];
         [device lockForConfiguration:nil];
         if([device isTorchModeSupported:AVCaptureTorchModeOff]) {
             [device setTorchMode:AVCaptureTorchModeOff];
         }
         [device unlockForConfiguration];
-        [self.previewView.session commitConfiguration];
+//        [self.previewView.session commitConfiguration];
     }
     
     self.lightButton.selected = NO;
@@ -1638,7 +1722,7 @@ cv::Mat debugSquares( std::vector<std::vector<cv::Point> > squares, cv::Mat imag
 
 - (BOOL)prefersStatusBarHidden{
     
-    return YES;
+    return NO;
 }
 
 - (void)didReceiveMemoryWarning {

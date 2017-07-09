@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.19" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.16"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -223,9 +224,42 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="K13-8J-9JA" customClass="AipCameraPreviewView">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nzl-RZ-X6n">
+                                <rect key="frame" x="0.0" y="20" width="375" height="50"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="拍摄要识别的区域" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="npV-Nn-2eB">
+                                        <rect key="frame" x="97" y="0.0" width="180" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="3Ko-0P-5gt"/>
+                                            <constraint firstAttribute="width" constant="180" id="7wg-0F-WVa"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="VXO-Qu-mlA"/>
+                                    <constraint firstItem="npV-Nn-2eB" firstAttribute="centerX" secondItem="Nzl-RZ-X6n" secondAttribute="centerX" id="aBv-iM-UGc"/>
+                                    <constraint firstItem="npV-Nn-2eB" firstAttribute="top" secondItem="Nzl-RZ-X6n" secondAttribute="top" id="cM9-9h-Uj1"/>
+                                    <constraint firstAttribute="bottom" secondItem="npV-Nn-2eB" secondAttribute="bottom" id="j7X-ts-SDw"/>
+                                </constraints>
                             </view>
+                            <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="K13-8J-9JA" customClass="IPDFCameraViewController">
+                                <rect key="frame" x="0.0" y="70" width="375" height="597"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="yVS-Aq-YOC" appends="YES" id="t3W-d0-pr1"/>
+                                </connections>
+                            </view>
+                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="focusIndicator.png" translatesAutoresizingMaskIntoConstraints="NO" id="awk-sl-KJL">
+                                <rect key="frame" x="16" y="70" width="75" height="75"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="75" id="GYP-on-uXc"/>
+                                    <constraint firstAttribute="height" constant="75" id="vb8-Ge-Z0T"/>
+                                </constraints>
+                            </imageView>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mOa-jl-1X9" customClass="AipCutImageView">
                                 <rect key="frame" x="0.0" y="40" width="375" height="559"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -317,24 +351,30 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="K13-8J-9JA" secondAttribute="bottom" id="4LN-WC-B5D"/>
                             <constraint firstItem="9eE-H5-UtU" firstAttribute="top" secondItem="pEK-B6-uAC" secondAttribute="top" constant="14" id="Bfo-3B-drP" customClass="IOSpeScaleLayoutConstraint"/>
                             <constraint firstItem="mOa-jl-1X9" firstAttribute="top" secondItem="pEK-B6-uAC" secondAttribute="top" constant="40" id="C4B-RP-auY"/>
+                            <constraint firstItem="Nzl-RZ-X6n" firstAttribute="top" secondItem="mQS-vR-TOi" secondAttribute="bottom" id="MY3-78-ajB"/>
                             <constraint firstItem="JDl-3I-2O3" firstAttribute="leading" secondItem="pEK-B6-uAC" secondAttribute="leading" id="Mdh-Zv-d2H"/>
                             <constraint firstItem="9eE-H5-UtU" firstAttribute="leading" secondItem="pEK-B6-uAC" secondAttribute="leading" constant="14" id="N9l-8Q-045" customClass="IOSpeScaleLayoutConstraint"/>
                             <constraint firstItem="K13-8J-9JA" firstAttribute="leading" secondItem="pEK-B6-uAC" secondAttribute="leading" id="NVm-1B-5Se"/>
                             <constraint firstAttribute="trailing" secondItem="mOa-jl-1X9" secondAttribute="trailing" id="O57-cY-FIc"/>
                             <constraint firstAttribute="bottom" secondItem="Ekk-cC-N2A" secondAttribute="bottom" constant="68" id="SV5-eq-imr"/>
+                            <constraint firstItem="awk-sl-KJL" firstAttribute="top" secondItem="Nzl-RZ-X6n" secondAttribute="bottom" id="U8k-Bt-8Rm"/>
                             <constraint firstAttribute="trailing" secondItem="JDl-3I-2O3" secondAttribute="trailing" id="UyB-nj-d5G"/>
                             <constraint firstAttribute="bottom" secondItem="JDl-3I-2O3" secondAttribute="bottom" id="VKK-aj-d68"/>
                             <constraint firstItem="Ekk-cC-N2A" firstAttribute="top" secondItem="pEK-B6-uAC" secondAttribute="top" constant="40" id="Zhv-lz-OA8"/>
                             <constraint firstAttribute="bottom" secondItem="mOa-jl-1X9" secondAttribute="bottom" constant="68" id="aXv-Ln-LcJ"/>
                             <constraint firstItem="c7U-eV-ZOX" firstAttribute="leading" secondItem="pEK-B6-uAC" secondAttribute="leading" id="ase-wr-53q"/>
-                            <constraint firstItem="K13-8J-9JA" firstAttribute="top" secondItem="pEK-B6-uAC" secondAttribute="top" id="cCo-kH-vlv"/>
+                            <constraint firstItem="awk-sl-KJL" firstAttribute="leading" secondItem="pEK-B6-uAC" secondAttribute="leadingMargin" id="cx9-CQ-2HN"/>
                             <constraint firstAttribute="trailing" secondItem="K13-8J-9JA" secondAttribute="trailing" id="dJL-Wj-tBF"/>
+                            <constraint firstItem="K13-8J-9JA" firstAttribute="top" secondItem="Nzl-RZ-X6n" secondAttribute="bottom" id="fRC-6q-myk"/>
                             <constraint firstAttribute="bottom" secondItem="c7U-eV-ZOX" secondAttribute="bottom" constant="-60" id="mv5-Zr-QRy" customClass="IOSpeScaleLayoutConstraint"/>
+                            <constraint firstItem="Nzl-RZ-X6n" firstAttribute="leading" secondItem="pEK-B6-uAC" secondAttribute="leading" id="n3h-Be-u2X"/>
                             <constraint firstAttribute="trailing" secondItem="Ekk-cC-N2A" secondAttribute="trailing" id="nTC-Fh-oNs"/>
+                            <constraint firstAttribute="trailing" secondItem="Nzl-RZ-X6n" secondAttribute="trailing" id="qfF-qi-SFZ"/>
                             <constraint firstItem="mOa-jl-1X9" firstAttribute="leading" secondItem="pEK-B6-uAC" secondAttribute="leading" id="ti3-AT-jD2"/>
                             <constraint firstItem="Ekk-cC-N2A" firstAttribute="leading" secondItem="pEK-B6-uAC" secondAttribute="leading" id="vDG-8F-mSu"/>
                             <constraint firstAttribute="trailing" secondItem="c7U-eV-ZOX" secondAttribute="trailing" id="yvP-X8-vRY"/>
@@ -342,6 +382,7 @@
                     </view>
                     <connections>
                         <outlet property="albumButton" destination="OAr-f2-xk3" id="SGq-W6-mfF"/>
+                        <outlet property="cameraViewController" destination="K13-8J-9JA" id="hss-2p-rEk"/>
                         <outlet property="captureButton" destination="x4H-6Q-TiY" id="SvB-l4-v6c"/>
                         <outlet property="checkChooseBtn" destination="geO-4o-qUK" id="iDT-DQ-x2Z"/>
                         <outlet property="checkCloseBtn" destination="3uc-vA-TtU" id="YJK-Uh-cyW"/>
@@ -349,15 +390,21 @@
                         <outlet property="checkViewBoom" destination="mv5-Zr-QRy" id="FYE-q9-2Tk"/>
                         <outlet property="closeButton" destination="9eE-H5-UtU" id="zeb-FW-bur"/>
                         <outlet property="cutImageView" destination="mOa-jl-1X9" id="Z8Y-hT-83I"/>
+                        <outlet property="focusIndicator" destination="awk-sl-KJL" id="5kk-KR-ibX"/>
                         <outlet property="lightButton" destination="FYu-ia-exw" id="ueV-Cq-qKr"/>
                         <outlet property="maskImageView" destination="Ekk-cC-N2A" id="Ijg-DP-j3Q"/>
-                        <outlet property="previewView" destination="K13-8J-9JA" id="cGI-44-LTg"/>
+                        <outlet property="titleL" destination="npV-Nn-2eB" id="5Kx-h3-zAS"/>
                         <outlet property="toolViewBoom" destination="VKK-aj-d68" id="5nT-SD-XyB"/>
                         <outlet property="toolsView" destination="JDl-3I-2O3" id="TPa-UB-RMH"/>
                         <outlet property="transformButton" destination="TbB-zo-xcv" id="Xd0-zg-5Tk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W9C-60-9Ye" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="yVS-Aq-YOC">
+                    <connections>
+                        <action selector="gestureRec:" destination="qVB-bS-VcD" id="noF-YG-nKg"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="4273" y="313"/>
         </scene>
@@ -366,6 +413,7 @@
         <image name="Page 1.png" width="67" height="72"/>
         <image name="dengpao.png" width="26" height="28"/>
         <image name="dengpao_dianjihou.png" width="26" height="28"/>
+        <image name="focusIndicator.png" width="75" height="75"/>
         <image name="guan.png" width="14" height="14"/>
         <image name="guanbi.png" width="31" height="31"/>
         <image name="paizhaoanniu.png" width="60" height="60"/>

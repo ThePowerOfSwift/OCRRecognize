@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		970344C41F126E7F00BFE0F1 /* IPDFCameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 970344C31F126E7F00BFE0F1 /* IPDFCameraViewController.m */; };
+		970344C61F12729800BFE0F1 /* focusIndicator@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 970344C51F12729800BFE0F1 /* focusIndicator@2x.png */; };
 		9739D11C1F0DA5AB00DEEE45 /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9739D11B1F0DA5AB00DEEE45 /* opencv2.framework */; };
 		9739D11D1F0DA5AB00DEEE45 /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9739D11B1F0DA5AB00DEEE45 /* opencv2.framework */; };
 		9739D11F1F0DA7F100DEEE45 /* libjpeg.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9739D11E1F0DA7F100DEEE45 /* libjpeg.a */; };
@@ -154,6 +156,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		970344C21F126E7F00BFE0F1 /* IPDFCameraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IPDFCameraViewController.h; sourceTree = "<group>"; };
+		970344C31F126E7F00BFE0F1 /* IPDFCameraViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IPDFCameraViewController.m; sourceTree = "<group>"; };
+		970344C51F12729800BFE0F1 /* focusIndicator@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "focusIndicator@2x.png"; sourceTree = "<group>"; };
 		9727A5A51EF4E9CE00E63E99 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		9727A5AA1EF513F700E63E99 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		9727A5AB1EF513F700E63E99 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
@@ -402,6 +407,8 @@
 		9753BBE11EFA067900593950 /* AipOcrBundle */ = {
 			isa = PBXGroup;
 			children = (
+				970344C21F126E7F00BFE0F1 /* IPDFCameraViewController.h */,
+				970344C31F126E7F00BFE0F1 /* IPDFCameraViewController.m */,
 				9739D12B1F0DF43D00DEEE45 /* opencvtool */,
 				9739D1321F0DF43D00DEEE45 /* UIImageCategories */,
 				97ADFE191EFAB0E500C5E461 /* IQKeyboardManager */,
@@ -466,6 +473,7 @@
 		9753BC611EFA084100593950 /* 切图 */ = {
 			isa = PBXGroup;
 			children = (
+				970344C51F12729800BFE0F1 /* focusIndicator@2x.png */,
 				9753BC621EFA084100593950 /* copyText@3x.png */,
 				9753BC631EFA084100593950 /* 裁剪页 */,
 				9753BC6A1EFA084100593950 /* 身份证-正面 */,
@@ -793,6 +801,7 @@
 				9753BC501EFA067900593950 /* Info.plist in Resources */,
 				9753BC881EFA084100593950 /* guanbi@3x.png in Resources */,
 				9753BC8F1EFA084100593950 /* xuxian@2x.png in Resources */,
+				970344C61F12729800BFE0F1 /* focusIndicator@2x.png in Resources */,
 				9753BC811EFA084100593950 /* xuanzhuan@2x.png in Resources */,
 				97ADFE561EFAC5C500C5E461 /* Assets.xcassets in Resources */,
 				9753BC601EFA07FC00593950 /* AipOcrSdk.storyboard in Resources */,
@@ -846,6 +855,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				970344C41F126E7F00BFE0F1 /* IPDFCameraViewController.m in Sources */,
 				97ADFE401EFAB0E500C5E461 /* IQUITextFieldView+Additions.m in Sources */,
 				9753BC561EFA067900593950 /* AipImageView.m in Sources */,
 				9739D13B1F0DF43D00DEEE45 /* MMOpenCVHelper.mm in Sources */,
