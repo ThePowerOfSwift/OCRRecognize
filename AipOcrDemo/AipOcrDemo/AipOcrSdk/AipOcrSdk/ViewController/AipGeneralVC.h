@@ -13,6 +13,8 @@
 
 #import "UIImage+fixOrientation.h"
 #import "UIImageView+ContentFrame.h"
+
+
 //@class AipGeneralVC;
 //@protocol MMCropDelegate <NSObject>
 //
@@ -27,6 +29,8 @@
     CGFloat firstIn;
     
     BOOL fromLib;
+    
+
 }
 @property (nonatomic, weak) id<AipOcrDelegate> delegate;
 
@@ -37,6 +41,8 @@
 //Detect Edges
 -(void)detectEdges;
 //- (void) closeWithCompletion:(void (^)(void))completion;
+
+
 
 +(UIViewController *)ViewControllerWithDelegate:(id<AipOcrDelegate>)delegate;
 

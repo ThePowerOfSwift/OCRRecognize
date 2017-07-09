@@ -24,6 +24,8 @@
 #import "MMCropView.h"
 #import <CoreMotion/CoreMotion.h>
 
+
+
 #define MyLocal(x, ...) NSLocalizedString(x, nil)
 
 #define V_X(v)      v.frame.origin.x
@@ -31,8 +33,41 @@
 #define V_H(v)      v.frame.size.height
 #define V_W(v)      v.frame.size.width
 
-@interface AipGeneralVC () <UIAlertViewDelegate,UINavigationControllerDelegate, UIImagePickerControllerDelegate,AipCutImageDelegate>
+@interface MagnifierView : UIView {
+    //    CGPoint touchPoint;
+}
+@property (nonatomic, strong) UIView *viewToMagnify;
+@property (nonatomic, assign) CGPoint touchPoint;
+- (void)drawRect:(CGRect)rect;
+@end
 
+
+
+@implementation MagnifierView
+
+- (void)setTouchPoint:(CGPoint)pt {
+    _touchPoint = pt;
+    
+    self.center = CGPointMake(pt.x, pt.y-50);//跟随touchmove 不断得到中心点
+}
+
+- (void)drawRect:(CGRect)rect {
+    
+    //绘制放大镜效果部分
+    
+    CGContextRef context = UIGraphicsGetCurrentContext();//获取的是当前view的图形上下文
+    CGContextTranslateCTM(context,1*(self.frame.size.width*0.5),1*(self.frame.size.height*0.5 ));//重新设置坐标系原点
+    CGContextScaleCTM(context, 1.5, 1.5);//通过调用CGContextScaleCTM函数来指定x, y缩放因子 这里我们是扩大1.5倍
+    CGContextTranslateCTM(context,-1*(_touchPoint.x),-1*(_touchPoint.y));
+    [self.viewToMagnify.layer renderInContext:context];//直接在一个 Core Graphics 上下文中绘制放大后的图像，实现放大镜效果
+}
+
+@end
+
+@interface AipGeneralVC () <UIAlertViewDelegate,UINavigationControllerDelegate, UIImagePickerControllerDelegate,AipCutImageDelegate>
+{
+    MagnifierView *loop;
+}
 @property (weak, nonatomic) IBOutlet UIButton *captureButton;
 @property (weak, nonatomic) IBOutlet UIButton *closeButton;
 @property (weak, nonatomic) IBOutlet UIButton *albumButton;
@@ -59,6 +94,7 @@
 
 
 @property (strong, nonatomic) MMCropView *cropRect;
+@property (nonatomic, strong) NSTimer *touchTimer;
 
 @end
 
@@ -104,7 +140,10 @@
     self.imageDeviceOrientation = UIDeviceOrientationPortrait;
     
     
-    [self getDeviceOrientation];
+//    [self getDeviceOrientation];
+
+   
+   
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -332,7 +371,8 @@
 - (IBAction)pressTransform:(id)sender {
     
     //向右转90'
-    self.cutImageView.bgImageView.transform = CGAffineTransformRotate (self.cutImageView.bgImageView.transform, M_PI_2);
+    _sourceImageView.transform = CGAffineTransformRotate (_sourceImageView.transform, M_PI_2);
+    _cropRect.transform = CGAffineTransformRotate (_cropRect.transform, M_PI_2);
     if (self.imageOrientation == UIImageOrientationUp) {
         
         self.imageOrientation = UIImageOrientationRight;
@@ -347,7 +387,43 @@
         self.imageOrientation = UIImageOrientationUp;
     }
     
+//    [self rotateStateDidChange];
 }
+
+#pragma mark Animate
+- (CATransform3D)rotateTransform:(CATransform3D)initialTransform clockwise:(BOOL)clockwise
+{
+    CGFloat arg = M_PI_2;
+    if(!clockwise){
+        arg *= -1;
+    }
+    
+    CATransform3D transform = initialTransform;
+    transform = CATransform3DRotate(transform, arg, 0, 0, 1);
+    transform = CATransform3DRotate(transform, 0*M_PI, 0, 1, 0);
+    transform = CATransform3DRotate(transform, 0*M_PI, 1, 0, 0);
+    
+    return transform;
+}
+
+- (void)rotateStateDidChange
+{
+    CATransform3D transform = [self rotateTransform:CATransform3DIdentity clockwise:YES];
+    
+    CGFloat arg = M_PI_2;
+    CGFloat Wnew = fabs(_initialRect.size.width * cos(arg)) + fabs(_initialRect.size.height * sin(arg));
+    CGFloat Hnew = fabs(_initialRect.size.width * sin(arg)) + fabs(_initialRect.size.height * cos(arg));
+    
+    CGFloat Rw = final_Rect.size.width / Wnew;
+    CGFloat Rh = final_Rect.size.height / Hnew;
+    CGFloat scale = MIN(Rw, Rh) * 1;
+    transform = CATransform3DScale(transform, scale, scale, 1);
+    _sourceImageView.layer.transform = transform;
+    _cropRect.layer.transform = transform;
+    
+    //    NSLog(@"%@",_sourceImageView);
+}
+
 
 //上传图片识别结果
 - (IBAction)pressCheckChoose:(id)sender {
@@ -359,6 +435,8 @@
         [SVProgressHUD showWithStatus:@"裁剪图片..."];
         
         [self cropAction];
+        
+        return;
     }
     
    
@@ -1038,16 +1116,59 @@
 
 -(void)singlePan:(UIPanGestureRecognizer *)gesture{
     CGPoint posInStretch = [gesture locationInView:_cropRect];
+    CGPoint pointInSelfView = [self.view convertPoint:posInStretch fromView:_cropRect];
     if(gesture.state==UIGestureRecognizerStateBegan){
         [_cropRect findPointAtLocation:posInStretch];
+        
+        self.touchTimer = [NSTimer scheduledTimerWithTimeInterval:0.1
+                                                           target:self
+                                                         selector:@selector(addLoop)
+                                                         userInfo:nil
+                                                          repeats:NO];
+        
+        if(loop == nil){
+            loop = [[MagnifierView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
+            loop.viewToMagnify = self.view;
+            loop.layer.borderColor = [UIColor grayColor].CGColor;
+            loop.layer.borderWidth = 2;
+            loop.layer.cornerRadius = 50;
+            loop.layer.masksToBounds = YES;
+        }
+        
+//        UITouch *touch = [touches anyObject];
+        loop.touchPoint = pointInSelfView;
+        [loop setNeedsDisplay];
+        [[UIApplication sharedApplication].keyWindow addSubview:loop];
     }
     if(gesture.state==UIGestureRecognizerStateEnded){
         _cropRect.activePoint.backgroundColor = [UIColor grayColor];
         _cropRect.activePoint = nil;
         [_cropRect checkangle:0];
+        
+        
+        [self.touchTimer invalidate];
+        self.touchTimer = nil;
+        
+        [loop removeFromSuperview];
+        loop = nil;
+     
     }
     [_cropRect moveActivePointToLocation:posInStretch];
     
+     [self handleAction:pointInSelfView];
+    
+}
+
+- (void)addLoop {
+//    [loop bringSubviewToFront:self.view];//让放大镜显示在最上层
+}
+
+- (void)handleAction:(CGPoint)timerObj {
+//    NSSet *touches = timerObj;
+//    UITouch *touch = [touches anyObject];
+    loop.touchPoint = timerObj;//将本身的touch信息传递给放大镜，设置放大镜的中心点
+    [loop setNeedsDisplay];
+    //    loop drawRect:<#(CGRect)#>
 }
 
 
@@ -1389,10 +1510,10 @@ cv::Mat debugSquares( std::vector<std::vector<cv::Point> > squares, cv::Mat imag
         }
         else
         {
-            data2 = UIImageJPEGRepresentation(_sourceImageView.image,0.6);
+            data2 = UIImageJPEGRepresentation(_sourceImageView.image,0.4);
         }
         
-        NSLog(@"sourceImage:%lu",[data length]);
+        NSLog(@"_adjustedImage:%lu,sourceImage:%lu",[UIImageJPEGRepresentation(_adjustedImage,1) length],[data length]);
         NSLog(@"resultImage:%lu",[data2 length]);
         
         _cropImage = [UIImage imageWithData:data2];
@@ -1418,6 +1539,59 @@ cv::Mat debugSquares( std::vector<std::vector<cv::Point> > squares, cv::Mat imag
     }
     
 }
+
+//Image Processing
+-(UIImage *)grayImage:(UIImage *)processedImage{
+    cv::Mat grayImage = [MMOpenCVHelper cvMatGrayFromAdjustedUIImage:processedImage];
+    
+    cv::medianBlur(grayImage, grayImage, 7);
+    cv::adaptiveThreshold(grayImage, grayImage, 245, cv::ADAPTIVE_THRESH_GAUSSIAN_C, cv::THRESH_BINARY, 11, 2);
+    
+    
+//    cv::GaussianBlur(grayImage, grayImage, cvSize(11,11), 0);
+//    cv::adaptiveThreshold(grayImage, grayImage, 255, cv::ADAPTIVE_THRESH_GAUSSIAN_C, cv::THRESH_BINARY, 15, 4);
+    
+    UIImage *grayeditImage=[MMOpenCVHelper UIImageFromCVMat:grayImage];
+    grayImage.release();
+    
+    return grayeditImage;
+    
+}
+
+-(UIImage *)magicColor:(UIImage *)processedImage{
+    cv::Mat  original = [MMOpenCVHelper cvMatFromAdjustedUIImage:processedImage];
+    
+    cv::Mat new_image = cv::Mat::zeros( original.size(), original.type() );
+    
+    original.convertTo(new_image, -1, 1.9, -80);
+    
+    original.release();
+    UIImage *magicColorImage=[MMOpenCVHelper UIImageFromCVMat:new_image];
+    new_image.release();
+    return magicColorImage;
+    
+    
+}
+
+-(UIImage *)blackandWhite:(UIImage *)processedImage{
+    cv::Mat original = [MMOpenCVHelper cvMatGrayFromAdjustedUIImage:processedImage];
+    
+    cv::Mat new_image = cv::Mat::zeros( original.size(), original.type() );
+    
+    original.convertTo(new_image, -1, 1.4, -50);
+    original.release();
+    
+    UIImage *blackWhiteImage=[MMOpenCVHelper UIImageFromCVMat:new_image];
+    new_image.release();
+    
+    
+    
+    return blackWhiteImage;
+    
+}
+
+
+
 
 
 #pragma mark - function
