@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+#import "IPDFRectangleFeature.h"
+
 typedef NS_ENUM(NSInteger,IPDFCameraViewType)
 {
     IPDFCameraViewTypeBlackAndWhite,
@@ -28,6 +30,6 @@ typedef NS_ENUM(NSInteger,IPDFCameraViewType)
 
 - (void)focusAtPoint:(CGPoint)point completionHandler:(void(^)())completionHandler;
 
-- (void)captureImageWithCompletionHander:(void(^)(NSString *imageFilePath))completionHandler;
+- (void)captureImageWithCompletionHander:(void(^)(NSString *imageFilePath, CIImage * img))completionHandler;
 
 @end

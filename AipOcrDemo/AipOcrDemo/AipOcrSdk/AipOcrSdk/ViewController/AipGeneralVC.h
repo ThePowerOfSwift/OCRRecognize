@@ -38,6 +38,8 @@
 //@property (weak,nonatomic) id<MMCropDelegate> cropdelegate;
 @property (strong, nonatomic) UIImage *adjustedImage,*cropgrayImage,*cropImage;
 
+//@property (strong,nonatomic) CIImage * sciImage;
+
 //Detect Edges
 -(void)detectEdges;
 //- (void) closeWithCompletion:(void (^)(void))completion;

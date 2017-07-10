@@ -32,6 +32,10 @@
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>youdaonote</string>
+		<string>evernote</string>
+		<string>weixin</string>
+		<string>wechat</string>
+		<string>weibo</string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>

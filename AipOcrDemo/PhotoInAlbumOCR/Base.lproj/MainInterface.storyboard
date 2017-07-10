@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -22,6 +21,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="528"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EVy-1p-tHX">
+                                <rect key="frame" x="0.0" y="45" width="320" height="423"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                             <navigationBar contentMode="scaleToFill" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NOA-Dm-cuz">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <items>
@@ -154,6 +157,7 @@
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="DOg-3b-zvw" secondAttribute="trailing" constant="100" id="0Da-gy-EdU"/>
                             <constraint firstItem="DOg-3b-zvw" firstAttribute="leading" secondItem="zMn-AG-sqS" secondAttribute="leading" constant="100" id="1Bp-Z9-tiR"/>
+                            <constraint firstItem="EVy-1p-tHX" firstAttribute="top" secondItem="FIr-ax-ptH" secondAttribute="bottom" id="2XJ-VG-8Vu"/>
                             <constraint firstItem="ZNW-XE-07N" firstAttribute="leading" secondItem="zMn-AG-sqS" secondAttribute="leading" constant="100" id="3dh-gj-AcJ"/>
                             <constraint firstItem="ZNW-XE-07N" firstAttribute="top" secondItem="FIr-ax-ptH" secondAttribute="bottom" constant="150" id="4EC-IY-Yz4"/>
                             <constraint firstItem="fjt-qf-ucp" firstAttribute="top" secondItem="NOA-Dm-cuz" secondAttribute="bottom" id="5BH-g8-ZvN"/>
@@ -169,15 +173,17 @@
                             <constraint firstItem="FIr-ax-ptH" firstAttribute="top" secondItem="NOA-Dm-cuz" secondAttribute="bottom" id="MCf-eA-rRM"/>
                             <constraint firstAttribute="trailing" secondItem="9ga-4F-77Z" secondAttribute="trailing" id="Ozw-Hg-0yh"/>
                             <constraint firstItem="fjt-qf-ucp" firstAttribute="leading" secondItem="zMn-AG-sqS" secondAttribute="leading" id="Ppa-TN-YkM"/>
+                            <constraint firstItem="JXa-M8-xYO" firstAttribute="top" secondItem="EVy-1p-tHX" secondAttribute="bottom" id="Sux-HH-4ay"/>
                             <constraint firstAttribute="trailing" secondItem="eyK-Vo-ffz" secondAttribute="trailing" id="Uyc-RJ-sZS"/>
                             <constraint firstItem="JXa-M8-xYO" firstAttribute="leading" secondItem="zMn-AG-sqS" secondAttribute="leading" id="VUS-N4-ZiQ"/>
-                            <constraint firstItem="eyK-Vo-ffz" firstAttribute="leading" secondItem="zMn-AG-sqS" secondAttribute="leadingMargin" id="Vk4-WM-lgS"/>
                             <constraint firstItem="9ga-4F-77Z" firstAttribute="leading" secondItem="zMn-AG-sqS" secondAttribute="leading" id="XH5-ld-ONA"/>
                             <constraint firstItem="eyK-Vo-ffz" firstAttribute="leading" secondItem="zMn-AG-sqS" secondAttribute="leading" id="b0b-8F-sWc"/>
+                            <constraint firstAttribute="trailing" secondItem="EVy-1p-tHX" secondAttribute="trailing" id="bkX-01-MqX"/>
                             <constraint firstItem="DOg-3b-zvw" firstAttribute="top" secondItem="FIr-ax-ptH" secondAttribute="bottom" constant="150" id="duv-Ye-e9U"/>
                             <constraint firstItem="n38-gi-rB5" firstAttribute="top" secondItem="9ga-4F-77Z" secondAttribute="bottom" id="eQg-nn-Zy4"/>
                             <constraint firstItem="eyK-Vo-ffz" firstAttribute="top" secondItem="NOA-Dm-cuz" secondAttribute="bottom" id="hyC-5G-bc8"/>
                             <constraint firstItem="OJm-u8-uZM" firstAttribute="top" secondItem="NOA-Dm-cuz" secondAttribute="bottom" id="jqg-NO-wvX"/>
+                            <constraint firstItem="EVy-1p-tHX" firstAttribute="leading" secondItem="zMn-AG-sqS" secondAttribute="leading" id="n0R-hI-R9h"/>
                             <constraint firstItem="dIQ-KK-FVU" firstAttribute="leading" secondItem="zMn-AG-sqS" secondAttribute="leading" id="nXU-PW-DTL"/>
                             <constraint firstItem="bum-Qf-R3q" firstAttribute="leading" secondItem="zMn-AG-sqS" secondAttribute="leading" id="nhh-SB-Jii"/>
                             <constraint firstItem="n38-gi-rB5" firstAttribute="top" secondItem="JXa-M8-xYO" secondAttribute="bottom" id="o9e-B6-o1N"/>
@@ -198,6 +204,7 @@
                     <connections>
                         <outlet property="bottomToolbarConstant" destination="tNU-5s-FnH" id="kCe-DQ-24J"/>
                         <outlet property="bottomView" destination="JXa-M8-xYO" id="ol6-FB-vpb"/>
+                        <outlet property="cropbgView" destination="EVy-1p-tHX" id="yuW-Tk-SA2"/>
                         <outlet property="cutImageView" destination="fjt-qf-ucp" id="6Pu-XO-pi5"/>
                         <outlet property="imageView" destination="9ga-4F-77Z" id="5y6-5w-9QO"/>
                         <outlet property="maskImageView" destination="OJm-u8-uZM" id="uKU-jN-Yvc"/>

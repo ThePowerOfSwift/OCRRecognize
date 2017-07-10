@@ -1,43 +1,35 @@
 //
-//  AipGeneralVC.m
-//  OCRLib
-//  通用文字识别ViewController
-//  Created by Yan,Xiangda on 2017/2/16.
+//  ActionViewController.m
+//  PhotoInAlbumOCR
+//
+//  Created by Tolecen on 2017/6/21.
 //  Copyright © 2017年 Baidu. All rights reserved.
 //
+#import "ActionViewController.h"
+//#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+#import <MobileCoreServices/MobileCoreServices.h>
+#import <CoreImage/CoreImage.h>
 
-#import "AipGeneralVC.h"
-#import "AipCameraController.h"
-#import "AipCameraPreviewView.h"
-#import "AipCutImageView.h"
-#import "AipNavigationController.h"
-#import "AipOcrService.h"
-#import "AipImageView.h"
-#import "ResultViewController.h"
-#import "SVProgressHUD.h"
 
 #include <vector>
+#import <AipBase/AipBase.h>
+#import "AipOcrService.h"
+
+#import <objc/runtime.h>
+#import "AipCutImageEXView.h"
+#import "AipImageEXView.h"
+#import "SVProgressHUD.h"
+
+
 #import "MMOpenCVHelper.h"
 #define backgroundHex @"2196f3"
 #define kCameraToolBarHeight 68
 #import "UIColor+HexRepresentation.h"
 #import "MMCropView.h"
-#import <CoreMotion/CoreMotion.h>
-#import "IPDFCameraViewController.h"
 
-#import "PopoverView.h"
-
-#import <AVFoundation/AVFoundation.h>
-#import <CoreMedia/CoreMedia.h>
-#import <CoreVideo/CoreVideo.h>
-#import <QuartzCore/QuartzCore.h>
-#import <CoreImage/CoreImage.h>
-#import <ImageIO/ImageIO.h>
-
-#import <MobileCoreServices/MobileCoreServices.h>
-
-#import <GLKit/GLKit.h>
-#import "IPDFRectangleFeature.h"
+#import "UIImage+fixOrientation.h"
+#import "UIImageView+ContentFrame.h"
 
 #define MyLocal(x, ...) NSLocalizedString(x, nil)
 
@@ -46,7 +38,8 @@
 #define V_H(v)      v.frame.size.height
 #define V_W(v)      v.frame.size.width
 
-@interface MagnifierView : UIView {
+
+@interface MagnifierView2 : UIView {
     //    CGPoint touchPoint;
 }
 @property (nonatomic, strong) UIView *viewToMagnify;
@@ -54,14 +47,12 @@
 - (void)drawRect:(CGRect)rect;
 @end
 
-
-
-@implementation MagnifierView
+@implementation MagnifierView2
 
 - (void)setTouchPoint:(CGPoint)pt {
     _touchPoint = pt;
     
-    self.center = CGPointMake(pt.x, pt.y-50);//跟随touchmove 不断得到中心点
+    self.center = CGPointMake(pt.x, pt.y);//跟随touchmove 不断得到中心点
 }
 
 - (void)drawRect:(CGRect)rect {
@@ -77,65 +68,65 @@
 
 @end
 
-
-
-@interface AipGeneralVC () <UIAlertViewDelegate,UINavigationControllerDelegate, UIImagePickerControllerDelegate,AipCutImageDelegate>
+@interface ActionViewController ()<AipCutImageEXDelegate,UITextViewDelegate>
 {
-    MagnifierView *loop;
+    CGFloat originBottomConstant;
+    CGFloat originBottomToolBarContstant;
+    AipOcrManager *_aipOcrManager;
     
+    MagnifierView2 *loop;
     
-    CGFloat _imageDedectionConfidence;
-//    NSTimer *_borderDetectTimeKeeper;
-//    BOOL _borderDetectFrame;
-    CIRectangleFeature *_borderDetectLastRectangleFeature;
+    CGRect _initialRect,final_Rect;
 }
-@property (weak, nonatomic) IBOutlet UIButton *captureButton;
-@property (weak, nonatomic) IBOutlet UIButton *closeButton;
-@property (weak, nonatomic) IBOutlet UIButton *albumButton;
-@property (weak, nonatomic) IBOutlet UIButton *lightButton;
-@property (weak, nonatomic) IBOutlet UIButton *checkCloseBtn;
-@property (weak, nonatomic) IBOutlet UIButton *checkChooseBtn;
-@property (weak, nonatomic) IBOutlet UIButton *transformButton;
-@property (weak, nonatomic) IBOutlet UIView *checkView;
-@property (weak, nonatomic) IBOutlet UIView *toolsView;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *toolViewBoom;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *checkViewBoom;
-//@property (weak, nonatomic) IBOutlet AipCameraPreviewView *previewView;
-@property (weak, nonatomic) IBOutlet AipCutImageView *cutImageView;
-@property (weak, nonatomic) IBOutlet AipImageView *maskImageView;
-//@property (strong, nonatomic) AipCameraController *cameraController;
+
+@property(strong,nonatomic) IBOutlet UIImageView *imageView;
+
+@property (weak, nonatomic) IBOutlet AipCutImageEXView *cutImageView;
+@property (weak, nonatomic) IBOutlet AipImageEXView *maskImageView;
+@property (weak, nonatomic) IBOutlet UIView *topWhite;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *rightItem;
+@property (weak, nonatomic) IBOutlet UIView *successView;
+@property (weak, nonatomic) IBOutlet UILabel *successLabel;
+
+@property (nonatomic,strong)UIView * loadingView;
+@property (nonatomic,strong)UIActivityIndicatorView * indicator;
+
+@property (weak, nonatomic) IBOutlet UITextView *textv;
+@property (weak, nonatomic) IBOutlet UIView *bottomView;
+
 @property (assign, nonatomic) UIDeviceOrientation curDeviceOrientation;
 @property (assign, nonatomic) UIDeviceOrientation imageDeviceOrientation;
 @property (assign, nonatomic) UIImageOrientation imageOrientation;
 @property (assign, nonatomic) CGSize size;
 
-@property (weak, nonatomic) IBOutlet IPDFCameraViewController *cameraViewController;
-
-@property(nonatomic,strong) CMMotionManager *cmmotionManager;
-@property (weak, nonatomic) IBOutlet UIImageView *focusIndicator;
-@property (weak, nonatomic) IBOutlet UILabel *titleL;
-
 @property (assign,nonatomic)float finalImgWidth;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *textbottomCons;
+@property (weak, nonatomic) IBOutlet UIView *toolBarView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomToolbarConstant;
 
-@property (weak, nonatomic) IBOutlet UIButton *edgeDetectBtn;
-@property (weak, nonatomic) IBOutlet UIButton *languageBtn;
+
+@property (strong, nonatomic) UIImageView *sourceImageView;
+//@property (weak,nonatomic) id<MMCropDelegate> cropdelegate;
+@property (strong, nonatomic) UIImage *adjustedImage,*cropgrayImage,*cropImage;
 
 @property (strong, nonatomic) MMCropView *cropRect;
+
 @property (nonatomic, strong) NSTimer *touchTimer;
+@property (weak, nonatomic) IBOutlet UIView *cropbgView;
 
 @property (nonatomic,strong)NSString * recLanguage;
 @property (nonatomic,strong)NSUserDefaults * myUserDefault;
 
+
+//@property (strong,nonatomic) CIImage * sciImage;
+
+//Detect Edges
+-(void)detectEdges;
+
+
 @end
 
-@implementation AipGeneralVC
-
-#pragma mark - Lifecycle
-
-- (void)dealloc{
-    
-    NSLog(@"♻️ Dealloc %@", NSStringFromClass([self class]));
-}
+@implementation ActionViewController
 
 +(NSString *)languageName:(NSString *)key
 {
@@ -149,9 +140,12 @@
     return dict[key];
 }
 
-
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+//    _aipOcrManager = [[AipOcrManager alloc] initWithAK:@"SenZ7A8G8LfUfALOScIDtnPP" andSK:@"iOsmqKm7GUVKE0tf56M58wzFCM9W8CrZ"];
+    
+    [[AipOcrService shardService] authWithAK:@"SenZ7A8G8LfUfALOScIDtnPP" andSK:@"iOsmqKm7GUVKE0tf56M58wzFCM9W8CrZ"];
     
     self.myUserDefault = [[NSUserDefaults alloc] initWithSuiteName:@"group.com.uzero.recbaimiao"];
     
@@ -159,119 +153,45 @@
     if (!self.recLanguage) {
         self.recLanguage = @"CHN_ENG";
     }
-    
-    [self.languageBtn setTitle:[AipGeneralVC languageName:self.recLanguage] forState:UIControlStateNormal];
-//    self.titleL.text = [AipGeneralVC languageName:self.recLanguage];
-    
-    firstIn = YES;
-    
-    [self.cameraViewController setupCameraView];
-    [self.cameraViewController setEnableBorderDetection:NO];
-    [self.cameraViewController setCameraViewType:  IPDFCameraViewTypeNormal];
-    
-    
-//    UITapGestureRecognizer * tapGes = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(focusGesture:)];
-//    [self.cameraViewController addGestureRecognizer:tapGes];
-    
+
     
 
-//    [self updateTitleLabel];
     
-//    self.cameraController = [[AipCameraController alloc] initWithCameraPosition:AVCaptureDevicePositionBack];
+//    [self prefersStatusBarHidden];
     
-    [self setupViews];
+    self.title = @"框选要识别的部分";
     
+    
+    
+    self.view.backgroundColor = [UIColor blackColor];
+    
+    self.view.frame = [[UIScreen mainScreen] bounds];
+    
+    self.textv.textContainerInset = UIEdgeInsetsMake(10, 10, 10, 10);
+    self.textv.hidden = YES;
+//    self.textv.inputAccessoryView = nil;
+//    self.textv.inputView = nil;
+//    [self.textv reloadInputViews];
+//    self.topWhite.hidden = YES;
     
     [self setUpMaskImageView];
-//    //delegate 用做传递手势事件
-//    self.maskImageView.delegate = self.cutImageView;
-//    self.cutImageView.imgDelegate = self;
+    //delegate 用做传递手势事件
+    self.maskImageView.delegate = self.cutImageView;
+    self.cutImageView.imgDelegate = self;
     
+    self.imageDeviceOrientation = UIDeviceOrientationPortrait;
     
     self.maskImageView.hidden = YES;
     self.cutImageView.hidden = YES;
     
-    
-    
-
-    
-   
-    
-    
-    
-    
-    
-    self.imageDeviceOrientation = UIDeviceOrientationPortrait;
-    
-    
-//    [self getDeviceOrientation];
-
-   
-   
-}
-- (IBAction)gestureRec:(UITapGestureRecognizer *)sender {
-    
-    if (sender.state == UIGestureRecognizerStateRecognized)
-    {
-        CGPoint location = [sender locationInView:self.cameraViewController];
-        location.y+=70;
-        
-        [self focusIndicatorAnimateToPoint:location];
-        
-        [self.cameraViewController focusAtPoint:location completionHandler:^
-         {
-             [self focusIndicatorAnimateToPoint:location];
-         }];
-    }
-        
-    
-}
-
-
-
-
-- (void)focusIndicatorAnimateToPoint:(CGPoint)targetPoint
-{
-    [self.focusIndicator setCenter:targetPoint];
-    self.focusIndicator.alpha = 0.0;
-    self.focusIndicator.hidden = NO;
-    
-    [UIView animateWithDuration:0.4 animations:^
-     {
-         self.focusIndicator.alpha = 1.0;
-     }
-                     completion:^(BOOL finished)
-     {
-         [UIView animateWithDuration:0.4 animations:^
-          {
-              self.focusIndicator.alpha = 0.0;
-          }];
-     }];
-}
-
-
-//- (UIStatusBarStyle)preferredStatusBarStyle
-//{
-//    return UIStatusBarStyleLightContent;
-//}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    
-    [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(orientationChanged:) name:UIDeviceOrientationDidChangeNotification object:nil];
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
-    
-    if (!firstIn) {
-        return;
-    }
-    
     [self initCropFrame];
     //    [self adjustPossition];
     
+ 
+    
     
     _cropRect= [[MMCropView alloc] initWithFrame:CGRectZero];
-    [self.view addSubview:_cropRect];
+    [_cropbgView addSubview:_cropRect];
     
     UIPanGestureRecognizer *singlePan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(singlePan:)];
     singlePan.maximumNumberOfTouches = 1;
@@ -282,210 +202,229 @@
     
     _cropRect.hidden = YES;
 
-    firstIn = NO;
-   
-}
-
-- (void)viewDidAppear:(BOOL)animated{
     
-    [super viewDidAppear:animated];
-//    [self.cameraController startRunningCamera];
+    // Get the item[s] we're handling from the extension context.
     
-[[UIApplication sharedApplication]setApplicationSupportsShakeToEdit:YES];
-    
-    [self.cameraViewController start];
-}
-
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-    [[UIDevice currentDevice] endGeneratingDeviceOrientationNotifications];
-//    [self.cameraController stopRunningCamera];
-    [self.cameraViewController stop];
-    [[UIApplication sharedApplication]setApplicationSupportsShakeToEdit:NO];
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
-}
-
--(void)getDeviceOrientation
-{
-    if([self.cmmotionManager isDeviceMotionAvailable]) {
-        [self.cmmotionManager startAccelerometerUpdatesToQueue:[NSOperationQueue currentQueue] withHandler:^(CMAccelerometerData * _Nullable accelerometerData, NSError * _Nullable error) {
-            AVCaptureVideoOrientation orientationNew;
-            if (accelerometerData.acceleration.x >= 0.75) {//home button left
-//                orientationNew = UIDeviceOrientationLandscapeRight;
-                NSLog(@"home button left");
+    // For example, look for an image and place it into an image view.
+    // Replace this with something appropriate for the type[s] your extension supports.
+    BOOL imageFound = NO;
+    for (NSExtensionItem *item in self.extensionContext.inputItems) {
+        for (NSItemProvider *itemProvider in item.attachments) {
+            if ([itemProvider hasItemConformingToTypeIdentifier:(NSString *)kUTTypeImage]) {
+                // This is an image. We'll load it, then place it in our image view.
+//                __weak UIImageView *imageView = self.imageView;
+                [itemProvider loadItemForTypeIdentifier:(NSString *)kUTTypeImage options:nil completionHandler:^(id<NSSecureCoding>  _Nullable item, NSError * _Null_unspecified error)  {
+                    NSData * data = [NSData dataWithContentsOfURL:(NSURL *)item];
+//                    if ([data length]>1500000) {
+//                        data = UIImageJPEGRepresentation([UIImage imageWithData:data], 0.7);
+//                    }
+                    UIImage * image = [UIImage imageWithData:data];
+                    UIImage * resultImg;
+                    if (data.length>1000000) {
+                        CGSize size = CGSizeMake(1000, 1000*image.size.height/image.size.width);
+                        
+                        //        NSLog(@"thisSize:%@",NSStringFromCGSize(size));
+                        
+                        
+                        UIGraphicsBeginImageContextWithOptions(size, NO, [UIScreen mainScreen].scale);
+                        
+                        [image drawInRect:CGRectMake(0, 0, size.width, size.height)];
+                        
+                        resultImg = UIGraphicsGetImageFromCurrentImageContext();
+                        
+                        UIGraphicsEndImageContext();
+                    }
+                    else
+                        resultImg = image;
+                    if(resultImg) {
+                        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+//                            [imageView setImage:image];
+                            [self setupCutImageView:resultImg fromPhotoLib:YES];
+                        }];
+                    }
+                }];
+                
+                imageFound = YES;
+                break;
             }
-            else if (accelerometerData.acceleration.x <= -0.75) {//home button right
-//                orientationNew = UIDeviceOrientationLandscapeLeft;
-                NSLog(@"home button right");
-            }
-            else if (accelerometerData.acceleration.y <= -0.75) {
-//                orientationNew = UIDeviceOrientationPortrait;
-                NSLog(@"UIDeviceOrientationPortrait");
-            }
-            else if (accelerometerData.acceleration.y >= 0.75) {
-//                orientationNew = UIDeviceOrientationPortraitUpsideDown;
-                NSLog(@"UIDeviceOrientationPortraitUpsideDown");
-            }
-            else {
-                // Consider same as last time
-                return;
-            }
-            
-        }];
+        }
+        
+        if (imageFound) {
+            // We only handle one image, so stop looking for more.
+            break;
+        }
     }
-}
-
--(void)saveCurrentLanToUserdeafult
-{
-    [self.myUserDefault setObject:self.recLanguage forKey:@"recLanguage"];
-    [self.myUserDefault synchronize];
-}
-
-- (IBAction)languageBtnClicked:(id)sender {
-    __weak __typeof(self) weakSelf = self;
-    PopoverAction *action1 = [PopoverAction actionWithTitle:@"中/英" handler:^(PopoverAction *action) {
-        weakSelf.recLanguage = @"CHN_ENG";
-        [self.languageBtn setTitle:[AipGeneralVC languageName:weakSelf.recLanguage] forState:UIControlStateNormal];
-        [self saveCurrentLanToUserdeafult];
-        // 该Block不会导致内存泄露, Block内代码无需刻意去设置弱引用.
-    }];
-    PopoverAction *action2 = [PopoverAction actionWithTitle:@"法语" handler:^(PopoverAction *action) {
-        // 该Block不会导致内存泄露, Block内代码无需刻意去设置弱引用.
-        weakSelf.recLanguage = @"FRE";
-        [self.languageBtn setTitle:[AipGeneralVC languageName:weakSelf.recLanguage] forState:UIControlStateNormal];
-        [self saveCurrentLanToUserdeafult];
-    }];
-    PopoverAction *action3 = [PopoverAction actionWithTitle:@"德语" handler:^(PopoverAction *action) {
-        // 该Block不会导致内存泄露, Block内代码无需刻意去设置弱引用.
-        weakSelf.recLanguage = @"GER";
-        [self.languageBtn setTitle:[AipGeneralVC languageName:weakSelf.recLanguage] forState:UIControlStateNormal];
-        [self saveCurrentLanToUserdeafult];
-    }];
-    PopoverAction *action4 = [PopoverAction actionWithTitle:@"西班牙语" handler:^(PopoverAction *action) {
-        // 该Block不会导致内存泄露, Block内代码无需刻意去设置弱引用.
-        weakSelf.recLanguage = @"SPA";
-        [self.languageBtn setTitle:[AipGeneralVC languageName:weakSelf.recLanguage] forState:UIControlStateNormal];
-        [self saveCurrentLanToUserdeafult];
-    }];
-    PopoverAction *action5 = [PopoverAction actionWithTitle:@"俄语" handler:^(PopoverAction *action) {
-        // 该Block不会导致内存泄露, Block内代码无需刻意去设置弱引用.
-        weakSelf.recLanguage = @"RUS";
-        [self.languageBtn setTitle:[AipGeneralVC languageName:weakSelf.recLanguage] forState:UIControlStateNormal];
-        [self saveCurrentLanToUserdeafult];
-    }];
-    PopoverAction *action6 = [PopoverAction actionWithTitle:@"日语" handler:^(PopoverAction *action) {
-        // 该Block不会导致内存泄露, Block内代码无需刻意去设置弱引用.
-        weakSelf.recLanguage = @"JAP";
-        [self.languageBtn setTitle:[AipGeneralVC languageName:weakSelf.recLanguage] forState:UIControlStateNormal];
-        [self saveCurrentLanToUserdeafult];
-    }];
     
-    PopoverView *popoverView = [PopoverView popoverView];
-    //popoverView.showShade = YES; // 显示阴影背景
-    //popoverView.style = PopoverViewStyleDark; // 设置为黑色风格
-    //popoverView.hideAfterTouchOutside = NO; // 点击外部时不允许隐藏
-    // 有两种显示方法
-    // 1. 显示在指定的控件
-    [popoverView showToView:sender withActions:@[action1, action2,action3,action4,action5,action6]];
-    // 2. 显示在指定的点(CGPoint), 该点的坐标是相对KeyWidnow的坐标.
-//    [popoverView showToPoint:CGPointMake(20, 64) withActions:@[action1, ...]];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                            selector:@selector(keyboardWasShow:)
+                                                name:UIKeyboardDidShowNotification
+                                              object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                            selector:@selector(keyboardWillBeHidden:)
+                                                name:UIKeyboardWillHideNotification
+                                              object:nil];
+    
+    originBottomConstant = _textbottomCons.constant;
+    originBottomToolBarContstant = _bottomToolbarConstant.constant;
 }
-
-
-#pragma mark - SetUp
-
 
 -(void)initCropFrame{
-    _sourceImageView = [[UIImageView alloc] initWithFrame:CGRectMake(15, 64, self.view.bounds.size.width-30, self.view.bounds.size.height-kCameraToolBarHeight-64)];
-//    _sourceImageView.backgroundColor = [UIColor redColor];
+    _sourceImageView = [[UIImageView alloc] initWithFrame:CGRectMake(15, 15, self.view.bounds.size.width-30, self.view.bounds.size.height-60-64-15)];
+    //    _sourceImageView.backgroundColor = [UIColor redColor];
     [_sourceImageView setContentMode:UIViewContentModeScaleAspectFit];
-//    [_sourceImageView setImage:_adjustedImage];
+    //    [_sourceImageView setImage:_adjustedImage];
     //     [_sourceImageView setImage:[UIImage imageNamed:@"testtwo.jpg"]];
     _sourceImageView.clipsToBounds=YES;
     
     
-    [self.view addSubview:_sourceImageView];
+    [_cropbgView addSubview:_sourceImageView];
     
     _sourceImageView.hidden = YES;
     
     //    NSLog(@"%f %f",_sourceImageView.contentFrame.size.height,_sourceImageView.contentFrame.size.height);
     
     
-//    [self buttonsScroll];
+    //    [self buttonsScroll];
+    //
+    //    [UIView animateWithDuration:0.5 animations:^{
+    //        scrollView.frame=CGRectMake(0, -64, self.view.bounds.size.width, 64);
+    //    }];
+    
+}
+
+-(void)singlePan:(UIPanGestureRecognizer *)gesture{
+    CGPoint posInStretch = [gesture locationInView:_cropRect];
+    CGPoint pointInSelfView = [_cropbgView convertPoint:posInStretch fromView:_cropRect];
+    if(gesture.state==UIGestureRecognizerStateBegan){
+        [_cropRect findPointAtLocation:posInStretch];
+        
+        self.touchTimer = [NSTimer scheduledTimerWithTimeInterval:0.1
+                                                           target:self
+                                                         selector:@selector(addLoop)
+                                                         userInfo:nil
+                                                          repeats:NO];
+        
+        if(loop == nil){
+            loop = [[MagnifierView2 alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
+            loop.viewToMagnify = _cropbgView;
+            loop.layer.borderColor = [UIColor grayColor].CGColor;
+            loop.layer.borderWidth = 2;
+            loop.layer.cornerRadius = 50;
+            loop.layer.masksToBounds = YES;
+        }
+        
+        //        UITouch *touch = [touches anyObject];
+        loop.touchPoint = pointInSelfView;
+        [loop setNeedsDisplay];
+        [self.view addSubview:loop];
+    }
+    if(gesture.state==UIGestureRecognizerStateEnded){
+        _cropRect.activePoint.backgroundColor = [UIColor grayColor];
+        _cropRect.activePoint = nil;
+        [_cropRect checkangle:0];
+        
+        
+        [self.touchTimer invalidate];
+        self.touchTimer = nil;
+        
+        [loop removeFromSuperview];
+        loop = nil;
+        
+    }
+    [_cropRect moveActivePointToLocation:posInStretch];
+    
+    [self handleAction:pointInSelfView];
+    
+}
+
+- (void)addLoop {
+        [loop bringSubviewToFront:self.view];//让放大镜显示在最上层
+}
+
+- (void)handleAction:(CGPoint)timerObj {
+    //    NSSet *touches = timerObj;
+    //    UITouch *touch = [touches anyObject];
+    loop.touchPoint = timerObj;//将本身的touch信息传递给放大镜，设置放大镜的中心点
+    [loop setNeedsDisplay];
+    //    loop drawRect:<#(CGRect)#>
+}
+
+
+
+
+- (IBAction)doneBtnClicked:(UIButton *)sender {
+    [self.textv resignFirstResponder];
+}
+
+
+- (void)keyboardWasShow:(NSNotification *)notification {
+    // 取得键盘的frame，注意，因为键盘在window的层面弹出来的，所以它的frame坐标也是对应window窗口的。
+
+    
+    NSValue* aValue = [[notification userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey];
+    CGRect keyboardRect = [aValue CGRectValue];
+    NSNumber *durationValue = [notification userInfo][UIKeyboardAnimationDurationUserInfoKey];
+    NSTimeInterval animationDuration = durationValue.doubleValue;
+    
+    _toolBarView.hidden = NO;
+    
+    [UIView animateWithDuration:animationDuration delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        _textbottomCons.constant = (keyboardRect.size.height+40);//修改距离底部的约束
+        _bottomToolbarConstant.constant = keyboardRect.size.height;
+    } completion:^(BOOL finished) {
+    }];
+    [self.view setNeedsLayout]; //更新视图
+    [self.view layoutIfNeeded];
+}
+
+
+- (void)keyboardWillBeHidden:(NSNotification *)notification{
+    // 恢复原理的大小
+    _toolBarView.hidden = YES;
+    _bottomToolbarConstant.constant = originBottomToolBarContstant;
+    _textbottomCons.constant = originBottomConstant;
+    [self.view setNeedsLayout]; //更新视图
+    [self.view layoutIfNeeded];
+}
+
+//- (IBAction)liangduClicked:(UIButton *)sender {
+//    CGImageRef ref = self.cutImageView.bgImageView.image.CGImage;
+//    //使用CGImage初始化CIImage对象
+//    CIImage *image = [CIImage imageWithCGImage:ref];
+//    //创建一个滤镜对象
 //    
-//    [UIView animateWithDuration:0.5 animations:^{
-//        scrollView.frame=CGRectMake(0, -64, self.view.bounds.size.width, 64);
-//    }];
-    
-}
+//    
+//    CIFilter *filter = [CIFilter filterWithName:@"CIColorControls"];
+//    //利用键值对来设置滤镜的属性（后面的key在CIFilter中都可以找到，然后拿到这些key进行相应的赋值即可）
+//    [filter setValue:image forKey:kCIInputImageKey];
+//    //设置图片的亮度
+////    [filter setValue:@0.35 forKey:kCIInputEVKey];
+//    [filter setValue:@0.81 forKey:kCIInputBrightnessKey];
+//    [filter setValue:@0.35 forKey:kCIInputContrastKey];
+//
+//    //得到滤镜处理后的CIImage
+//    CIImage *imageOut = [filter outputImage];
+//    //初始化CIContext对象
+//    CIContext *context = [CIContext contextWithOptions:nil];
+//    //利用CIContext对象渲染后得到CGImage，最后将它转成UIImage
+//    CGImageRef outImage = [context createCGImage:imageOut fromRect:imageOut.extent];
+//    UIImage *outPutImage = [UIImage imageWithCGImage:outImage];
+//    
+//    [self setupCutImageView:outPutImage fromPhotoLib:YES];
+//
+//    //释放CGImage对象，一定不要忘记自己释放
+//    CGImageRelease(outImage);
+//}
 
-
-//还原初始值
-- (void)reset{
-    
-    _cropImage = nil;
-    
-    self.sourceImageView.hidden = YES;
-    self.cropRect.hidden = YES;
-    
-    _adjustedImage = nil;
-    
-    [self.sourceImageView setImage:nil];
-    
-    self.imageOrientation = UIImageOrientationUp;
-    self.closeButton.hidden = YES;
-//    self.previewView.hidden = NO;
-    
-    self.cameraViewController.hidden = NO;
-    [self.cameraViewController start];
-    self.titleL.text = @"拍摄要识别的区域";
-    self.languageBtn.hidden = YES;
-    
-    
-    self.cutImageView.hidden = YES;
-    self.maskImageView.hidden = YES;
-    self.checkViewBoom.constant = -V_H(self.checkView);
-    self.toolViewBoom.constant = 0;
-    //关灯
-    [self OffLight];
-}
-
-- (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event{
-    BOOL enable = !self.cameraViewController.isBorderDetectionEnabled;
-    [self showDedectBtnWithTitle:enable?@"边缘检测打开":@"边缘检测关闭"];
-    self.cameraViewController.enableBorderDetection = enable;
-}
-
--(void)showDedectBtnWithTitle:(NSString *)title
-{
-    [self.edgeDetectBtn setTitle:title forState:UIControlStateNormal];
-    self.edgeDetectBtn.hidden = NO;
-    [self performSelector:@selector(hideEdgeDetectBtn) withObject:nil afterDelay:3];
-}
-
--(void)hideEdgeDetectBtn
-{
-    self.edgeDetectBtn.hidden = YES;
-    [self.edgeDetectBtn setTitle:@"" forState:UIControlStateNormal];
-    
-}
-
-- (void)setupViews {
-    
-    self.navigationController.navigationBarHidden = YES;
-    
-//    self.previewView.translatesAutoresizingMaskIntoConstraints = NO;
-//    self.previewView.session = self.cameraController.session;
-}
 
 - (void)setUpMaskImageView {
     
     self.maskImageView.showMidLines = YES;
     self.maskImageView.needScaleCrop = YES;
     self.maskImageView.showCrossLines = YES;
-    self.maskImageView.cropAreaCornerWidth = 30;
-    self.maskImageView.cropAreaCornerHeight = 30;
+    self.maskImageView.cropAreaCornerWidth = 40;
+    self.maskImageView.cropAreaCornerHeight = 40;
     self.maskImageView.minSpace = 30;
     self.maskImageView.cropAreaCornerLineColor = [UIColor colorWithWhite:1 alpha:1];
     self.maskImageView.cropAreaBorderLineColor = [UIColor colorWithWhite:1 alpha:0.7];
@@ -502,98 +441,35 @@
 //设置背景图
 - (void)setupCutImageView:(UIImage *)image fromPhotoLib:(BOOL)isFromLib {
     
-    fromLib = isFromLib;
     if (isFromLib) {
         
         self.cutImageView.userInteractionEnabled = YES;
-        self.transformButton.hidden = NO;
+        
     }else{
         
         self.cutImageView.userInteractionEnabled = NO;
-        self.transformButton.hidden = YES;
+        
     }
-    self.cameraViewController.hidden = YES;
-    [self.cameraViewController stop];
-    self.titleL.text = @"";
-    self.languageBtn.hidden = NO;
-   
-//    self.cutImageView.hidden = NO;
-//    self.maskImageView.hidden = NO;
-    
     
     self.sourceImageView.hidden = NO;
     self.cropRect.hidden = NO;
     
-   
-    
-    if (image.size.width>1200) {
-        CGSize size = CGSizeMake(1200, 1200*image.size.height/image.size.width);
-        
-        //        NSLog(@"thisSize:%@",NSStringFromCGSize(size));
-        
-        
-        UIGraphicsBeginImageContextWithOptions(size, NO, [UIScreen mainScreen].scale);
-        
-        [image drawInRect:CGRectMake(0, 0, size.width, size.height)];
-        
-        _adjustedImage = UIGraphicsGetImageFromCurrentImageContext();
-        
-        UIGraphicsEndImageContext();
-    }
-    
-//    _adjustedImage = image;
+    _adjustedImage = image;
     
     [self.sourceImageView setImage:_adjustedImage];
-    CGRect cropFrame=CGRectMake(_sourceImageView.contentFrame.origin.x,_sourceImageView.contentFrame.origin.y+64-15,_sourceImageView.contentFrame.size.width+30,_sourceImageView.contentFrame.size.height+30);
+    CGRect cropFrame=CGRectMake(_sourceImageView.contentFrame.origin.x,_sourceImageView.contentFrame.origin.y,_sourceImageView.contentFrame.size.width+30,_sourceImageView.contentFrame.size.height+30);
     [_cropRect setFrame:cropFrame];
     [_cropRect resetFrame];
     
     [self detectEdges];
-//    [self dectEdgeForImage];
+    //    [self dectEdgeForImage];
     _initialRect = self.sourceImageView.frame;
     final_Rect =self.sourceImageView.frame;
     
-    
-    
-    self.closeButton.hidden = YES;
-    self.checkViewBoom.constant = 0;
-    self.toolViewBoom.constant = -V_H(self.toolsView);
 }
-
-
-#pragma mark - Action handling
-
-- (IBAction)turnLight:(id)sender {
-    
-    AVCaptureDevice * device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
-    if(![device isTorchModeSupported:AVCaptureTorchModeOn] || ![device isTorchModeSupported:AVCaptureTorchModeOff]) {
-        
-        //ytodo [self passport_showTextHUDWithTitle:@"暂不支持照明功能" hiddenAfterDelay:0.2];
-        return;
-    }
-//    [self.previewView.session beginConfiguration];
-    [device lockForConfiguration:nil];
-    if (!self.lightButton.selected) { // 照明状态
-        if (device.torchMode == AVCaptureTorchModeOff) {
-            // Set torch to on
-            [device setTorchMode:AVCaptureTorchModeOn];
-        }
-        
-    }else
-    {
-        // Set torch to on
-        [device setTorchMode:AVCaptureTorchModeOff];
-    }
-    self.lightButton.selected = !self.lightButton.selected;
-    [device unlockForConfiguration];
-//    [self.previewView.session commitConfiguration];
-}
-
-- (IBAction)pressTransform:(id)sender {
-    
+- (IBAction)transferClicked:(UIButton *)sender {
     //向右转90'
-    _sourceImageView.transform = CGAffineTransformRotate (_sourceImageView.transform, M_PI_2);
-    _cropRect.transform = CGAffineTransformRotate (_cropRect.transform, M_PI_2);
+    self.cutImageView.bgImageView.transform = CGAffineTransformRotate (self.cutImageView.bgImageView.transform, M_PI_2);
     if (self.imageOrientation == UIImageOrientationUp) {
         
         self.imageOrientation = UIImageOrientationRight;
@@ -607,79 +483,42 @@
         
         self.imageOrientation = UIImageOrientationUp;
     }
-    
-//    [self rotateStateDidChange];
 }
-
-#pragma mark Animate
-- (CATransform3D)rotateTransform:(CATransform3D)initialTransform clockwise:(BOOL)clockwise
+-(void)addLoadingView
 {
-    CGFloat arg = M_PI_2;
-    if(!clockwise){
-        arg *= -1;
-    }
+    self.loadingView = [[UIView alloc] initWithFrame:CGRectMake((self.view.frame.size.width-80)/2, (self.view.frame.size.height-80)/2, 80, 80)];
+    self.loadingView.backgroundColor = [UIColor blackColor];
+    self.loadingView.alpha = 0.7;
+    self.loadingView.layer.cornerRadius = 5;
+    self.loadingView.layer.masksToBounds = YES;
+    [self.view addSubview:self.loadingView];
     
-    CATransform3D transform = initialTransform;
-    transform = CATransform3DRotate(transform, arg, 0, 0, 1);
-    transform = CATransform3DRotate(transform, 0*M_PI, 0, 1, 0);
-    transform = CATransform3DRotate(transform, 0*M_PI, 1, 0, 0);
+    self.indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    self.indicator.center = self.loadingView.center;
+    [self.view addSubview:self.indicator];
+    [self.indicator startAnimating];
     
-    return transform;
+}
+- (IBAction)copyText:(UIBarButtonItem *)sender {
+    UIPasteboard*pasteboard = [UIPasteboard generalPasteboard];
+    
+    pasteboard.string=self.textv.text;
+    
+    self.successView.hidden = NO;
+    self.successLabel.hidden = NO;
+    [self performSelector:@selector(hideSuccessView) withObject:nil afterDelay:2];
+    
 }
 
-- (void)rotateStateDidChange
+-(void)hideSuccessView
 {
-    CATransform3D transform = [self rotateTransform:CATransform3DIdentity clockwise:YES];
-    
-    CGFloat arg = M_PI_2;
-    CGFloat Wnew = fabs(_initialRect.size.width * cos(arg)) + fabs(_initialRect.size.height * sin(arg));
-    CGFloat Hnew = fabs(_initialRect.size.width * sin(arg)) + fabs(_initialRect.size.height * cos(arg));
-    
-    CGFloat Rw = final_Rect.size.width / Wnew;
-    CGFloat Rh = final_Rect.size.height / Hnew;
-    CGFloat scale = MIN(Rw, Rh) * 1;
-    transform = CATransform3DScale(transform, scale, scale, 1);
-    _sourceImageView.layer.transform = transform;
-    _cropRect.layer.transform = transform;
-    
-    //    NSLog(@"%@",_sourceImageView);
+    self.successView.hidden = YES;
+    self.successLabel.hidden = YES;
 }
-
-
-//上传图片识别结果
-- (IBAction)pressCheckChoose:(id)sender {
-    
-    //ytodo tips: MyLocal(@"识别中...")
-    
-//    if (!_cropImage) {
-        [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
-        [SVProgressHUD showWithStatus:@"裁剪图片..."];
-        
-        
-        
-        __weak __typeof(self) weakSelf = self;
-        dispatch_async(dispatch_queue_create(NULL, NULL), ^{
-            [self cropAction];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [weakSelf uploadAndRecText];
-            });
-        });
-        
-//    }
-    
-   
-//    return;
-    
-    
-
-
-    
-}
-
 -(void)uploadAndRecText
 {
-    [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
-    [SVProgressHUD showWithStatus:@"识别中..."];
+//    [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
+//    [SVProgressHUD showWithStatus:@"识别中..."];
     
     //    self.cutImageView.bgImageView.image = _cropImage;
     
@@ -700,6 +539,8 @@
     
     self.finalImgWidth = finalImage.size.width;
     
+    _sourceImageView.image = _cropImage;
+    
     
     //    return;
     
@@ -708,27 +549,70 @@
     __weak __typeof__(self) weakSelf = self;
     [[AipOcrService shardService] detectTextFromImage:finalImage withOptions:options successHandler:^(id result) {
         NSLog(@"%@", result);
-        //        if ([self.delegate respondsToSelector:@selector(ocrOnGeneralSuccessful:)]) {
-        //            [self.delegate ocrOnGeneralSuccessful:result];
-        //        }
         dispatch_async(dispatch_get_main_queue(), ^{
-            [SVProgressHUD dismiss];
-            [weakSelf toResultVC:result];
+            [weakSelf addSuccessResult:result];
         });
     } failHandler:^(NSError *err) {
         //        if ([self.delegate respondsToSelector:@selector(ocrOnFail:)]) {
         //            [self.delegate ocrOnFail:err];
         //        }
         dispatch_async(dispatch_get_main_queue(), ^{
-            [SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"识别失败 %li %@",[err code],[err localizedDescription]]];
+//            [SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"识别失败 %li %@",[err code],[err localizedDescription]]];
+            [self.loadingView removeFromSuperview];
+            [self.indicator removeFromSuperview];
         });
     }];
 }
 
--(void)toResultVC:(id)result
+- (IBAction)pressOkBtn:(UIButton *)sender {
+    
+    [self addLoadingView];
+    
+//    [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
+//    [SVProgressHUD showWithStatus:@"裁剪图片..."];
+    
+//    __weak __typeof(self) weakSelf = self;
+//    dispatch_async(dispatch_queue_create(NULL, NULL), ^{
+        [self cropAction];
+//        dispatch_async(dispatch_get_main_queue(), ^{
+            [self uploadAndRecText];
+//        });
+//    });
+    
+    
+//    CGRect rect  = [self TransformTheRect];
+//    
+//    UIImage *cutImage = [self.cutImageView cutImageFromView:self.cutImageView.bgImageView withSize:self.size atFrame:rect];
+//    
+//    UIImage *image = [self rotateImageEx:cutImage.CGImage byDeviceOrientation:self.imageDeviceOrientation];
+//    
+//    UIImage *finalImage = [self rotateImageEx:image.CGImage orientation:self.imageOrientation];
+//    
+//    
+//    NSLog(@"finalImageWidth:%f",finalImage.size.width);
+//    
+//    self.finalImgWidth = finalImage.size.width;
+//    
+//    NSDictionary *options = @{@"language_type": @"CHN_ENG", @"detect_direction": @"true"};
+//    __weak __typeof__(self) weakSelf = self;
+//    
+//    [_aipOcrManager detectTextFromImage:finalImage withOptions:options successHandler:^(id result) {
+//        NSLog(@"%@", result);
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//        [weakSelf addSuccessResult:result];
+//        });
+//    } failHandler:^(NSError *err) {
+//        NSLog(@"%@",err);
+//        [self.loadingView removeFromSuperview];
+//        [self.indicator removeFromSuperview];
+//    }];
+    
+}
+
+-(void)addSuccessResult:(id)result
 {
-//    float lastEndY = -1;
-//    float lastLeft = -1;
+    [self.loadingView removeFromSuperview];
+    [self.indicator removeFromSuperview];
     NSMutableString *message = [NSMutableString string];
     if(result[@"words_result"]){
         if ([result[@"words_result"] count]==0) {
@@ -755,7 +639,7 @@
             if ([obj[@"location"][@"height"] floatValue]>maxHeight) {
                 maxHeight = [obj[@"location"][@"height"] floatValue];
             }
- 
+            
         }
         
         if ([result[@"direction"] intValue]==0 || [result[@"direction"] intValue]==2) {
@@ -788,151 +672,30 @@
     }else{
         [message appendFormat:@"%@", result];
     }
+    
+    self.textv.hidden = NO;
+    self.bottomView.hidden = YES;
+    self.rightItem.enabled = YES;
 
     
-    ResultViewController * resultVC = [[ResultViewController alloc] init];
-    resultVC.resultStr = message;
-    [self.navigationController pushViewController:resultVC animated:YES];
+    self.sourceImageView.hidden = YES;
+    self.cropRect.hidden = YES;
+    
+    
+    
+    
+    //    textV.text = _resultStr;
+    
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    paragraphStyle.lineSpacing = 8;// 字体的行间距
+    NSDictionary *attributes = @{
+                                 NSFontAttributeName:[UIFont systemFontOfSize:18],
+                                 NSParagraphStyleAttributeName:paragraphStyle
+                                 };
+    
+    _textv.attributedText = [[NSAttributedString alloc] initWithString:message attributes:attributes];
+
 }
-
--(BOOL)isEndBiaodian:(NSString *)str
-{
-    if ([str isEqualToString:@"."]||[str isEqualToString:@"。"]||[str isEqualToString:@":"]||[str isEqualToString:@"："]||[str isEqualToString:@"……"]||[str isEqualToString:@"..."]||[str isEqualToString:@"…"]||[str isEqualToString:@"！"]||[str isEqualToString:@"!"]||[str isEqualToString:@"？"]||[str isEqualToString:@"?"]) {
-        return YES;
-    }
-    return NO;
-}
-
-
-- (IBAction)pressCheckBack:(id)sender {
-    
-    [self reset];
-}
-
-
-- (IBAction)captureIDCard:(id)sender {
-    
-//    __weak __typeof (self) weakSelf = self;
-//    [self.cameraController captureStillImageWithHandler:^(NSData *imageData) {
-//        
-//        
-//        [weakSelf setupCutImageView:[UIImage imageWithData:imageData]fromPhotoLib:NO];
-//    }];
-    
-    __weak typeof(self) weakSelf = self;
-    
-    [self.cameraViewController captureImageWithCompletionHander:^(NSString *imageFilePath,CIImage * img)
-     {
-         UIImage * image = [UIImage imageWithContentsOfFile:imageFilePath];
-//         weakSelf.sciImage = img;
-//         weakSelf.sciImage = [CIImage imagewithc:imageFilePath]
-         [weakSelf setupCutImageView:image fromPhotoLib:NO];
-        
-     }];
-}
-
-
-- (IBAction)pressBackButton:(id)sender {
-    
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-
-- (IBAction)openPhotoAlbum:(id)sender {
-    
-    if ([UIImagePickerController isSourceTypeAvailable:(UIImagePickerControllerSourceTypePhotoLibrary)]) {
-        
-        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-        picker.delegate = self;
-        picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-        //model 一个 View
-        [self presentViewController:picker animated:YES completion:^{
-            
-            
-        }];
-    }
-    else {
-        NSAssert(NO, @" ");
-    }
-}
-
-#pragma mark - segue
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    
-}
-#pragma mark - notification
-
-//监测设备方向
-- (void)orientationChanged:(NSNotification *)notification{
-    
-    if (![self deviceOrientationCanChange]) {
-        
-        return;
-    }
-    
-    CGAffineTransform transform;
-    
-    if (self.curDeviceOrientation == UIDeviceOrientationPortrait) {
-        
-        transform = CGAffineTransformMakeRotation(0);
-
-        self.imageDeviceOrientation = UIDeviceOrientationPortrait;
-    }else if (self.curDeviceOrientation == UIDeviceOrientationLandscapeLeft){
-        
-        transform = CGAffineTransformMakeRotation(M_PI_2);
-        
-        self.imageDeviceOrientation = UIDeviceOrientationLandscapeLeft;
-    }else if (self.curDeviceOrientation == UIDeviceOrientationLandscapeRight){
-        
-        transform = CGAffineTransformMakeRotation(-M_PI_2);
-        
-        self.imageDeviceOrientation = UIDeviceOrientationLandscapeRight;
-    }else {
-        
-        transform = CGAffineTransformMakeRotation(0);
-        
-        self.imageDeviceOrientation = UIDeviceOrientationPortrait;
-    }
-    
-    [UIView animateWithDuration:0.2 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
-        
-        self.albumButton.transform = transform;
-        self.closeButton.transform = transform;
-        self.lightButton.transform = transform;
-        self.closeButton.transform = transform;
-        self.captureButton.transform = transform;
-        self.checkCloseBtn.transform = transform;
-        self.checkChooseBtn.transform = transform;
-        self.transformButton.transform = transform;
-    } completion:^(BOOL finished) {
-        
-        
-    }];
-    
-    
-}
-
-#pragma mark - loadData
-
-#pragma mark - public
-
-+(CGFloat)speScale{
-    
-    return (CGFloat) (([UIScreen mainScreen].bounds.size.width == 414) ? 1.1: ([UIScreen mainScreen].bounds.size.width == 320) ? 0.85 : 1);
-}
-
-+(UIViewController *)ViewControllerWithDelegate:(id<AipOcrDelegate>)delegate {
-    
-    UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"AipOcrSdk" bundle:[NSBundle bundleForClass:[self class]]];
-    
-    AipGeneralVC *vc = [mainSB instantiateViewControllerWithIdentifier:@"AipGeneralVC"];
-    vc.delegate = delegate;
-    
-    AipNavigationController *navController = [[AipNavigationController alloc] initWithRootViewController:vc];
-    return navController;
-}
-
-#pragma mark - private
 
 - (CGRect)TransformTheRect{
     
@@ -1061,20 +824,6 @@
     return CGRectMake(x, y, width, height);
 }
 
-- (void)OffLight {
-    if (self.lightButton.selected) {
-        AVCaptureDevice * device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
-//        [self.previewView.session beginConfiguration];
-        [device lockForConfiguration:nil];
-        if([device isTorchModeSupported:AVCaptureTorchModeOff]) {
-            [device setTorchMode:AVCaptureTorchModeOff];
-        }
-        [device unlockForConfiguration];
-//        [self.previewView.session commitConfiguration];
-    }
-    
-    self.lightButton.selected = NO;
-}
 
 //旋转照片
 -(UIImage *)rotateImageEx:(CGImageRef)imgRef orientation:(UIImageOrientation) orient
@@ -1303,118 +1052,52 @@
     
     if ([[UIDevice currentDevice] orientation] == UIDeviceOrientationPortrait)
     {
+        self.topWhite.hidden = NO;
         self.curDeviceOrientation = UIDeviceOrientationPortrait;
         return YES;
     }
     else if([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeLeft)
     {
+        self.topWhite.hidden = YES;
         self.curDeviceOrientation = UIDeviceOrientationLandscapeLeft;
         return YES;
     }
     else if([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeRight)
     {
+        self.topWhite.hidden = YES;
         self.curDeviceOrientation = UIDeviceOrientationLandscapeRight;
         return YES;
     }
     return NO;
 }
 
-
-
-#pragma mark - dataSource && delegate
-
-//AipCutImageDelegate
-
-- (void)AipCutImageBeginPaint{
-    
-}
-- (void)AipCutImageScale{
-    
-}
-- (void)AipCutImageMove{
-    
-}
-- (void)AipCutImageEndPaint{
-    
+-(BOOL)shouldAutorotate{
+    return NO;
 }
 
-//UIImagePickerControllerDelegate
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations
 {
-    UIImage *image = [info valueForKey:UIImagePickerControllerOriginalImage];
-    NSAssert(image, @" ");
-    if (image) {
-        
-        [self setupCutImageView:image fromPhotoLib:YES];
-        
-        [picker dismissViewControllerAnimated:YES completion:nil];
-    }
-}
-
-//UIAlertViewDelegate
-- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
     
-    [self.navigationController popViewControllerAnimated:YES];
+    return UIInterfaceOrientationMaskPortrait;
+}
+
+- (BOOL)prefersStatusBarHidden{
     
+    return NO;
 }
 
--(void)singlePan:(UIPanGestureRecognizer *)gesture{
-    CGPoint posInStretch = [gesture locationInView:_cropRect];
-    CGPoint pointInSelfView = [self.view convertPoint:posInStretch fromView:_cropRect];
-    if(gesture.state==UIGestureRecognizerStateBegan){
-        [_cropRect findPointAtLocation:posInStretch];
-        
-        self.touchTimer = [NSTimer scheduledTimerWithTimeInterval:0.1
-                                                           target:self
-                                                         selector:@selector(addLoop)
-                                                         userInfo:nil
-                                                          repeats:NO];
-        
-        if(loop == nil){
-            loop = [[MagnifierView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
-            loop.viewToMagnify = self.view;
-            loop.layer.borderColor = [UIColor grayColor].CGColor;
-            loop.layer.borderWidth = 2;
-            loop.layer.cornerRadius = 50;
-            loop.layer.masksToBounds = YES;
-        }
-        
-//        UITouch *touch = [touches anyObject];
-        loop.touchPoint = pointInSelfView;
-        [loop setNeedsDisplay];
-        [[UIApplication sharedApplication].keyWindow addSubview:loop];
-    }
-    if(gesture.state==UIGestureRecognizerStateEnded){
-        _cropRect.activePoint.backgroundColor = [UIColor grayColor];
-        _cropRect.activePoint = nil;
-        [_cropRect checkangle:0];
-        
-        
-        [self.touchTimer invalidate];
-        self.touchTimer = nil;
-        
-        [loop removeFromSuperview];
-        loop = nil;
-     
-    }
-    [_cropRect moveActivePointToLocation:posInStretch];
-    
-     [self handleAction:pointInSelfView];
-    
+
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
-- (void)addLoop {
-//    [loop bringSubviewToFront:self.view];//让放大镜显示在最上层
+- (IBAction)done {
+    // Return any edited content to the host app.
+    // This template doesn't do anything, so we just echo the passed in items.
+    [self.extensionContext completeRequestReturningItems:self.extensionContext.inputItems completionHandler:nil];
 }
-
-- (void)handleAction:(CGPoint)timerObj {
-//    NSSet *touches = timerObj;
-//    UITouch *touch = [touches anyObject];
-    loop.touchPoint = timerObj;//将本身的touch信息传递给放大镜，设置放大镜的中心点
-    [loop setNeedsDisplay];
-    //    loop drawRect:<#(CGRect)#>
-}
-
 
 
 #pragma mark OpenCV
@@ -1715,34 +1398,34 @@ cv::Mat debugSquares( std::vector<std::vector<cv::Point> > squares, cv::Mat imag
         
         
         UIImage * cropedImage = [MMOpenCVHelper UIImageFromCVMat:undistorted];
-            
-            
-//            _sourceImageView.image=cropedImage;
-//            _cropImage=_sourceImageView.image;
+        
+        
+        //            _sourceImageView.image=cropedImage;
+        //            _cropImage=_sourceImageView.image;
         
         
         
-//         [self.cutImageView setBGImage:_sourceImageView.image fromPhotoLib:fromLib useGestureRecognizer:NO];
+        //         [self.cutImageView setBGImage:_sourceImageView.image fromPhotoLib:fromLib useGestureRecognizer:NO];
         
-//        _sourceImageView.hidden = YES;
-//        _cropRect.hidden = YES;
-//        self.cutImageView.hidden = NO;
-//        self.maskImageView.hidden = NO;
-//
-//        self.maskImageView.cropAreaView.frame = self.cutImageView.bgImageView.contentFrame;
-//
-//        UIImage * resultImage;
-//        CGSize size = self.cutImageView.bgImageView.contentFrame.size;
-//
-//        UIGraphicsBeginImageContext(size);
-//        [_sourceImageView.image drawInRect:CGRectMake(0, 0, size.width, size.height)];
-//        _cropImage = UIGraphicsGetImageFromCurrentImageContext();
-//        UIGraphicsEndImageContext();
+        //        _sourceImageView.hidden = YES;
+        //        _cropRect.hidden = YES;
+        //        self.cutImageView.hidden = NO;
+        //        self.maskImageView.hidden = NO;
+        //
+        //        self.maskImageView.cropAreaView.frame = self.cutImageView.bgImageView.contentFrame;
+        //
+        //        UIImage * resultImage;
+        //        CGSize size = self.cutImageView.bgImageView.contentFrame.size;
+        //
+        //        UIGraphicsBeginImageContext(size);
+        //        [_sourceImageView.image drawInRect:CGRectMake(0, 0, size.width, size.height)];
+        //        _cropImage = UIGraphicsGetImageFromCurrentImageContext();
+        //        UIGraphicsEndImageContext();
         
         
         CGSize size = CGSizeMake(self.view.bounds.size.width, self.view.bounds.size.width*cropedImage.size.height/cropedImage.size.width);
         
-//        NSLog(@"thisSize:%@",NSStringFromCGSize(size));
+        //        NSLog(@"thisSize:%@",NSStringFromCGSize(size));
         
         
         UIGraphicsBeginImageContextWithOptions(size, NO, [UIScreen mainScreen].scale);
@@ -1757,36 +1440,36 @@ cv::Mat debugSquares( std::vector<std::vector<cv::Point> > squares, cv::Mat imag
         
         
         
-//        NSData * data = UIImageJPEGRepresentation(_sourceImageView.image,1);
-//
-//        NSData * data2 = UIImageJPEGRepresentation(_cropImage,1);;
-//        if ([data length]<1000000) {
-//            data2 = UIImageJPEGRepresentation(_sourceImageView.image,0.9);
-//        }
-//        else if ([data length]>=1000000 && [data length]<2000000)
-//        {
-//            data2 = UIImageJPEGRepresentation(_sourceImageView.image,0.8);
-//        }
-//        else if ([data length]>=2000000 && [data length]<4000000){
-//            data2 = UIImageJPEGRepresentation(_sourceImageView.image,0.7);
-//        }
-//        else
-//        {
-//            data2 = UIImageJPEGRepresentation(_sourceImageView.image,0.4);
-//        }
+        //        NSData * data = UIImageJPEGRepresentation(_sourceImageView.image,1);
+        //
+        //        NSData * data2 = UIImageJPEGRepresentation(_cropImage,1);;
+        //        if ([data length]<1000000) {
+        //            data2 = UIImageJPEGRepresentation(_sourceImageView.image,0.9);
+        //        }
+        //        else if ([data length]>=1000000 && [data length]<2000000)
+        //        {
+        //            data2 = UIImageJPEGRepresentation(_sourceImageView.image,0.8);
+        //        }
+        //        else if ([data length]>=2000000 && [data length]<4000000){
+        //            data2 = UIImageJPEGRepresentation(_sourceImageView.image,0.7);
+        //        }
+        //        else
+        //        {
+        //            data2 = UIImageJPEGRepresentation(_sourceImageView.image,0.4);
+        //        }
         
-//        NSLog(@"_adjustedImage:%lu,sourceImage:%lu",[UIImageJPEGRepresentation(_adjustedImage,1) length],[data length]);
-//        NSLog(@"resultImage:%lu",[data2 length]);
+        //        NSLog(@"_adjustedImage:%lu,sourceImage:%lu",[UIImageJPEGRepresentation(_adjustedImage,1) length],[data length]);
+        //        NSLog(@"resultImage:%lu",[data2 length]);
         
-//        _cropImage = [UIImage imageWithData:data2];
+        //        _cropImage = [UIImage imageWithData:data2];
         
-//        [self.cutImageView setBGImage:_cropImage fromPhotoLib:fromLib useGestureRecognizer:NO];
+        //        [self.cutImageView setBGImage:_cropImage fromPhotoLib:fromLib useGestureRecognizer:NO];
         
-             
-            
-            //         _sourceImageView.image = [MMOpenCVHelper UIImageFromCVMat:grayImage];//For gray image
-            
-       
+        
+        
+        //         _sourceImageView.image = [MMOpenCVHelper UIImageFromCVMat:grayImage];//For gray image
+        
+        
         
         original.release();
         undistorted.release();
@@ -1795,87 +1478,12 @@ cv::Mat debugSquares( std::vector<std::vector<cv::Point> > squares, cv::Mat imag
         
     }
     else{
-        UIAlertView  *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"无效的区域" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        [alertView show];
+//        UIAlertView  *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"无效的区域" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+//        [alertView show];
         
     }
     
 }
 
-//Image Processing
--(UIImage *)grayImage:(UIImage *)processedImage{
-    cv::Mat grayImage = [MMOpenCVHelper cvMatGrayFromAdjustedUIImage:processedImage];
-    
-    cv::medianBlur(grayImage, grayImage, 7);
-    cv::adaptiveThreshold(grayImage, grayImage, 245, cv::ADAPTIVE_THRESH_GAUSSIAN_C, cv::THRESH_BINARY, 11, 2);
-    
-    
-//    cv::GaussianBlur(grayImage, grayImage, cvSize(11,11), 0);
-//    cv::adaptiveThreshold(grayImage, grayImage, 255, cv::ADAPTIVE_THRESH_GAUSSIAN_C, cv::THRESH_BINARY, 15, 4);
-    
-    UIImage *grayeditImage=[MMOpenCVHelper UIImageFromCVMat:grayImage];
-    grayImage.release();
-    
-    return grayeditImage;
-    
-}
-
--(UIImage *)magicColor:(UIImage *)processedImage{
-    cv::Mat  original = [MMOpenCVHelper cvMatFromAdjustedUIImage:processedImage];
-    
-    cv::Mat new_image = cv::Mat::zeros( original.size(), original.type() );
-    
-    original.convertTo(new_image, -1, 1.9, -80);
-    
-    original.release();
-    UIImage *magicColorImage=[MMOpenCVHelper UIImageFromCVMat:new_image];
-    new_image.release();
-    return magicColorImage;
-    
-    
-}
-
--(UIImage *)blackandWhite:(UIImage *)processedImage{
-    cv::Mat original = [MMOpenCVHelper cvMatGrayFromAdjustedUIImage:processedImage];
-    
-    cv::Mat new_image = cv::Mat::zeros( original.size(), original.type() );
-    
-    original.convertTo(new_image, -1, 1.4, -50);
-    original.release();
-    
-    UIImage *blackWhiteImage=[MMOpenCVHelper UIImageFromCVMat:new_image];
-    new_image.release();
-    
-    
-    
-    return blackWhiteImage;
-    
-}
-
-
-
-
-
-#pragma mark - function
-
--(BOOL)shouldAutorotate{
-    return NO;
-}
-
-- (UIInterfaceOrientationMask)supportedInterfaceOrientations
-{
-    
-    return UIInterfaceOrientationMaskPortrait;
-}
-
-- (BOOL)prefersStatusBarHidden{
-    
-    return NO;
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 @end

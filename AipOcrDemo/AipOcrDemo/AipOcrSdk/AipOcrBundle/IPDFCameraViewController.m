@@ -19,14 +19,7 @@
 
 #import <GLKit/GLKit.h>
 
-@interface IPDFRectangleFeature : NSObject
 
-@property (nonatomic) CGPoint topLeft;
-@property (nonatomic) CGPoint topRight;
-@property (nonatomic) CGPoint bottomRight;
-@property (nonatomic) CGPoint bottomLeft;
-
-@end @implementation IPDFRectangleFeature @end
 
 @interface IPDFCameraViewController () <AVCaptureVideoDataOutputSampleBufferDelegate>
 
@@ -336,7 +329,7 @@
     }
 }
 
-- (void)captureImageWithCompletionHander:(void(^)(NSString *imageFilePath))completionHandler
+- (void)captureImageWithCompletionHander:(void(^)(NSString *imageFilePath, CIImage * img))completionHandler
 {
     dispatch_suspend(_captureQueue);
     
@@ -434,7 +427,7 @@
              
              dispatch_async(dispatch_get_main_queue(), ^
              {
-                completionHandler(filePath);
+                completionHandler(filePath,enhancedImage);
                 dispatch_resume(_captureQueue);
              });
              

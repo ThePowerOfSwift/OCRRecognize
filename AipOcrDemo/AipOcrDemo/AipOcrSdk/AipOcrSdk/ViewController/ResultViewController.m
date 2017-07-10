@@ -26,7 +26,7 @@
     [syncBtn sizeToFit];
     syncBtn.frame = CGRectMake(0, 0, CGRectGetWidth(syncBtn.frame), CGRectGetHeight(syncBtn.frame));
 //    [syncBtn setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
-    [syncBtn addTarget:self action:@selector(copyText) forControlEvents:UIControlEventTouchUpInside];
+    [syncBtn addTarget:self action:@selector(showMoreAction) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:syncBtn];
     self.navigationItem.rightBarButtonItem = rightBarButtonItem;
 
@@ -69,8 +69,71 @@
 -(void)showMoreAction
 {
 
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"分享到" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"有道云笔记",nil];
-    [actionSheet showInView:self.view];
+//    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"分享到" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"有道云笔记",nil];
+//    [actionSheet showInView:self.view];
+    
+    
+    UIAlertController * alertController = [UIAlertController alertControllerWithTitle: @"复制并执行操作"                                                                             message: nil                                                                       preferredStyle:UIAlertControllerStyleActionSheet];
+    
+    [alertController addAction: [UIAlertAction actionWithTitle: @"仅复制" style: UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        [self copyText];
+        }
+    ]];
+    if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"youdaonote://"]]){
+        [alertController addAction: [UIAlertAction actionWithTitle: @"复制并打开有道云笔记" style: UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"youdaonote://"]]) {
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"youdaonote://"]];
+            }
+            else
+            {
+                [SVProgressHUD showErrorWithStatus:@"未安装有道云笔记"];
+            }
+        }
+        ]];
+    }
+    if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"evernote://"]]) {
+        [alertController addAction: [UIAlertAction actionWithTitle: @"复制并打开印象笔记" style: UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"evernote://"]]) {
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"evernote://"]];
+            }
+            else
+            {
+                [SVProgressHUD showErrorWithStatus:@"未安装印象笔记"];
+            }
+        }
+        ]];
+    }
+    
+    if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"wechat://"]]) {
+        [alertController addAction: [UIAlertAction actionWithTitle: @"复制并打开微信" style: UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"wechat://"]]) {
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"wechat://"]];
+            }
+            else
+            {
+                [SVProgressHUD showErrorWithStatus:@"未安装微信"];
+            }
+        }
+        ]];
+    }
+    
+    if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"weibo://"]]) {
+        [alertController addAction: [UIAlertAction actionWithTitle: @"复制并打开微博" style: UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"weibo://"]]) {
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"weibo://"]];
+            }
+            else
+            {
+                [SVProgressHUD showErrorWithStatus:@"未安装微博"];
+            }
+        }
+        ]];
+    }
+    
+     [alertController addAction: [UIAlertAction actionWithTitle: @"Cancel" style: UIAlertActionStyleCancel handler:nil]];
+     
+     [self presentViewController: alertController animated: YES completion: nil];
+    
     
 }
 

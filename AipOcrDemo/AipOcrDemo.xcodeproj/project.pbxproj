@@ -40,7 +40,7 @@
 		973A80E61EFFAFA700C00D1C /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 973A80E51EFFAFA700C00D1C /* CoreTelephony.framework */; };
 		973A80E81EFFAFAC00C00D1C /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 973A80E71EFFAFAC00C00D1C /* libz.tbd */; };
 		973A80EA1EFFAFC700C00D1C /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 973A80E91EFFAFC700C00D1C /* libsqlite3.tbd */; };
-		975215391EF9F746009272B2 /* ActionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 975215381EF9F746009272B2 /* ActionViewController.m */; };
+		975215391EF9F746009272B2 /* ActionViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 975215381EF9F746009272B2 /* ActionViewController.mm */; };
 		9752153C1EF9F746009272B2 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9752153A1EF9F746009272B2 /* MainInterface.storyboard */; };
 		975215401EF9F746009272B2 /* PhotoInAlbumOCR.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 975215351EF9F746009272B2 /* PhotoInAlbumOCR.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		9753BC4F1EFA067900593950 /* AipOcrService.m in Sources */ = {isa = PBXBuildFile; fileRef = 9753BC1C1EFA067900593950 /* AipOcrService.m */; };
@@ -84,7 +84,6 @@
 		9753BC961EFA091900593950 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9753BC951EFA091900593950 /* UIKit.framework */; };
 		9753BC981EFA091F00593950 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9753BC971EFA091F00593950 /* CoreFoundation.framework */; };
 		9753BC9A1EFA092300593950 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9753BC991EFA092300593950 /* Foundation.framework */; };
-		97ADFDB01EFA57B400C5E461 /* AipBase.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 97FEE1801EFA578900D3585E /* AipBase.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		97ADFDD11EFA5B7500C5E461 /* SVIndefiniteAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 97ADFDC81EFA5B7500C5E461 /* SVIndefiniteAnimatedView.m */; };
 		97ADFDD21EFA5B7500C5E461 /* SVProgressAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 97ADFDCA1EFA5B7500C5E461 /* SVProgressAnimatedView.m */; };
 		97ADFDD31EFA5B7500C5E461 /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 97ADFDCC1EFA5B7500C5E461 /* SVProgressHUD.bundle */; };
@@ -108,7 +107,16 @@
 		97ADFE551EFAC5C300C5E461 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FFDAF4231E49C99000AB65B7 /* Assets.xcassets */; };
 		97ADFE561EFAC5C500C5E461 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FFDAF4231E49C99000AB65B7 /* Assets.xcassets */; };
 		97D0552C1F1073E70018D843 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97D0552B1F1073E70018D843 /* CoreMotion.framework */; };
-		97FEE16E1EFA0B6F00D3585E /* AipOcrSdk.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9753BC371EFA067900593950 /* AipOcrSdk.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		97F0BFA51F13265A0046558B /* IPDFRectangleFeature.m in Sources */ = {isa = PBXBuildFile; fileRef = 97F0BFA41F13265A0046558B /* IPDFRectangleFeature.m */; };
+		97F0BFA61F13265A0046558B /* IPDFRectangleFeature.m in Sources */ = {isa = PBXBuildFile; fileRef = 97F0BFA41F13265A0046558B /* IPDFRectangleFeature.m */; };
+		97F2B8741F1364F0003DF358 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9753BC951EFA091900593950 /* UIKit.framework */; };
+		97F2B8751F1364F7003DF358 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9753BC991EFA092300593950 /* Foundation.framework */; };
+		97F2B8761F1364FC003DF358 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 973A80E71EFFAFAC00C00D1C /* libz.tbd */; };
+		97F2B87A1F136874003DF358 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97F2B8791F136874003DF358 /* MobileCoreServices.framework */; };
+		97F2B87F1F13A4D8003DF358 /* AipBase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97F2B87D1F13A4D8003DF358 /* AipBase.framework */; };
+		97F2B8821F13A4E8003DF358 /* AipOcrSdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97F2B8801F13A4E8003DF358 /* AipOcrSdk.framework */; };
+		97F2B8831F13A50B003DF358 /* AipOcrSdk.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 97F2B8801F13A4E8003DF358 /* AipOcrSdk.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		97F2B8841F13A50B003DF358 /* AipBase.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 97F2B87D1F13A4D8003DF358 /* AipBase.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		97FEE1731EFA143700D3585E /* AipCutImageEXView.m in Sources */ = {isa = PBXBuildFile; fileRef = 97FEE1701EFA143700D3585E /* AipCutImageEXView.m */; };
 		97FEE1741EFA143700D3585E /* AipImageEXView.m in Sources */ = {isa = PBXBuildFile; fileRef = 97FEE1721EFA143700D3585E /* AipImageEXView.m */; };
 		97FEE1791EFA1F7900D3585E /* surebtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 97FEE1751EFA1F7900D3585E /* surebtn@2x.png */; };
@@ -150,8 +158,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				97ADFDB01EFA57B400C5E461 /* AipBase.framework in Embed Frameworks */,
-				97FEE16E1EFA0B6F00D3585E /* AipOcrSdk.framework in Embed Frameworks */,
+				97F2B8831F13A50B003DF358 /* AipOcrSdk.framework in Embed Frameworks */,
+				97F2B8841F13A50B003DF358 /* AipBase.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -194,7 +202,7 @@
 		973A80E91EFFAFC700C00D1C /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		975215351EF9F746009272B2 /* PhotoInAlbumOCR.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = PhotoInAlbumOCR.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		975215371EF9F746009272B2 /* ActionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ActionViewController.h; sourceTree = "<group>"; };
-		975215381EF9F746009272B2 /* ActionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ActionViewController.m; sourceTree = "<group>"; };
+		975215381EF9F746009272B2 /* ActionViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ActionViewController.mm; sourceTree = "<group>"; };
 		9752153B1EF9F746009272B2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		9752153D1EF9F746009272B2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9753BC191EFA067900593950 /* AipOcrDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AipOcrDelegate.h; sourceTree = "<group>"; };
@@ -225,7 +233,6 @@
 		9753BC341EFA067900593950 /* AipNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AipNavigationController.m; sourceTree = "<group>"; };
 		9753BC351EFA067900593950 /* ResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultViewController.h; sourceTree = "<group>"; };
 		9753BC361EFA067900593950 /* ResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultViewController.m; sourceTree = "<group>"; };
-		9753BC371EFA067900593950 /* AipOcrSdk.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AipOcrSdk.framework; sourceTree = "<group>"; };
 		9753BC5F1EFA07FC00593950 /* AipOcrSdk.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AipOcrSdk.storyboard; sourceTree = "<group>"; };
 		9753BC621EFA084100593950 /* copyText@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "copyText@3x.png"; sourceTree = "<group>"; };
 		9753BC641EFA084100593950 /* guan@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "guan@2x.png"; sourceTree = "<group>"; };
@@ -296,6 +303,11 @@
 		97ADFE3B1EFAB0E500C5E461 /* IQUIView+IQKeyboardToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "IQUIView+IQKeyboardToolbar.m"; sourceTree = "<group>"; };
 		97ADFE3D1EFAB0E500C5E461 /* IQKeyboardManager.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = IQKeyboardManager.bundle; sourceTree = "<group>"; };
 		97D0552B1F1073E70018D843 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		97F0BFA31F13265A0046558B /* IPDFRectangleFeature.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IPDFRectangleFeature.h; sourceTree = "<group>"; };
+		97F0BFA41F13265A0046558B /* IPDFRectangleFeature.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IPDFRectangleFeature.m; sourceTree = "<group>"; };
+		97F2B8791F136874003DF358 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		97F2B87D1F13A4D8003DF358 /* AipBase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AipBase.framework; sourceTree = "<group>"; };
+		97F2B8801F13A4E8003DF358 /* AipOcrSdk.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AipOcrSdk.framework; path = AipOcrDemo/AipOcrSdk.framework; sourceTree = "<group>"; };
 		97FEE16F1EFA143700D3585E /* AipCutImageEXView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AipCutImageEXView.h; sourceTree = "<group>"; };
 		97FEE1701EFA143700D3585E /* AipCutImageEXView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AipCutImageEXView.m; sourceTree = "<group>"; };
 		97FEE1711EFA143700D3585E /* AipImageEXView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AipImageEXView.h; sourceTree = "<group>"; };
@@ -306,7 +318,6 @@
 		97FEE1781EFA1F7900D3585E /* trans@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "trans@3x.png"; sourceTree = "<group>"; };
 		97FEE17E1EFA548700D3585E /* AipOcrDemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AipOcrDemo.entitlements; sourceTree = "<group>"; };
 		97FEE17F1EFA54B800D3585E /* PhotoInAlbumOCR.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PhotoInAlbumOCR.entitlements; sourceTree = "<group>"; };
-		97FEE1801EFA578900D3585E /* AipBase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AipBase.framework; sourceTree = "<group>"; };
 		FFDAF4141E49C99000AB65B7 /* AipOcrDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AipOcrDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FFDAF4181E49C99000AB65B7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		FFDAF41A1E49C99000AB65B7 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -324,13 +335,19 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				97F2B87A1F136874003DF358 /* MobileCoreServices.framework in Frameworks */,
+				97F2B8761F1364FC003DF358 /* libz.tbd in Frameworks */,
+				97F2B8751F1364F7003DF358 /* Foundation.framework in Frameworks */,
+				97F2B8741F1364F0003DF358 /* UIKit.framework in Frameworks */,
 				9739D1271F0DA86500DEEE45 /* CoreGraphics.framework in Frameworks */,
 				9739D1251F0DA85A00DEEE45 /* AssetsLibrary.framework in Frameworks */,
+				97F2B87F1F13A4D8003DF358 /* AipBase.framework in Frameworks */,
 				9739D1231F0DA85500DEEE45 /* CoreImage.framework in Frameworks */,
 				9739D1221F0DA84700DEEE45 /* libstdc++.tbd in Frameworks */,
 				9739D11D1F0DA5AB00DEEE45 /* opencv2.framework in Frameworks */,
 				973A80E41EFFAF7B00C00D1C /* UMMobClick.framework in Frameworks */,
 				9739D1201F0DA7F100DEEE45 /* libjpeg.a in Frameworks */,
+				97F2B8821F13A4E8003DF358 /* AipOcrSdk.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -410,7 +427,7 @@
 				97FEE1711EFA143700D3585E /* AipImageEXView.h */,
 				97FEE1721EFA143700D3585E /* AipImageEXView.m */,
 				975215371EF9F746009272B2 /* ActionViewController.h */,
-				975215381EF9F746009272B2 /* ActionViewController.m */,
+				975215381EF9F746009272B2 /* ActionViewController.mm */,
 				9752153A1EF9F746009272B2 /* MainInterface.storyboard */,
 				9752153D1EF9F746009272B2 /* Info.plist */,
 			);
@@ -432,6 +449,8 @@
 			children = (
 				970344C21F126E7F00BFE0F1 /* IPDFCameraViewController.h */,
 				970344C31F126E7F00BFE0F1 /* IPDFCameraViewController.m */,
+				97F0BFA31F13265A0046558B /* IPDFRectangleFeature.h */,
+				97F0BFA41F13265A0046558B /* IPDFRectangleFeature.m */,
 				9739D12B1F0DF43D00DEEE45 /* opencvtool */,
 				9739D1321F0DF43D00DEEE45 /* UIImageCategories */,
 				97ADFE191EFAB0E500C5E461 /* IQKeyboardManager */,
@@ -647,10 +666,11 @@
 		FFDAF40B1E49C99000AB65B7 = {
 			isa = PBXGroup;
 			children = (
+				97F2B8801F13A4E8003DF358 /* AipOcrSdk.framework */,
+				97F2B87D1F13A4D8003DF358 /* AipBase.framework */,
 				9739D11E1F0DA7F100DEEE45 /* libjpeg.a */,
 				9739D11B1F0DA5AB00DEEE45 /* opencv2.framework */,
 				973A80E21EFFAF7B00C00D1C /* UMMobClick.framework */,
-				97FEE1801EFA578900D3585E /* AipBase.framework */,
 				FFDAF4161E49C99000AB65B7 /* AipOcrDemo */,
 				975215361EF9F746009272B2 /* PhotoInAlbumOCR */,
 				FFDAF4151E49C99000AB65B7 /* Products */,
@@ -672,7 +692,6 @@
 			children = (
 				97FEE17E1EFA548700D3585E /* AipOcrDemo.entitlements */,
 				9753BBDF1EFA067900593950 /* AipOcrSdk */,
-				9753BC371EFA067900593950 /* AipOcrSdk.framework */,
 				FFDAF41A1E49C99000AB65B7 /* AppDelegate.h */,
 				FFDAF41B1E49C99000AB65B7 /* AppDelegate.m */,
 				FFDAF41D1E49C99000AB65B7 /* ViewController.h */,
@@ -698,6 +717,7 @@
 		FFDAF4431E519F2700AB65B7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				97F2B8791F136874003DF358 /* MobileCoreServices.framework */,
 				97D0552B1F1073E70018D843 /* CoreMotion.framework */,
 				9739D1261F0DA86500DEEE45 /* CoreGraphics.framework */,
 				9739D1241F0DA85A00DEEE45 /* AssetsLibrary.framework */,
@@ -863,7 +883,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9739D13A1F0DF43D00DEEE45 /* MMCropView.m in Sources */,
-				975215391EF9F746009272B2 /* ActionViewController.m in Sources */,
+				975215391EF9F746009272B2 /* ActionViewController.mm in Sources */,
 				9739D1421F0DF43D00DEEE45 /* UIImage+fixOrientation.m in Sources */,
 				9739D1401F0DF43D00DEEE45 /* UIColor+HexRepresentation.m in Sources */,
 				9739D13E1F0DF43D00DEEE45 /* MTGeometry.c in Sources */,
@@ -871,6 +891,7 @@
 				9739D13C1F0DF43D00DEEE45 /* MMOpenCVHelper.mm in Sources */,
 				97FEE1731EFA143700D3585E /* AipCutImageEXView.m in Sources */,
 				97FEE1741EFA143700D3585E /* AipImageEXView.m in Sources */,
+				97F0BFA61F13265A0046558B /* IPDFRectangleFeature.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -887,6 +908,7 @@
 				9753BC521EFA067900593950 /* IOSpeScaleLayoutConstraint.m in Sources */,
 				97ADFDD11EFA5B7500C5E461 /* SVIndefiniteAnimatedView.m in Sources */,
 				97ADFE3E1EFAB0E500C5E461 /* IQNSArray+Sort.m in Sources */,
+				97F0BFA51F13265A0046558B /* IPDFRectangleFeature.m in Sources */,
 				9753BC551EFA067900593950 /* AipCutImageView.m in Sources */,
 				97ADFE411EFAB0E500C5E461 /* IQUIView+Hierarchy.m in Sources */,
 				9739D13F1F0DF43D00DEEE45 /* UIColor+HexRepresentation.m in Sources */,
@@ -967,6 +989,7 @@
 		975215411EF9F746009272B2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CODE_SIGN_ENTITLEMENTS = PhotoInAlbumOCR/PhotoInAlbumOCR.entitlements;
@@ -974,7 +997,9 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/AipOcrDemo",
 				);
+				GCC_INPUT_FILETYPE = automatic;
 				INFOPLIST_FILE = PhotoInAlbumOCR/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
@@ -991,6 +1016,7 @@
 		975215421EF9F746009272B2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CODE_SIGN_ENTITLEMENTS = PhotoInAlbumOCR/PhotoInAlbumOCR.entitlements;
@@ -1000,7 +1026,9 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/AipOcrDemo",
 				);
+				GCC_INPUT_FILETYPE = automatic;
 				INFOPLIST_FILE = PhotoInAlbumOCR/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
