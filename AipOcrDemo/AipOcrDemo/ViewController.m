@@ -132,6 +132,7 @@
 - (void)bankCardOCROnlineScan{
     
     UIViewController * vc = [AipGeneralVC ViewControllerWithDelegate:self];
+    vc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     [self presentViewController:vc animated:YES completion:nil];
 }
 

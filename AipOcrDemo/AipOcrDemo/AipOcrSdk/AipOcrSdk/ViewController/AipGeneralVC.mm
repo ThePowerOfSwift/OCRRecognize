@@ -25,7 +25,7 @@
 #import <CoreMotion/CoreMotion.h>
 #import "IPDFCameraViewController.h"
 
-
+#import "PopoverView.h"
 
 #define MyLocal(x, ...) NSLocalizedString(x, nil)
 
@@ -97,6 +97,8 @@
 
 @property (assign,nonatomic)float finalImgWidth;
 
+@property (weak, nonatomic) IBOutlet UIButton *edgeDetectBtn;
+@property (weak, nonatomic) IBOutlet UIButton *languageBtn;
 
 @property (strong, nonatomic) MMCropView *cropRect;
 @property (nonatomic, strong) NSTimer *touchTimer;
@@ -119,7 +121,7 @@
     firstIn = YES;
     
     [self.cameraViewController setupCameraView];
-    [self.cameraViewController setEnableBorderDetection:YES];
+    [self.cameraViewController setEnableBorderDetection:NO];
     [self.cameraViewController setCameraViewType:  IPDFCameraViewTypeNormal];
     
     
@@ -244,7 +246,7 @@
     [super viewDidAppear:animated];
 //    [self.cameraController startRunningCamera];
     
-
+[[UIApplication sharedApplication]setApplicationSupportsShakeToEdit:YES];
     
     [self.cameraViewController start];
 }
@@ -255,6 +257,7 @@
     [[UIDevice currentDevice] endGeneratingDeviceOrientationNotifications];
 //    [self.cameraController stopRunningCamera];
     [self.cameraViewController stop];
+    [[UIApplication sharedApplication]setApplicationSupportsShakeToEdit:NO];
 }
 
 -(void)getDeviceOrientation
@@ -286,13 +289,34 @@
         }];
     }
 }
+- (IBAction)languageBtnClicked:(id)sender {
+    PopoverAction *action1 = [PopoverAction actionWithTitle:@"中/英" handler:^(PopoverAction *action) {
+        // 该Block不会导致内存泄露, Block内代码无需刻意去设置弱引用.
+    }];
+    PopoverAction *action2 = [PopoverAction actionWithTitle:@"韩语" handler:^(PopoverAction *action) {
+        // 该Block不会导致内存泄露, Block内代码无需刻意去设置弱引用.
+    }];
+    PopoverAction *action3 = [PopoverAction actionWithTitle:@"日语" handler:^(PopoverAction *action) {
+        // 该Block不会导致内存泄露, Block内代码无需刻意去设置弱引用.
+    }];
+    
+    PopoverView *popoverView = [PopoverView popoverView];
+    //popoverView.showShade = YES; // 显示阴影背景
+    //popoverView.style = PopoverViewStyleDark; // 设置为黑色风格
+    //popoverView.hideAfterTouchOutside = NO; // 点击外部时不允许隐藏
+    // 有两种显示方法
+    // 1. 显示在指定的控件
+    [popoverView showToView:sender withActions:@[action1, action2,action3]];
+    // 2. 显示在指定的点(CGPoint), 该点的坐标是相对KeyWidnow的坐标.
+//    [popoverView showToPoint:CGPointMake(20, 64) withActions:@[action1, ...]];
+}
 
 
 #pragma mark - SetUp
 
 
 -(void)initCropFrame{
-    _sourceImageView = [[UIImageView alloc] initWithFrame:CGRectMake(15, 40, self.view.bounds.size.width-30, self.view.bounds.size.height-kCameraToolBarHeight-40)];
+    _sourceImageView = [[UIImageView alloc] initWithFrame:CGRectMake(15, 64, self.view.bounds.size.width-30, self.view.bounds.size.height-kCameraToolBarHeight-64)];
 //    _sourceImageView.backgroundColor = [UIColor redColor];
     [_sourceImageView setContentMode:UIViewContentModeScaleAspectFit];
 //    [_sourceImageView setImage:_adjustedImage];
@@ -335,6 +359,7 @@
     self.cameraViewController.hidden = NO;
     [self.cameraViewController start];
     self.titleL.text = @"拍摄要识别的区域";
+    self.languageBtn.hidden = YES;
     
     
     self.cutImageView.hidden = YES;
@@ -343,6 +368,26 @@
     self.toolViewBoom.constant = 0;
     //关灯
     [self OffLight];
+}
+
+- (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event{
+    BOOL enable = !self.cameraViewController.isBorderDetectionEnabled;
+    [self showDedectBtnWithTitle:enable?@"边缘检测打开":@"边缘检测关闭"];
+    self.cameraViewController.enableBorderDetection = enable;
+}
+
+-(void)showDedectBtnWithTitle:(NSString *)title
+{
+    [self.edgeDetectBtn setTitle:title forState:UIControlStateNormal];
+    self.edgeDetectBtn.hidden = NO;
+    [self performSelector:@selector(hideEdgeDetectBtn) withObject:nil afterDelay:3];
+}
+
+-(void)hideEdgeDetectBtn
+{
+    self.edgeDetectBtn.hidden = YES;
+    [self.edgeDetectBtn setTitle:@"" forState:UIControlStateNormal];
+    
 }
 
 - (void)setupViews {
@@ -389,6 +434,7 @@
     self.cameraViewController.hidden = YES;
     [self.cameraViewController stop];
     self.titleL.text = @"";
+    self.languageBtn.hidden = NO;
    
 //    self.cutImageView.hidden = NO;
 //    self.maskImageView.hidden = NO;
@@ -400,7 +446,7 @@
     _adjustedImage = image;
     
     [self.sourceImageView setImage:_adjustedImage];
-    CGRect cropFrame=CGRectMake(_sourceImageView.contentFrame.origin.x,_sourceImageView.contentFrame.origin.y+40-15,_sourceImageView.contentFrame.size.width+30,_sourceImageView.contentFrame.size.height+30);
+    CGRect cropFrame=CGRectMake(_sourceImageView.contentFrame.origin.x,_sourceImageView.contentFrame.origin.y+64-15,_sourceImageView.contentFrame.size.width+30,_sourceImageView.contentFrame.size.height+30);
     [_cropRect setFrame:cropFrame];
     [_cropRect resetFrame];
     
