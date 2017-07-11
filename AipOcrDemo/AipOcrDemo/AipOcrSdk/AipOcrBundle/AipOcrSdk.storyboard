@@ -307,6 +307,7 @@
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x4H-6Q-TiY" customClass="IOSpeScaleLayoutButton">
                                         <rect key="frame" x="158" y="19" width="60" height="60"/>
+                                        <accessibility key="accessibilityConfiguration" label="拍照"/>
                                         <state key="normal" image="paizhaoanniu.png"/>
                                         <state key="highlighted" image="paizhaoanniu_dianjihou.png"/>
                                         <connections>
@@ -315,6 +316,7 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OAr-f2-xk3" customClass="IOSpeScaleLayoutButton">
                                         <rect key="frame" x="29" y="38" width="25" height="22"/>
+                                        <accessibility key="accessibilityConfiguration" label="相册"/>
                                         <state key="normal" image="tuku.png"/>
                                         <connections>
                                             <action selector="openPhotoAlbum:" destination="qVB-bS-VcD" eventType="touchUpInside" id="fTx-gb-WHM"/>
@@ -322,6 +324,7 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FYu-ia-exw" customClass="IOSpeScaleLayoutButton">
                                         <rect key="frame" x="325" y="31" width="26" height="28"/>
+                                        <accessibility key="accessibilityConfiguration" label="闪光灯"/>
                                         <state key="normal" image="dengpao.png"/>
                                         <state key="selected" image="dengpao_dianjihou.png"/>
                                         <connections>
@@ -345,6 +348,7 @@
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3uc-vA-TtU" customClass="IOSpeScaleLayoutButton">
                                         <rect key="frame" x="32" y="19" width="14" height="22"/>
+                                        <accessibility key="accessibilityConfiguration" label="退出"/>
                                         <state key="normal" image="guan.png"/>
                                         <connections>
                                             <action selector="pressCheckBack:" destination="qVB-bS-VcD" eventType="touchUpInside" id="Z4T-eV-9cy"/>
@@ -352,6 +356,7 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TbB-zo-xcv" customClass="IOSpeScaleLayoutButton">
                                         <rect key="frame" x="177" y="19" width="21" height="22"/>
+                                        <accessibility key="accessibilityConfiguration" label="旋转"/>
                                         <state key="normal" image="xuanzhuan.png"/>
                                         <connections>
                                             <action selector="pressTransform:" destination="qVB-bS-VcD" eventType="touchUpInside" id="rVX-fs-aAV"/>
@@ -359,6 +364,7 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="geO-4o-qUK" customClass="IOSpeScaleLayoutButton">
                                         <rect key="frame" x="322" y="19" width="21" height="22"/>
+                                        <accessibility key="accessibilityConfiguration" label="识别"/>
                                         <state key="normal" image="queding.png"/>
                                         <connections>
                                             <action selector="pressCheckChoose:" destination="qVB-bS-VcD" eventType="touchUpInside" id="7gx-DH-Tul"/>
@@ -442,7 +448,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="4273" y="313"/>
+            <point key="canvasLocation" x="4272.8000000000002" y="312.59370314842579"/>
         </scene>
     </scenes>
     <resources>
