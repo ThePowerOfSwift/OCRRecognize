@@ -36,7 +36,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AipOcrDemo/AipOcrSdk/AipOcrSdk/ViewController/AipGeneralVC.mm"
-            timestampString = "521383961.168179"
+            timestampString = "521426755.532146"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "406"
@@ -52,7 +52,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AipOcrDemo/AipOcrSdk/AipOcrSdk/ViewController/AipGeneralVC.mm"
-            timestampString = "521383961.169603"
+            timestampString = "521426755.533356"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "408"
@@ -68,11 +68,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AipOcrDemo/AipOcrSdk/AipOcrSdk/ViewController/AipGeneralVC.mm"
-            timestampString = "521383961.170643"
+            timestampString = "521426755.534381"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1432"
-            endingLineNumber = "1432"
+            startingLineNumber = "1434"
+            endingLineNumber = "1434"
             landmarkName = "-detectEdges"
             landmarkType = "7">
          </BreakpointContent>
@@ -84,11 +84,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AipOcrDemo/AipOcrSdk/AipOcrSdk/ViewController/AipGeneralVC.mm"
-            timestampString = "521383961.171643"
+            timestampString = "521426755.535724"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1427"
-            endingLineNumber = "1427"
+            startingLineNumber = "1429"
+            endingLineNumber = "1429"
             landmarkName = "-detectEdges"
             landmarkType = "7">
          </BreakpointContent>
@@ -100,11 +100,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AipOcrDemo/AipOcrSdk/AipOcrSdk/ViewController/AipGeneralVC.mm"
-            timestampString = "521383961.17262"
+            timestampString = "521426755.536937"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1530"
-            endingLineNumber = "1530"
+            startingLineNumber = "1532"
+            endingLineNumber = "1532"
             landmarkName = "find_squares(cv::Mat&amp; image, std::vector&lt;std::vector&lt;cv::Point&gt;&gt;&amp;squares)"
             landmarkType = "9">
          </BreakpointContent>
@@ -116,11 +116,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AipOcrDemo/AipOcrSdk/AipOcrSdk/ViewController/AipGeneralVC.mm"
-            timestampString = "521383961.17395"
+            timestampString = "521426755.538"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1594"
-            endingLineNumber = "1594"
+            startingLineNumber = "1596"
+            endingLineNumber = "1596"
             landmarkName = "find_squares(cv::Mat&amp; image, std::vector&lt;std::vector&lt;cv::Point&gt;&gt;&amp;squares)"
             landmarkType = "9">
          </BreakpointContent>
@@ -132,7 +132,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AipOcrDemo/AipOcrSdk/AipOcrSdk/ViewController/AipGeneralVC.mm"
-            timestampString = "521383961.174956"
+            timestampString = "521426755.539189"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "264"
@@ -148,7 +148,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AipOcrDemo/AipOcrSdk/AipOcrSdk/ViewController/AipGeneralVC.mm"
-            timestampString = "521383961.175848"
+            timestampString = "521426755.540291"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "267"
@@ -164,11 +164,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AipOcrDemo/AipOcrSdk/AipOcrSdk/ViewController/AipGeneralVC.mm"
-            timestampString = "521383961.177006"
+            timestampString = "521426755.541332"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1510"
-            endingLineNumber = "1510"
+            startingLineNumber = "1512"
+            endingLineNumber = "1512"
             landmarkName = "-detectEdges"
             landmarkType = "7">
          </BreakpointContent>
@@ -180,11 +180,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AipOcrDemo/AipOcrSdk/AipOcrSdk/ViewController/AipGeneralVC.mm"
-            timestampString = "521383961.178257"
+            timestampString = "521426755.542379"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1511"
-            endingLineNumber = "1511"
+            startingLineNumber = "1513"
+            endingLineNumber = "1513"
             landmarkName = "-detectEdges"
             landmarkType = "7">
          </BreakpointContent>
@@ -196,13 +196,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AipOcrDemo/AipOcrSdk/AipOcrSdk/ViewController/AipGeneralVC.mm"
-            timestampString = "521383961.179209"
+            timestampString = "521426755.54371"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1354"
-            endingLineNumber = "1354"
-            landmarkName = "AipGeneralVC"
-            landmarkType = "3">
+            startingLineNumber = "1356"
+            endingLineNumber = "1356"
+            landmarkName = "-alertView:didDismissWithButtonIndex:"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -212,13 +212,45 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AipOcrDemo/AipOcrSdk/AipOcrSdk/ViewController/AipGeneralVC.mm"
-            timestampString = "521383961.180253"
+            timestampString = "521426755.544865"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "312"
             endingLineNumber = "312"
             landmarkName = "-getDeviceOrientation"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[AipGeneralVC getDeviceOrientation]"
+                  moduleName = "AipOcrDemo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Tolecen/Projects/OCRRecognize/AipOcrDemo/AipOcrDemo/AipOcrSdk/AipOcrSdk/ViewController/AipGeneralVC.mm"
+                  timestampString = "521426755.715654"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "312"
+                  endingLineNumber = "312"
+                  offsetFromSymbolStart = "92">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__36-[AipGeneralVC getDeviceOrientation]_block_invoke"
+                  moduleName = "AipOcrDemo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Tolecen/Projects/OCRRecognize/AipOcrDemo/AipOcrDemo/AipOcrSdk/AipOcrSdk/ViewController/AipGeneralVC.mm"
+                  timestampString = "521426755.717713"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "314"
+                  endingLineNumber = "314"
+                  offsetFromSymbolStart = "92">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -228,7 +260,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AipOcrDemo/AipOcrSdk/AipOcrSdk/ViewController/AipGeneralVC.mm"
-            timestampString = "521383961.181147"
+            timestampString = "521426755.546802"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "309"
@@ -244,7 +276,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AipOcrDemo/AipOcrSdk/AipOcrSdk/ViewController/AipGeneralVC.mm"
-            timestampString = "521383961.182021"
+            timestampString = "521426755.547869"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "310"
@@ -260,13 +292,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AipOcrDemo/AipOcrSdk/AipOcrSdk/ViewController/AipGeneralVC.mm"
-            timestampString = "521383961.182899"
+            timestampString = "521426755.548812"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "649"
-            endingLineNumber = "649"
-            landmarkName = "AipGeneralVC"
-            landmarkType = "3">
+            startingLineNumber = "651"
+            endingLineNumber = "651"
+            landmarkName = "-pressCheckChoose:"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -276,45 +308,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PhotoInAlbumOCR/ActionViewController.mm"
-            timestampString = "521384201.746812"
+            timestampString = "521426755.549768"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "550"
             endingLineNumber = "550"
             landmarkName = "-uploadAndRecText"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[ActionViewController uploadAndRecText]"
-                  moduleName = "PhotoInAlbumOCR"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Tolecen/Projects/OCRRecognize/AipOcrDemo/PhotoInAlbumOCR/ActionViewController.mm"
-                  timestampString = "521382763.177825"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "550"
-                  endingLineNumber = "550"
-                  offsetFromSymbolStart = "476">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__40-[ActionViewController uploadAndRecText]_block_invoke"
-                  moduleName = "PhotoInAlbumOCR"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Tolecen/Projects/OCRRecognize/AipOcrDemo/PhotoInAlbumOCR/ActionViewController.mm"
-                  timestampString = "521382763.179488"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "550"
-                  endingLineNumber = "550"
-                  offsetFromSymbolStart = "16">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -324,45 +324,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PhotoInAlbumOCR/ActionViewController.mm"
-            timestampString = "521384201.747595"
+            timestampString = "521426755.549826"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "552"
             endingLineNumber = "552"
             landmarkName = "-uploadAndRecText"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__40-[ActionViewController uploadAndRecText]_block_invoke"
-                  moduleName = "PhotoInAlbumOCR"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Tolecen/Projects/OCRRecognize/AipOcrDemo/PhotoInAlbumOCR/ActionViewController.mm"
-                  timestampString = "521382763.183127"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "552"
-                  endingLineNumber = "552"
-                  offsetFromSymbolStart = "96">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__40-[ActionViewController uploadAndRecText]_block_invoke_2"
-                  moduleName = "PhotoInAlbumOCR"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Tolecen/Projects/OCRRecognize/AipOcrDemo/PhotoInAlbumOCR/ActionViewController.mm"
-                  timestampString = "521382763.184507"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "553"
-                  endingLineNumber = "553"
-                  offsetFromSymbolStart = "20">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -372,45 +340,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PhotoInAlbumOCR/ActionViewController.mm"
-            timestampString = "521384201.748226"
+            timestampString = "521426755.549876"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "559"
             endingLineNumber = "559"
             landmarkName = "-uploadAndRecText"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__40-[ActionViewController uploadAndRecText]_block_invoke.371"
-                  moduleName = "PhotoInAlbumOCR"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Tolecen/Projects/OCRRecognize/AipOcrDemo/PhotoInAlbumOCR/ActionViewController.mm"
-                  timestampString = "521382763.187805"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "559"
-                  endingLineNumber = "559"
-                  offsetFromSymbolStart = "68">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__40-[ActionViewController uploadAndRecText]_block_invoke_2.372"
-                  moduleName = "PhotoInAlbumOCR"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Tolecen/Projects/OCRRecognize/AipOcrDemo/PhotoInAlbumOCR/ActionViewController.mm"
-                  timestampString = "521382763.189189"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "559"
-                  endingLineNumber = "559"
-                  offsetFromSymbolStart = "16">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -430,7 +366,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PhotoInAlbumOCR/ActionViewController.mm"
-            timestampString = "521384201.748849"
+            timestampString = "521426755.549927"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1355"
@@ -446,7 +382,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PhotoInAlbumOCR/ActionViewController.mm"
-            timestampString = "521384201.749474"
+            timestampString = "521426755.549976"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1400"
@@ -462,7 +398,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PhotoInAlbumOCR/ActionViewController.mm"
-            timestampString = "521384201.750097"
+            timestampString = "521426755.550026"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1393"
@@ -478,7 +414,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PhotoInAlbumOCR/ActionViewController.mm"
-            timestampString = "521384201.750723"
+            timestampString = "521426755.550074"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1394"
@@ -494,7 +430,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PhotoInAlbumOCR/ActionViewController.mm"
-            timestampString = "521384201.751348"
+            timestampString = "521426755.550121"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1397"

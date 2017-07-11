@@ -539,7 +539,7 @@
     
     self.finalImgWidth = finalImage.size.width;
     
-    _sourceImageView.image = _cropImage;
+//    _sourceImageView.image = _cropImage;
     
     
     //    return;

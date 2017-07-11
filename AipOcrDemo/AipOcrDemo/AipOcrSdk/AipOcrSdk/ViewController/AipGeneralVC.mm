@@ -540,7 +540,9 @@
         
         UIGraphicsEndImageContext();
     }
-    
+    else{
+        _adjustedImage = image;
+    }
 //    _adjustedImage = image;
     
     [self.sourceImageView setImage:_adjustedImage];
