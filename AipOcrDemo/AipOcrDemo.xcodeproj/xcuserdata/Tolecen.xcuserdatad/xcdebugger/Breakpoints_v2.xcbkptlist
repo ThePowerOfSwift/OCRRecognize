@@ -71,134 +71,6 @@
             timestampString = "521448546.928964"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1444"
-            endingLineNumber = "1444"
-            landmarkName = "-detectEdges"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "AipOcrDemo/AipOcrSdk/AipOcrSdk/ViewController/AipGeneralVC.mm"
-            timestampString = "521448546.928964"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1439"
-            endingLineNumber = "1439"
-            landmarkName = "-detectEdges"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "AipOcrDemo/AipOcrSdk/AipOcrSdk/ViewController/AipGeneralVC.mm"
-            timestampString = "521448546.928964"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1542"
-            endingLineNumber = "1542"
-            landmarkName = "find_squares(cv::Mat&amp; image, std::vector&lt;std::vector&lt;cv::Point&gt;&gt;&amp;squares)"
-            landmarkType = "9">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "AipOcrDemo/AipOcrSdk/AipOcrSdk/ViewController/AipGeneralVC.mm"
-            timestampString = "521448546.928964"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1606"
-            endingLineNumber = "1606"
-            landmarkName = "find_squares(cv::Mat&amp; image, std::vector&lt;std::vector&lt;cv::Point&gt;&gt;&amp;squares)"
-            landmarkType = "9">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "AipOcrDemo/AipOcrSdk/AipOcrSdk/ViewController/AipGeneralVC.mm"
-            timestampString = "521438459.887019"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "266"
-            endingLineNumber = "266"
-            landmarkName = "-viewWillAppear:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "AipOcrDemo/AipOcrSdk/AipOcrSdk/ViewController/AipGeneralVC.mm"
-            timestampString = "521438459.887019"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "269"
-            endingLineNumber = "269"
-            landmarkName = "-viewWillAppear:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "AipOcrDemo/AipOcrSdk/AipOcrSdk/ViewController/AipGeneralVC.mm"
-            timestampString = "521448546.928964"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1522"
-            endingLineNumber = "1522"
-            landmarkName = "-detectEdges"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "AipOcrDemo/AipOcrSdk/AipOcrSdk/ViewController/AipGeneralVC.mm"
-            timestampString = "521448546.928964"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1523"
-            endingLineNumber = "1523"
-            landmarkName = "-detectEdges"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "AipOcrDemo/AipOcrSdk/AipOcrSdk/ViewController/AipGeneralVC.mm"
-            timestampString = "521448546.928964"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1366"
             endingLineNumber = "1366"
             landmarkName = "-alertView:didDismissWithButtonIndex:"
@@ -228,11 +100,11 @@
                   moduleName = "AipOcrDemo"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Tolecen/Projects/OCRRecognize/AipOcrDemo/AipOcrDemo/AipOcrSdk/AipOcrSdk/ViewController/AipGeneralVC.mm"
-                  timestampString = "521433208.706286"
+                  timestampString = "521450576.758534"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "313"
-                  endingLineNumber = "313"
+                  startingLineNumber = "314"
+                  endingLineNumber = "314"
                   offsetFromSymbolStart = "92">
                </Location>
                <Location
@@ -243,11 +115,11 @@
                   moduleName = "AipOcrDemo"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Tolecen/Projects/OCRRecognize/AipOcrDemo/AipOcrDemo/AipOcrSdk/AipOcrSdk/ViewController/AipGeneralVC.mm"
-                  timestampString = "521433208.70766"
+                  timestampString = "521450576.759926"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "315"
-                  endingLineNumber = "315"
+                  startingLineNumber = "316"
+                  endingLineNumber = "316"
                   offsetFromSymbolStart = "92">
                </Location>
             </Locations>
@@ -291,28 +163,12 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "AipOcrDemo/AipOcrSdk/AipOcrSdk/ViewController/AipGeneralVC.mm"
-            timestampString = "521448546.928964"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "661"
-            endingLineNumber = "661"
-            landmarkName = "-pressCheckChoose:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "PhotoInAlbumOCR/ActionViewController.mm"
-            timestampString = "521448546.928964"
+            timestampString = "521448876.581195"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "612"
-            endingLineNumber = "612"
+            startingLineNumber = "617"
+            endingLineNumber = "617"
             landmarkName = "-uploadAndRecText"
             landmarkType = "7">
          </BreakpointContent>
@@ -324,11 +180,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PhotoInAlbumOCR/ActionViewController.mm"
-            timestampString = "521448546.928964"
+            timestampString = "521448876.581195"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "614"
-            endingLineNumber = "614"
+            startingLineNumber = "619"
+            endingLineNumber = "619"
             landmarkName = "-uploadAndRecText"
             landmarkType = "7">
          </BreakpointContent>
@@ -340,11 +196,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PhotoInAlbumOCR/ActionViewController.mm"
-            timestampString = "521448546.928964"
+            timestampString = "521448876.581195"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "621"
-            endingLineNumber = "621"
+            startingLineNumber = "626"
+            endingLineNumber = "626"
             landmarkName = "-uploadAndRecText"
             landmarkType = "7">
          </BreakpointContent>
@@ -366,11 +222,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PhotoInAlbumOCR/ActionViewController.mm"
-            timestampString = "521448546.928964"
+            timestampString = "521448876.581195"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1417"
-            endingLineNumber = "1417"
+            startingLineNumber = "1422"
+            endingLineNumber = "1422"
             landmarkName = "-cropAction"
             landmarkType = "7">
          </BreakpointContent>
@@ -382,11 +238,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PhotoInAlbumOCR/ActionViewController.mm"
-            timestampString = "521448546.928964"
+            timestampString = "521448876.581195"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1462"
-            endingLineNumber = "1462"
+            startingLineNumber = "1467"
+            endingLineNumber = "1467"
             landmarkName = "-cropAction"
             landmarkType = "7">
          </BreakpointContent>
@@ -398,11 +254,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PhotoInAlbumOCR/ActionViewController.mm"
-            timestampString = "521448546.928964"
+            timestampString = "521448876.581195"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1455"
-            endingLineNumber = "1455"
+            startingLineNumber = "1460"
+            endingLineNumber = "1460"
             landmarkName = "-cropAction"
             landmarkType = "7">
          </BreakpointContent>
@@ -414,11 +270,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PhotoInAlbumOCR/ActionViewController.mm"
-            timestampString = "521448546.928964"
+            timestampString = "521448876.581195"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1456"
-            endingLineNumber = "1456"
+            startingLineNumber = "1461"
+            endingLineNumber = "1461"
             landmarkName = "-cropAction"
             landmarkType = "7">
          </BreakpointContent>
@@ -430,12 +286,44 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PhotoInAlbumOCR/ActionViewController.mm"
-            timestampString = "521448546.928964"
+            timestampString = "521448876.581195"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1459"
-            endingLineNumber = "1459"
+            startingLineNumber = "1464"
+            endingLineNumber = "1464"
             landmarkName = "-cropAction"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AipOcrDemo/AipOcrSdk/AipOcrSdk/ViewController/AipGeneralVC.mm"
+            timestampString = "521450471.556813"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1528"
+            endingLineNumber = "1528"
+            landmarkName = "-detectEdges"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AipOcrDemo/AipOcrSdk/AipOcrSdk/ViewController/AipGeneralVC.mm"
+            timestampString = "521450472.523891"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1534"
+            endingLineNumber = "1534"
+            landmarkName = "-detectEdges"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

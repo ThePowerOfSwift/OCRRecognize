@@ -1522,8 +1522,17 @@
         [_cropRect bottomRightCornerToCGPoint:point2];
         [_cropRect bottomLeftCornerToCGPoint:point3];
         
-        NSLog(@"%@ Sorted Points",sortedPoints);
+//        NSLog(@"%@ Sorted Points",sortedPoints);
+        if(![_cropRect frameEdited]) {
+            
+            [_cropRect resetFrame];
+        }
+        float w = _sourceImageView.contentFrame.size.width;
+        float h = _sourceImageView.contentFrame.size.height;
         
+        if (fabs(point0.x-point1.x)<w/6.f || fabs(point2.x-point3.x)<w/6.f || fabs(point0.y-point3.y)<h/6.f || fabs(point1.y-point2.y)<h/6.f) {
+            [_cropRect resetFrame];
+        }
         
         
     }
