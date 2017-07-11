@@ -86,7 +86,9 @@
     view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     view.translatesAutoresizingMaskIntoConstraints = YES;
     view.context = self.context;
-    view.contentScaleFactor = 1.0f;
+    view.contentScaleFactor = [UIScreen mainScreen].scale;
+    
+    
     view.drawableDepthFormat = GLKViewDrawableDepthFormat24;
     [self insertSubview:view atIndex:0];
     _glkView = view;
@@ -203,7 +205,9 @@
             [EAGLContext setCurrentContext:_context];
         }
         [_glkView bindDrawable];
-        [_coreImageContext drawImage:image inRect:self.bounds fromRect:[self cropRectForPreviewImage:image]];
+        
+        CGRect rectq = CGRectMake(0, 0, self.bounds.size.width*[UIScreen mainScreen].scale, self.bounds.size.height*[UIScreen mainScreen].scale);
+        [_coreImageContext drawImage:image inRect:rectq fromRect:[self cropRectForPreviewImage:image]];
         [_glkView display];
         
         if(_intrinsicContentSize.width != image.extent.size.width) {

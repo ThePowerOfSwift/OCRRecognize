@@ -88,6 +88,19 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JXa-M8-xYO">
                                 <rect key="frame" x="0.0" y="468" width="320" height="60"/>
                                 <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M6L-ZX-Pjg">
+                                        <rect key="frame" x="100" y="0.0" width="120" height="60"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="120" id="mkR-la-HMo"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <state key="normal" title="中/英▼">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="languageBtnClicked:" destination="ObA-dk-sSI" eventType="touchUpInside" id="xv4-K9-QRF"/>
+                                        </connections>
+                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QEf-kA-M1J" customClass="IOSpeScaleLayoutButton">
                                         <rect key="frame" x="20" y="10" width="40" height="40"/>
                                         <constraints>
@@ -113,11 +126,15 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstItem="M6L-ZX-Pjg" firstAttribute="top" secondItem="JXa-M8-xYO" secondAttribute="top" id="HmM-5H-dDH"/>
                                     <constraint firstAttribute="trailing" secondItem="NOA-N8-oyo" secondAttribute="trailing" constant="20" id="Qtz-kj-rKh"/>
                                     <constraint firstItem="NOA-N8-oyo" firstAttribute="centerY" secondItem="JXa-M8-xYO" secondAttribute="centerY" id="aRY-Ue-Mk3"/>
                                     <constraint firstItem="QEf-kA-M1J" firstAttribute="centerY" secondItem="JXa-M8-xYO" secondAttribute="centerY" id="eUI-nn-qNQ"/>
+                                    <constraint firstItem="M6L-ZX-Pjg" firstAttribute="centerY" secondItem="JXa-M8-xYO" secondAttribute="centerY" id="hcP-IE-lp1"/>
                                     <constraint firstItem="QEf-kA-M1J" firstAttribute="leading" secondItem="JXa-M8-xYO" secondAttribute="leading" constant="20" id="hhi-lA-7Pu"/>
+                                    <constraint firstAttribute="bottom" secondItem="M6L-ZX-Pjg" secondAttribute="bottom" id="mOg-Bd-0ia"/>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="prQ-c0-L2S"/>
+                                    <constraint firstItem="M6L-ZX-Pjg" firstAttribute="centerX" secondItem="JXa-M8-xYO" secondAttribute="centerX" id="vmx-ne-yZG"/>
                                     <constraint firstAttribute="height" constant="60" id="yOP-w2-KeN" customClass="IOSpeScaleLayoutConstraint"/>
                                 </constraints>
                             </view>
@@ -207,6 +224,7 @@
                         <outlet property="cropbgView" destination="EVy-1p-tHX" id="yuW-Tk-SA2"/>
                         <outlet property="cutImageView" destination="fjt-qf-ucp" id="6Pu-XO-pi5"/>
                         <outlet property="imageView" destination="9ga-4F-77Z" id="5y6-5w-9QO"/>
+                        <outlet property="languageBtn" destination="M6L-ZX-Pjg" id="T19-8C-PSm"/>
                         <outlet property="maskImageView" destination="OJm-u8-uZM" id="uKU-jN-Yvc"/>
                         <outlet property="rightItem" destination="rIt-FS-zVs" id="HFG-vc-Clj"/>
                         <outlet property="successLabel" destination="DOg-3b-zvw" id="HIG-KW-1HV"/>

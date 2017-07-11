@@ -233,7 +233,7 @@
                                             <constraint firstAttribute="width" constant="150" id="VTY-d6-rRa"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <state key="normal" title="中/英">
+                                        <state key="normal" title="中/英▼">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
@@ -265,8 +265,20 @@
                             <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="K13-8J-9JA" customClass="IPDFCameraViewController">
                                 <rect key="frame" x="0.0" y="70" width="375" height="597"/>
                                 <subviews>
+                                    <button opaque="NO" alpha="0.59999999999999998" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zVm-RZ-CCH">
+                                        <rect key="frame" x="330" y="10" width="35" height="35"/>
+                                        <accessibility key="accessibilityConfiguration" label="自动识别边界"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="35" id="06q-Lf-Cig"/>
+                                            <constraint firstAttribute="height" constant="35" id="NQv-MB-Z8u"/>
+                                        </constraints>
+                                        <state key="normal" backgroundImage="citie.png"/>
+                                        <connections>
+                                            <action selector="citieClicked:" destination="qVB-bS-VcD" eventType="touchUpInside" id="yOQ-mm-d4a"/>
+                                        </connections>
+                                    </button>
                                     <button hidden="YES" opaque="NO" alpha="0.59999999999999998" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qhg-fD-w7m">
-                                        <rect key="frame" x="137.5" y="467" width="100" height="30"/>
+                                        <rect key="frame" x="137.5" y="12" width="100" height="30"/>
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="R10-P9-VWo"/>
@@ -280,8 +292,10 @@
                                 </subviews>
                                 <gestureRecognizers/>
                                 <constraints>
+                                    <constraint firstItem="zVm-RZ-CCH" firstAttribute="top" secondItem="K13-8J-9JA" secondAttribute="top" constant="10" id="2WX-uz-zLl"/>
                                     <constraint firstItem="Qhg-fD-w7m" firstAttribute="centerX" secondItem="K13-8J-9JA" secondAttribute="centerX" id="ZSU-xV-hZX"/>
-                                    <constraint firstAttribute="bottom" secondItem="Qhg-fD-w7m" secondAttribute="bottom" constant="100" id="i6K-BK-UcI"/>
+                                    <constraint firstAttribute="trailing" secondItem="zVm-RZ-CCH" secondAttribute="trailing" constant="10" id="lK6-VF-v9k"/>
+                                    <constraint firstItem="Qhg-fD-w7m" firstAttribute="top" secondItem="K13-8J-9JA" secondAttribute="top" constant="12" id="mpS-DX-hFx"/>
                                 </constraints>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="yVS-Aq-YOC" appends="YES" id="t3W-d0-pr1"/>
@@ -428,6 +442,7 @@
                         <outlet property="checkCloseBtn" destination="3uc-vA-TtU" id="YJK-Uh-cyW"/>
                         <outlet property="checkView" destination="c7U-eV-ZOX" id="Nrc-S4-5Ce"/>
                         <outlet property="checkViewBoom" destination="mv5-Zr-QRy" id="FYE-q9-2Tk"/>
+                        <outlet property="citieBtn" destination="zVm-RZ-CCH" id="9QS-tl-Cqr"/>
                         <outlet property="closeButton" destination="9eE-H5-UtU" id="zeb-FW-bur"/>
                         <outlet property="cutImageView" destination="mOa-jl-1X9" id="Z8Y-hT-83I"/>
                         <outlet property="edgeDetectBtn" destination="Qhg-fD-w7m" id="Og5-xr-qX5"/>
@@ -453,6 +468,7 @@
     </scenes>
     <resources>
         <image name="Page 1.png" width="67" height="72"/>
+        <image name="citie.png" width="35" height="35"/>
         <image name="dengpao.png" width="26" height="28"/>
         <image name="dengpao_dianjihou.png" width="26" height="28"/>
         <image name="focusIndicator.png" width="75" height="75"/>

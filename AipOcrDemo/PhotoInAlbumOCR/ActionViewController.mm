@@ -31,6 +31,8 @@
 #import "UIImage+fixOrientation.h"
 #import "UIImageView+ContentFrame.h"
 
+#import "PopoverViewEX.h"
+
 #define MyLocal(x, ...) NSLocalizedString(x, nil)
 
 #define V_X(v)      v.frame.origin.x
@@ -116,6 +118,7 @@
 
 @property (nonatomic,strong)NSString * recLanguage;
 @property (nonatomic,strong)NSUserDefaults * myUserDefault;
+@property (weak, nonatomic) IBOutlet UIButton *languageBtn;
 
 
 //@property (strong,nonatomic) CIImage * sciImage;
@@ -153,6 +156,8 @@
     if (!self.recLanguage) {
         self.recLanguage = @"CHN_ENG";
     }
+    
+    [self.languageBtn setTitle:[[ActionViewController languageName:self.recLanguage] stringByAppendingString:@"▼"] forState:UIControlStateNormal];
 
     
 
@@ -267,6 +272,61 @@
 //
     originBottomConstant = _textbottomCons.constant;
     originBottomToolBarContstant = _bottomToolbarConstant.constant;
+}
+- (IBAction)languageBtnClicked:(UIButton *)sender {
+    __weak __typeof(self) weakSelf = self;
+    PopoverAction *action1 = [PopoverAction actionWithTitle:@"中/英" handler:^(PopoverAction *action) {
+        weakSelf.recLanguage = @"CHN_ENG";
+        [self.languageBtn setTitle:[[ActionViewController languageName:weakSelf.recLanguage] stringByAppendingString:@"▼"] forState:UIControlStateNormal];
+        [self saveCurrentLanToUserdeafult];
+        // 该Block不会导致内存泄露, Block内代码无需刻意去设置弱引用.
+    }];
+    PopoverAction *action2 = [PopoverAction actionWithTitle:@"法语" handler:^(PopoverAction *action) {
+        // 该Block不会导致内存泄露, Block内代码无需刻意去设置弱引用.
+        weakSelf.recLanguage = @"FRE";
+        [self.languageBtn setTitle:[[ActionViewController languageName:weakSelf.recLanguage] stringByAppendingString:@"▼"] forState:UIControlStateNormal];
+        [self saveCurrentLanToUserdeafult];
+    }];
+    PopoverAction *action3 = [PopoverAction actionWithTitle:@"德语" handler:^(PopoverAction *action) {
+        // 该Block不会导致内存泄露, Block内代码无需刻意去设置弱引用.
+        weakSelf.recLanguage = @"GER";
+        [self.languageBtn setTitle:[[ActionViewController languageName:weakSelf.recLanguage] stringByAppendingString:@"▼"] forState:UIControlStateNormal];
+        [self saveCurrentLanToUserdeafult];
+    }];
+    PopoverAction *action4 = [PopoverAction actionWithTitle:@"西班牙语" handler:^(PopoverAction *action) {
+        // 该Block不会导致内存泄露, Block内代码无需刻意去设置弱引用.
+        weakSelf.recLanguage = @"SPA";
+        [self.languageBtn setTitle:[[ActionViewController languageName:weakSelf.recLanguage] stringByAppendingString:@"▼"] forState:UIControlStateNormal];
+        [self saveCurrentLanToUserdeafult];
+    }];
+    PopoverAction *action5 = [PopoverAction actionWithTitle:@"俄语" handler:^(PopoverAction *action) {
+        // 该Block不会导致内存泄露, Block内代码无需刻意去设置弱引用.
+        weakSelf.recLanguage = @"RUS";
+        [self.languageBtn setTitle:[[ActionViewController languageName:weakSelf.recLanguage] stringByAppendingString:@"▼"] forState:UIControlStateNormal];
+        [self saveCurrentLanToUserdeafult];
+    }];
+    PopoverAction *action6 = [PopoverAction actionWithTitle:@"日语" handler:^(PopoverAction *action) {
+        // 该Block不会导致内存泄露, Block内代码无需刻意去设置弱引用.
+        weakSelf.recLanguage = @"JAP";
+        [self.languageBtn setTitle:[[ActionViewController languageName:weakSelf.recLanguage] stringByAppendingString:@"▼"] forState:UIControlStateNormal];
+        [self saveCurrentLanToUserdeafult];
+    }];
+    
+    PopoverViewEX *popoverView = [PopoverViewEX popoverView];
+    //popoverView.showShade = YES; // 显示阴影背景
+    //popoverView.style = PopoverViewStyleDark; // 设置为黑色风格
+    //popoverView.hideAfterTouchOutside = NO; // 点击外部时不允许隐藏
+    // 有两种显示方法
+    // 1. 显示在指定的控件
+    [popoverView showToView:sender InView:self.view withActions:@[action1, action2,action3,action4,action5,action6]];
+    // 2. 显示在指定的点(CGPoint), 该点的坐标是相对KeyWidnow的坐标.
+    //    [popoverView showToPoint:CGPointMake(20, 64) withActions:@[action1, ...]];
+}
+
+-(void)saveCurrentLanToUserdeafult
+{
+    [self.myUserDefault setObject:self.recLanguage forKey:@"recLanguage"];
+    [self.myUserDefault synchronize];
 }
 
 -(void)initCropFrame{
@@ -469,7 +529,8 @@
 }
 - (IBAction)transferClicked:(UIButton *)sender {
     //向右转90'
-    self.cutImageView.bgImageView.transform = CGAffineTransformRotate (self.cutImageView.bgImageView.transform, M_PI_2);
+    _sourceImageView.transform = CGAffineTransformRotate (_sourceImageView.transform, M_PI_2);
+    _cropRect.transform = CGAffineTransformRotate (_cropRect.transform, M_PI_2);
     if (self.imageOrientation == UIImageOrientationUp) {
         
         self.imageOrientation = UIImageOrientationRight;
@@ -483,6 +544,7 @@
         
         self.imageOrientation = UIImageOrientationUp;
     }
+
 }
 -(void)addLoadingView
 {
@@ -633,11 +695,11 @@
         for(NSDictionary *obj in result[@"words_result"]){
             
             
-            if ([obj[@"location"][@"width"] floatValue]>maxWidth) {
-                maxWidth = [obj[@"location"][@"width"] floatValue];
+            if ([obj[@"location"][@"width"] floatValue]+[obj[@"location"][@"left"] floatValue]>maxWidth) {
+                maxWidth = [obj[@"location"][@"width"] floatValue]+[obj[@"location"][@"left"] floatValue];
             }
-            if ([obj[@"location"][@"height"] floatValue]>maxHeight) {
-                maxHeight = [obj[@"location"][@"height"] floatValue];
+            if ([obj[@"location"][@"height"] floatValue]+[obj[@"location"][@"top"] floatValue]>maxHeight) {
+                maxHeight = [obj[@"location"][@"height"] floatValue]+[obj[@"location"][@"top"] floatValue];
             }
             
         }
@@ -646,7 +708,7 @@
             for(NSDictionary *obj in result[@"words_result"]){
                 
                 
-                if ([obj[@"location"][@"width"] floatValue]/maxWidth<(9.f/10.f)) {
+                if (([obj[@"location"][@"width"] floatValue]+[obj[@"location"][@"left"] floatValue])/maxWidth<(9.f/10.f)) {
                     [message appendFormat:@"%@\n", obj[@"words"]];
                 }
                 else
@@ -659,7 +721,7 @@
             for(NSDictionary *obj in result[@"words_result"]){
                 
                 
-                if ([obj[@"location"][@"height"] floatValue]/maxHeight<(9.f/10.f)) {
+                if ([obj[@"location"][@"height"] floatValue]+[obj[@"location"][@"top"] floatValue]/maxHeight<(9.f/10.f)) {
                     [message appendFormat:@"%@\n", obj[@"words"]];
                 }
                 else

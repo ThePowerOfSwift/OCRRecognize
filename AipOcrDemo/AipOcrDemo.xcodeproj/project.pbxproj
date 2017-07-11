@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		97031FDF1F1465A6005B5126 /* citie@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 97031FDE1F1465A6005B5126 /* citie@3x.png */; };
+		97031FE11F14674C005B5126 /* citie@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 97031FE01F14674C005B5126 /* citie@2x.png */; };
+		97031FE41F14690D005B5126 /* citie_sel@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 97031FE21F14690D005B5126 /* citie_sel@3x.png */; };
+		97031FE51F14690D005B5126 /* citie_sel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 97031FE31F14690D005B5126 /* citie_sel@2x.png */; };
+		97031FE61F14A936005B5126 /* PopoverAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 970344C91F1294BB00BFE0F1 /* PopoverAction.m */; };
+		97031FE71F14A943005B5126 /* PopoverViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 970344CD1F1294BB00BFE0F1 /* PopoverViewCell.m */; };
+		97031FED1F14AAFE005B5126 /* PopoverViewEX.m in Sources */ = {isa = PBXBuildFile; fileRef = 97031FEC1F14AAFE005B5126 /* PopoverViewEX.m */; };
 		970344C41F126E7F00BFE0F1 /* IPDFCameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 970344C31F126E7F00BFE0F1 /* IPDFCameraViewController.m */; };
 		970344C61F12729800BFE0F1 /* focusIndicator@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 970344C51F12729800BFE0F1 /* focusIndicator@2x.png */; };
 		970344CE1F1294BB00BFE0F1 /* PopoverAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 970344C91F1294BB00BFE0F1 /* PopoverAction.m */; };
@@ -167,6 +174,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		97031FDE1F1465A6005B5126 /* citie@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "citie@3x.png"; sourceTree = "<group>"; };
+		97031FE01F14674C005B5126 /* citie@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "citie@2x.png"; sourceTree = "<group>"; };
+		97031FE21F14690D005B5126 /* citie_sel@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "citie_sel@3x.png"; sourceTree = "<group>"; };
+		97031FE31F14690D005B5126 /* citie_sel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "citie_sel@2x.png"; sourceTree = "<group>"; };
+		97031FEB1F14AAFE005B5126 /* PopoverViewEX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopoverViewEX.h; sourceTree = "<group>"; };
+		97031FEC1F14AAFE005B5126 /* PopoverViewEX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopoverViewEX.m; sourceTree = "<group>"; };
 		970344C21F126E7F00BFE0F1 /* IPDFCameraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IPDFCameraViewController.h; sourceTree = "<group>"; };
 		970344C31F126E7F00BFE0F1 /* IPDFCameraViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IPDFCameraViewController.m; sourceTree = "<group>"; };
 		970344C51F12729800BFE0F1 /* focusIndicator@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "focusIndicator@2x.png"; sourceTree = "<group>"; };
@@ -426,6 +439,8 @@
 				97FEE1701EFA143700D3585E /* AipCutImageEXView.m */,
 				97FEE1711EFA143700D3585E /* AipImageEXView.h */,
 				97FEE1721EFA143700D3585E /* AipImageEXView.m */,
+				97031FEB1F14AAFE005B5126 /* PopoverViewEX.h */,
+				97031FEC1F14AAFE005B5126 /* PopoverViewEX.m */,
 				975215371EF9F746009272B2 /* ActionViewController.h */,
 				975215381EF9F746009272B2 /* ActionViewController.mm */,
 				9752153A1EF9F746009272B2 /* MainInterface.storyboard */,
@@ -515,6 +530,10 @@
 		9753BC611EFA084100593950 /* 切图 */ = {
 			isa = PBXGroup;
 			children = (
+				97031FE21F14690D005B5126 /* citie_sel@3x.png */,
+				97031FE31F14690D005B5126 /* citie_sel@2x.png */,
+				97031FE01F14674C005B5126 /* citie@2x.png */,
+				97031FDE1F1465A6005B5126 /* citie@3x.png */,
 				970344C51F12729800BFE0F1 /* focusIndicator@2x.png */,
 				9753BC621EFA084100593950 /* copyText@3x.png */,
 				9753BC631EFA084100593950 /* 裁剪页 */,
@@ -842,6 +861,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9753BC501EFA067900593950 /* Info.plist in Resources */,
+				97031FE51F14690D005B5126 /* citie_sel@2x.png in Resources */,
 				9753BC881EFA084100593950 /* guanbi@3x.png in Resources */,
 				9753BC8F1EFA084100593950 /* xuxian@2x.png in Resources */,
 				970344C61F12729800BFE0F1 /* focusIndicator@2x.png in Resources */,
@@ -849,6 +869,7 @@
 				97ADFE561EFAC5C500C5E461 /* Assets.xcassets in Resources */,
 				9753BC601EFA07FC00593950 /* AipOcrSdk.storyboard in Resources */,
 				9753BC891EFA084100593950 /* paizhaoanniu@2x.png in Resources */,
+				97031FE11F14674C005B5126 /* citie@2x.png in Resources */,
 				9753BC861EFA084100593950 /* dengpao_dianjihou@3x.png in Resources */,
 				FFDAF4271E49C99000AB65B7 /* LaunchScreen.storyboard in Resources */,
 				9753BC7E1EFA084100593950 /* guan@3x.png in Resources */,
@@ -865,9 +886,11 @@
 				97ADFE4C1EFAB0E500C5E461 /* IQKeyboardManager.bundle in Resources */,
 				9753BC841EFA084100593950 /* dengpao@3x.png in Resources */,
 				9753BC7D1EFA084100593950 /* guan@2x.png in Resources */,
+				97031FDF1F1465A6005B5126 /* citie@3x.png in Resources */,
 				9753BC8E1EFA084100593950 /* tuku@3x.png in Resources */,
 				FFDAF4221E49C99000AB65B7 /* Main.storyboard in Resources */,
 				97ADFDD31EFA5B7500C5E461 /* SVProgressHUD.bundle in Resources */,
+				97031FE41F14690D005B5126 /* citie_sel@3x.png in Resources */,
 				9753BC821EFA084100593950 /* xuanzhuan@3x.png in Resources */,
 				9753BC7F1EFA084100593950 /* queding@2x.png in Resources */,
 				9753BC8A1EFA084100593950 /* paizhaoanniu@3x.png in Resources */,
@@ -882,6 +905,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				97031FE71F14A943005B5126 /* PopoverViewCell.m in Sources */,
+				97031FE61F14A936005B5126 /* PopoverAction.m in Sources */,
 				9739D13A1F0DF43D00DEEE45 /* MMCropView.m in Sources */,
 				975215391EF9F746009272B2 /* ActionViewController.mm in Sources */,
 				9739D1421F0DF43D00DEEE45 /* UIImage+fixOrientation.m in Sources */,
@@ -890,6 +915,7 @@
 				9739D1441F0DF43D00DEEE45 /* UIImageView+ContentFrame.m in Sources */,
 				9739D13C1F0DF43D00DEEE45 /* MMOpenCVHelper.mm in Sources */,
 				97FEE1731EFA143700D3585E /* AipCutImageEXView.m in Sources */,
+				97031FED1F14AAFE005B5126 /* PopoverViewEX.m in Sources */,
 				97FEE1741EFA143700D3585E /* AipImageEXView.m in Sources */,
 				97F0BFA61F13265A0046558B /* IPDFRectangleFeature.m in Sources */,
 			);
