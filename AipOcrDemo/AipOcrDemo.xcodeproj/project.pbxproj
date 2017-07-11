@@ -14,6 +14,11 @@
 		97031FE61F14A936005B5126 /* PopoverAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 970344C91F1294BB00BFE0F1 /* PopoverAction.m */; };
 		97031FE71F14A943005B5126 /* PopoverViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 970344CD1F1294BB00BFE0F1 /* PopoverViewCell.m */; };
 		97031FED1F14AAFE005B5126 /* PopoverViewEX.m in Sources */ = {isa = PBXBuildFile; fileRef = 97031FEC1F14AAFE005B5126 /* PopoverViewEX.m */; };
+		97031FF01F14FD0F005B5126 /* setting@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 97031FEE1F14FD0F005B5126 /* setting@2x.png */; };
+		97031FF11F14FD0F005B5126 /* setting@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 97031FEF1F14FD0F005B5126 /* setting@3x.png */; };
+		97031FF41F14FF35005B5126 /* SettingTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 97031FF31F14FF35005B5126 /* SettingTableViewController.m */; };
+		97031FF71F15052C005B5126 /* ODSVersionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 97031FF61F15052C005B5126 /* ODSVersionViewController.m */; };
+		97031FFD1F150972005B5126 /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97031FFC1F150972005B5126 /* SafariServices.framework */; };
 		970344C41F126E7F00BFE0F1 /* IPDFCameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 970344C31F126E7F00BFE0F1 /* IPDFCameraViewController.m */; };
 		970344C61F12729800BFE0F1 /* focusIndicator@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 970344C51F12729800BFE0F1 /* focusIndicator@2x.png */; };
 		970344CE1F1294BB00BFE0F1 /* PopoverAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 970344C91F1294BB00BFE0F1 /* PopoverAction.m */; };
@@ -180,6 +185,13 @@
 		97031FE31F14690D005B5126 /* citie_sel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "citie_sel@2x.png"; sourceTree = "<group>"; };
 		97031FEB1F14AAFE005B5126 /* PopoverViewEX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopoverViewEX.h; sourceTree = "<group>"; };
 		97031FEC1F14AAFE005B5126 /* PopoverViewEX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopoverViewEX.m; sourceTree = "<group>"; };
+		97031FEE1F14FD0F005B5126 /* setting@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "setting@2x.png"; sourceTree = "<group>"; };
+		97031FEF1F14FD0F005B5126 /* setting@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "setting@3x.png"; sourceTree = "<group>"; };
+		97031FF21F14FF35005B5126 /* SettingTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingTableViewController.h; sourceTree = "<group>"; };
+		97031FF31F14FF35005B5126 /* SettingTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingTableViewController.m; sourceTree = "<group>"; };
+		97031FF51F15052C005B5126 /* ODSVersionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODSVersionViewController.h; sourceTree = "<group>"; };
+		97031FF61F15052C005B5126 /* ODSVersionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODSVersionViewController.m; sourceTree = "<group>"; };
+		97031FFC1F150972005B5126 /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
 		970344C21F126E7F00BFE0F1 /* IPDFCameraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IPDFCameraViewController.h; sourceTree = "<group>"; };
 		970344C31F126E7F00BFE0F1 /* IPDFCameraViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IPDFCameraViewController.m; sourceTree = "<group>"; };
 		970344C51F12729800BFE0F1 /* focusIndicator@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "focusIndicator@2x.png"; sourceTree = "<group>"; };
@@ -368,6 +380,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				97031FFD1F150972005B5126 /* SafariServices.framework in Frameworks */,
 				97D0552C1F1073E70018D843 /* CoreMotion.framework in Frameworks */,
 				9739D12A1F0DA88F00DEEE45 /* CoreGraphics.framework in Frameworks */,
 				9739D1291F0DA88900DEEE45 /* AssetsLibrary.framework in Frameworks */,
@@ -521,6 +534,10 @@
 				9753BC321EFA067900593950 /* AipGeneralVC.mm */,
 				9753BC331EFA067900593950 /* AipNavigationController.h */,
 				9753BC341EFA067900593950 /* AipNavigationController.m */,
+				97031FF51F15052C005B5126 /* ODSVersionViewController.h */,
+				97031FF61F15052C005B5126 /* ODSVersionViewController.m */,
+				97031FF21F14FF35005B5126 /* SettingTableViewController.h */,
+				97031FF31F14FF35005B5126 /* SettingTableViewController.m */,
 				9753BC351EFA067900593950 /* ResultViewController.h */,
 				9753BC361EFA067900593950 /* ResultViewController.m */,
 			);
@@ -530,6 +547,8 @@
 		9753BC611EFA084100593950 /* 切图 */ = {
 			isa = PBXGroup;
 			children = (
+				97031FEE1F14FD0F005B5126 /* setting@2x.png */,
+				97031FEF1F14FD0F005B5126 /* setting@3x.png */,
 				97031FE21F14690D005B5126 /* citie_sel@3x.png */,
 				97031FE31F14690D005B5126 /* citie_sel@2x.png */,
 				97031FE01F14674C005B5126 /* citie@2x.png */,
@@ -736,6 +755,7 @@
 		FFDAF4431E519F2700AB65B7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				97031FFC1F150972005B5126 /* SafariServices.framework */,
 				97F2B8791F136874003DF358 /* MobileCoreServices.framework */,
 				97D0552B1F1073E70018D843 /* CoreMotion.framework */,
 				9739D1261F0DA86500DEEE45 /* CoreGraphics.framework */,
@@ -861,6 +881,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9753BC501EFA067900593950 /* Info.plist in Resources */,
+				97031FF11F14FD0F005B5126 /* setting@3x.png in Resources */,
 				97031FE51F14690D005B5126 /* citie_sel@2x.png in Resources */,
 				9753BC881EFA084100593950 /* guanbi@3x.png in Resources */,
 				9753BC8F1EFA084100593950 /* xuxian@2x.png in Resources */,
@@ -877,6 +898,7 @@
 				9753BC8B1EFA084100593950 /* paizhaoanniu_dianjihou@2x.png in Resources */,
 				9753BC921EFA084100593950 /* Page 1@3x.png in Resources */,
 				9753BC8C1EFA084100593950 /* paizhaoanniu_dianjihou@3x.png in Resources */,
+				97031FF01F14FD0F005B5126 /* setting@2x.png in Resources */,
 				9753BC911EFA084100593950 /* Page 1@2x.png in Resources */,
 				9753BC831EFA084100593950 /* dengpao@2x.png in Resources */,
 				9753BC871EFA084100593950 /* guanbi@2x.png in Resources */,
@@ -929,6 +951,7 @@
 				97ADFE401EFAB0E500C5E461 /* IQUITextFieldView+Additions.m in Sources */,
 				9753BC561EFA067900593950 /* AipImageView.m in Sources */,
 				9739D13B1F0DF43D00DEEE45 /* MMOpenCVHelper.mm in Sources */,
+				97031FF41F14FF35005B5126 /* SettingTableViewController.m in Sources */,
 				970344D01F1294BB00BFE0F1 /* PopoverView.m in Sources */,
 				9753BC5A1EFA067900593950 /* AipNavigationController.m in Sources */,
 				9753BC521EFA067900593950 /* IOSpeScaleLayoutConstraint.m in Sources */,
@@ -956,6 +979,7 @@
 				9753BC531EFA067900593950 /* IOSpeScaleLayoutLabel.m in Sources */,
 				9753BC541EFA067900593950 /* AipCameraPreviewView.m in Sources */,
 				97ADFE431EFAB0E500C5E461 /* IQUIWindow+Hierarchy.m in Sources */,
+				97031FF71F15052C005B5126 /* ODSVersionViewController.m in Sources */,
 				9739D1391F0DF43D00DEEE45 /* MMCropView.m in Sources */,
 				9739D13D1F0DF43D00DEEE45 /* MTGeometry.c in Sources */,
 				97ADFE491EFAB0E500C5E461 /* IQTitleBarButtonItem.m in Sources */,
@@ -1027,7 +1051,7 @@
 				);
 				GCC_INPUT_FILETYPE = automatic;
 				INFOPLIST_FILE = PhotoInAlbumOCR/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1056,7 +1080,7 @@
 				);
 				GCC_INPUT_FILETYPE = automatic;
 				INFOPLIST_FILE = PhotoInAlbumOCR/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1179,7 +1203,7 @@
 				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/AipOcrDemo/PrefixHeader.pch";
 				INFOPLIST_FILE = AipOcrDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1193,7 +1217,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -1215,7 +1239,7 @@
 				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/AipOcrDemo/PrefixHeader.pch";
 				INFOPLIST_FILE = AipOcrDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1229,7 +1253,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

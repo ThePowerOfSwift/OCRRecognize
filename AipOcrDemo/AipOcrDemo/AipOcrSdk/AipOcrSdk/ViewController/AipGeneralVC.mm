@@ -39,6 +39,8 @@
 #import <GLKit/GLKit.h>
 #import "IPDFRectangleFeature.h"
 
+#import "SettingTableViewController.h"
+
 #define MyLocal(x, ...) NSLocalizedString(x, nil)
 
 #define V_X(v)      v.frame.origin.x
@@ -259,6 +261,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    self.navigationController.navigationBarHidden = YES;
     
     [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(orientationChanged:) name:UIDeviceOrientationDidChangeNotification object:nil];
@@ -293,7 +296,7 @@
     [super viewDidAppear:animated];
 //    [self.cameraController startRunningCamera];
     
-[[UIApplication sharedApplication]setApplicationSupportsShakeToEdit:YES];
+//[[UIApplication sharedApplication]setApplicationSupportsShakeToEdit:YES];
     
     [self.cameraViewController start];
 }
@@ -304,7 +307,7 @@
     [[UIDevice currentDevice] endGeneratingDeviceOrientationNotifications];
 //    [self.cameraController stopRunningCamera];
     [self.cameraViewController stop];
-    [[UIApplication sharedApplication]setApplicationSupportsShakeToEdit:NO];
+//    [[UIApplication sharedApplication]setApplicationSupportsShakeToEdit:NO];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
 }
 
@@ -461,11 +464,11 @@
     [self OffLight];
 }
 
-- (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event{
-    BOOL enable = !self.cameraViewController.isBorderDetectionEnabled;
-    [self showDedectBtnWithTitle:enable?@"边缘检测打开":@"边缘检测关闭"];
-    self.cameraViewController.enableBorderDetection = enable;
-}
+//- (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event{
+//    BOOL enable = !self.cameraViewController.isBorderDetectionEnabled;
+//    [self showDedectBtnWithTitle:enable?@"边缘检测打开":@"边缘检测关闭"];
+//    self.cameraViewController.enableBorderDetection = enable;
+//}
 
 -(void)showDedectBtnWithTitle:(NSString *)title
 {
@@ -1892,6 +1895,10 @@ cv::Mat debugSquares( std::vector<std::vector<cv::Point> > squares, cv::Mat imag
 - (BOOL)prefersStatusBarHidden{
     
     return NO;
+}
+- (IBAction)settingBtnClicked:(UIButton *)sender {
+    SettingTableViewController * settingV = [[SettingTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    [self.navigationController pushViewController:settingV animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

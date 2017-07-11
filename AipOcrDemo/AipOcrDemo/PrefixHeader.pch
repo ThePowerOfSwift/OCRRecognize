@@ -15,6 +15,9 @@
 #ifndef PrefixHeader_pch
 #define PrefixHeader_pch
 
+#define CurrentVersion [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]
+#define CurrentAPPName [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString *)kCFBundleNameKey]
+#define ContactMail @"tolecen@163.com"
 
 #define ODSScreenWidth  [UIScreen mainScreen].bounds.size.width
 #define ODSScreenHeight  [UIScreen mainScreen].bounds.size.height
