@@ -267,7 +267,7 @@
 //    webVC.urlStr = @"http://uzero.cn/ipoem/ios_opensource.html";
 //    [self.navigationController pushViewController:webVC animated:YES];
     
-    NSString * searchStr = @"http://uzero.cn/ipoem/ios_opensource.html";;
+    NSString * searchStr = @"http://xinle.co/2017/07/12/baimiaoopensource/";
     
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 9) {
         SFSafariViewController * sv = [[SFSafariViewController alloc] initWithURL:[NSURL URLWithString:searchStr]];

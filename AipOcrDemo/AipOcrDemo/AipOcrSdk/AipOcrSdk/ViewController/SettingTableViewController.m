@@ -96,7 +96,7 @@
     else
     {
         if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 9) {
-            SFSafariViewController * sv = [[SFSafariViewController alloc] initWithURL:[NSURL URLWithString:@"http://xinle.co/2017/07/04/baimiaoocr/"]];
+            SFSafariViewController * sv = [[SFSafariViewController alloc] initWithURL:[NSURL URLWithString:@"http://xinle.co/2017/07/12/aboutbaimiao/"]];
             //        sv.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
 //            [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
             [self presentViewController:sv animated:YES completion:^{
