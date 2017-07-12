@@ -81,6 +81,7 @@
 
 
 
+
 @interface AipGeneralVC () <UIAlertViewDelegate,UINavigationControllerDelegate, UIImagePickerControllerDelegate,AipCutImageDelegate>
 {
     MagnifierView *loop;
@@ -128,6 +129,8 @@
 @property (nonatomic,strong)NSString * recLanguage;
 @property (nonatomic,strong)NSUserDefaults * myUserDefault;
 @property (weak, nonatomic) IBOutlet UIButton *citieBtn;
+
+@property (nonatomic,strong) UIImage * originImage;
 
 
 @property (nonatomic)BOOL validCrop;
@@ -447,6 +450,7 @@
     
     _validCrop = NO;
     _cropImage = nil;
+    self.originImage = nil;
     
     self.sourceImageView.hidden = YES;
     self.cropRect.hidden = YES;
@@ -571,6 +575,10 @@
     }
 //    _adjustedImage = image;
     
+    self.originImage = image;
+    
+    self.imageOrientation = image.imageOrientation;
+    
     [self.sourceImageView setImage:_adjustedImage];
     CGRect cropFrame=CGRectMake(_sourceImageView.contentFrame.origin.x,_sourceImageView.contentFrame.origin.y+64-15,_sourceImageView.contentFrame.size.width+30,_sourceImageView.contentFrame.size.height+30);
     [_cropRect setFrame:cropFrame];
@@ -617,27 +625,64 @@
 //    [self.previewView.session commitConfiguration];
 }
 
+
+
+
 - (IBAction)pressTransform:(id)sender {
-    
+
     //向右转90'
-    _sourceImageView.transform = CGAffineTransformRotate (_sourceImageView.transform, M_PI_2);
-    _cropRect.transform = CGAffineTransformRotate (_cropRect.transform, M_PI_2);
+//    _sourceImageView.transform = CGAffineTransformRotate (_sourceImageView.transform, M_PI_2);
+    
+    
+//    =CGRectMake(_sourceImageView.contentFrame.origin.x,_sourceImageView.contentFrame.origin.y+64-15,_sourceImageView.contentFrame.size.width+30,_sourceImageView.contentFrame.size.height+30);
+
+    
     if (self.imageOrientation == UIImageOrientationUp) {
         
         self.imageOrientation = UIImageOrientationRight;
+
+
+
     }else if (self.imageOrientation == UIImageOrientationRight){
         
         self.imageOrientation = UIImageOrientationDown;
+
+
+        
     }else if (self.imageOrientation == UIImageOrientationDown){
         
         self.imageOrientation = UIImageOrientationLeft;
+
+        
     }else{
         
         self.imageOrientation = UIImageOrientationUp;
+        
+
     }
     
+
+    
+    
+    
+    UIImage * nimage = [UIImage scaleAndRotateImage:[self.originImage fixOrientation:self.imageOrientation]];
+    [_sourceImageView setImage:nimage];
+    _adjustedImage = nimage;
+    
+    
+    CGRect cropFrame=CGRectMake(_sourceImageView.contentFrame.origin.x,_sourceImageView.contentFrame.origin.y+64-15,_sourceImageView.contentFrame.size.width+30,_sourceImageView.contentFrame.size.height+30);
+    //
+    [_cropRect setFrame:cropFrame];
+    [_cropRect resetFrame];
+    
+    [self detectEdges];
+    //    [self dectEdgeForImage];
+    _initialRect = self.sourceImageView.frame;
+    final_Rect =self.sourceImageView.frame;
 //    [self rotateStateDidChange];
 }
+
+
 
 #pragma mark Animate
 - (CATransform3D)rotateTransform:(CATransform3D)initialTransform clockwise:(BOOL)clockwise
@@ -676,6 +721,8 @@
 
 //上传图片识别结果
 - (IBAction)pressCheckChoose:(id)sender {
+    
+
     
 //    _sourceImageView.image = [self grayImage:_sourceImageView.image];
     
@@ -750,7 +797,7 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             [SVProgressHUD dismiss];
             [weakSelf toResultVC:result];
-//            _sourceImageView.image = _cropImage;
+            _sourceImageView.image = _cropImage;
         });
     } failHandler:^(NSError *err) {
         //        if ([self.delegate respondsToSelector:@selector(ocrOnFail:)]) {
@@ -758,7 +805,7 @@
         //        }
         dispatch_async(dispatch_get_main_queue(), ^{
 //            [SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"识别失败 %li %@",[err code],[err localizedDescription]]];
-            
+            [SVProgressHUD dismiss];
             UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示"
                                                                                      message:[NSString stringWithFormat:@"识别失败 %li %@",[err code],[err localizedDescription]]
                                                                               preferredStyle:UIAlertControllerStyleAlert];

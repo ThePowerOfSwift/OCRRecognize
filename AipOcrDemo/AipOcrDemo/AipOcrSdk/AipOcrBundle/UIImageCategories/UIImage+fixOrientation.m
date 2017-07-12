@@ -8,6 +8,8 @@
 
 #import "UIImage+fixOrientation.h"
 
+
+
 @implementation UIImage (fixOrientation)
 
 - (UIImage *)fixOrientation
@@ -19,13 +21,22 @@
     return src;
 }
 
+- (UIImage *)fixOrientation:(UIImageOrientation)orientation
+{
+    UIImage *src = [[UIImage alloc] initWithCGImage: self.CGImage
+                                              scale: 1.0
+                                        orientation:orientation];
+    
+    return src;
+}
+
 +(UIImage*)renderImage:(NSString *)imagName{
     return [[UIImage imageNamed:imagName] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
 }
 
 +(UIImage *) scaleAndRotateImage:(UIImage *)image
 {
-    int kMaxResolution = 320; // Or whatever
+    int kMaxResolution = 1500; // Or whatever
     
     CGImageRef imgRef = image.CGImage;
     
@@ -130,7 +141,6 @@
     
     return imageCopy;
 }
-
 
 
 

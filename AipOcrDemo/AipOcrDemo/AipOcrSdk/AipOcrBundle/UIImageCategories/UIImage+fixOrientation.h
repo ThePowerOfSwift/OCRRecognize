@@ -11,6 +11,8 @@
 @interface UIImage (fixOrientation)
 
 - (UIImage *)fixOrientation;
+- (UIImage *)fixOrientation:(UIImageOrientation)orientation;
 +(UIImage*)renderImage:(NSString *)imagName;
 +(UIImage *) scaleAndRotateImage:(UIImage *)image;
+
 @end

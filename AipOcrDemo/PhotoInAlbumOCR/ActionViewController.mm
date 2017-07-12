@@ -83,8 +83,8 @@
 
 @property(strong,nonatomic) IBOutlet UIImageView *imageView;
 
-@property (weak, nonatomic) IBOutlet AipCutImageEXView *cutImageView;
-@property (weak, nonatomic) IBOutlet AipImageEXView *maskImageView;
+//@property (weak, nonatomic) IBOutlet AipCutImageEXView *cutImageView;
+//@property (weak, nonatomic) IBOutlet AipImageEXView *maskImageView;
 @property (weak, nonatomic) IBOutlet UIView *topWhite;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *rightItem;
 @property (weak, nonatomic) IBOutlet UIView *successView;
@@ -103,7 +103,7 @@
 
 @property (assign,nonatomic)float finalImgWidth;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *textbottomCons;
-@property (weak, nonatomic) IBOutlet UIView *toolBarView;
+//@property (weak, nonatomic) IBOutlet UIView *toolBarView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomToolbarConstant;
 
 
@@ -121,6 +121,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *languageBtn;
 
 @property (nonatomic)BOOL validCrop;
+
+@property (nonatomic,strong)UIImage * originImage;
 
 
 //@property (strong,nonatomic) CIImage * sciImage;
@@ -149,6 +151,12 @@
     [super viewDidLoad];
     
     _aipOcrManager = [[AipOcrManager alloc] initWithAK:@"SenZ7A8G8LfUfALOScIDtnPP" andSK:@"iOsmqKm7GUVKE0tf56M58wzFCM9W8CrZ"];
+    
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
+    {
+        self.topWhite.hidden = YES;
+//        self.languageBtn.hidden = YES;
+    }
     
 //    [[AipOcrService shardService] authWithAK:@"SenZ7A8G8LfUfALOScIDtnPP" andSK:@"iOsmqKm7GUVKE0tf56M58wzFCM9W8CrZ"];
     
@@ -181,20 +189,27 @@
 //    [self.textv reloadInputViews];
 //    self.topWhite.hidden = YES;
     
-    [self setUpMaskImageView];
-    //delegate 用做传递手势事件
-    self.maskImageView.delegate = self.cutImageView;
-    self.cutImageView.imgDelegate = self;
+//    [self setUpMaskImageView];
+//    //delegate 用做传递手势事件
+//    self.maskImageView.delegate = self.cutImageView;
+//    self.cutImageView.imgDelegate = self;
     
     self.imageDeviceOrientation = UIDeviceOrientationPortrait;
     
-    self.maskImageView.hidden = YES;
-    self.cutImageView.hidden = YES;
+//    self.maskImageView.hidden = YES;
+//    self.cutImageView.hidden = YES;
+    
+   
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
     
     [self initCropFrame];
     //    [self adjustPossition];
     
- 
+    
     
     
     _cropRect= [[MMCropView alloc] initWithFrame:CGRectZero];
@@ -208,7 +223,7 @@
     [self.view bringSubviewToFront:_cropRect];
     
     _cropRect.hidden = YES;
-
+    
     
     // Get the item[s] we're handling from the extension context.
     
@@ -219,12 +234,12 @@
         for (NSItemProvider *itemProvider in item.attachments) {
             if ([itemProvider hasItemConformingToTypeIdentifier:(NSString *)kUTTypeImage]) {
                 // This is an image. We'll load it, then place it in our image view.
-//                __weak UIImageView *imageView = self.imageView;
+                //                __weak UIImageView *imageView = self.imageView;
                 [itemProvider loadItemForTypeIdentifier:(NSString *)kUTTypeImage options:nil completionHandler:^(id<NSSecureCoding>  _Nullable item, NSError * _Null_unspecified error)  {
                     NSData * data = [NSData dataWithContentsOfURL:(NSURL *)item];
-//                    if ([data length]>1500000) {
-//                        data = UIImageJPEGRepresentation([UIImage imageWithData:data], 0.7);
-//                    }
+                    //                    if ([data length]>1500000) {
+                    //                        data = UIImageJPEGRepresentation([UIImage imageWithData:data], 0.7);
+                    //                    }
                     UIImage * image = [UIImage imageWithData:data];
                     NSData * data2 = UIImageJPEGRepresentation(image, 0);
                     image = [UIImage imageWithData:data2];
@@ -250,7 +265,7 @@
                         resultImg = image;
                     if(resultImg) {
                         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-//                            [imageView setImage:image];
+                            //                            [imageView setImage:image];
                             [self setupCutImageView:resultImg fromPhotoLib:YES];
                         }];
                     }
@@ -268,15 +283,15 @@
     }
     
     
-//    [[NSNotificationCenter defaultCenter] addObserver:self
-//                                            selector:@selector(keyboardWasShow:)
-//                                                name:UIKeyboardDidShowNotification
-//                                              object:nil];
-//    [[NSNotificationCenter defaultCenter] addObserver:self
-//                                            selector:@selector(keyboardWillBeHidden:)
-//                                                name:UIKeyboardWillHideNotification
-//                                              object:nil];
-//
+    //    [[NSNotificationCenter defaultCenter] addObserver:self
+    //                                            selector:@selector(keyboardWasShow:)
+    //                                                name:UIKeyboardDidShowNotification
+    //                                              object:nil];
+    //    [[NSNotificationCenter defaultCenter] addObserver:self
+    //                                            selector:@selector(keyboardWillBeHidden:)
+    //                                                name:UIKeyboardWillHideNotification
+    //                                              object:nil];
+    //
     originBottomConstant = _textbottomCons.constant;
     originBottomToolBarContstant = _bottomToolbarConstant.constant;
 }
@@ -337,8 +352,8 @@
 }
 
 -(void)initCropFrame{
-    _sourceImageView = [[UIImageView alloc] initWithFrame:CGRectMake(15, 15, self.view.bounds.size.width-30, self.view.bounds.size.height-60-64-15)];
-    //    _sourceImageView.backgroundColor = [UIColor redColor];
+    _sourceImageView = [[UIImageView alloc] initWithFrame:CGRectMake(15, 15, _cropbgView.bounds.size.width-30, _cropbgView.bounds.size.height-30)];
+//        _sourceImageView.backgroundColor = [UIColor redColor];
     [_sourceImageView setContentMode:UIViewContentModeScaleAspectFit];
     //    [_sourceImageView setImage:_adjustedImage];
     //     [_sourceImageView setImage:[UIImage imageNamed:@"testtwo.jpg"]];
@@ -485,25 +500,25 @@
 //}
 
 
-- (void)setUpMaskImageView {
-    
-    self.maskImageView.showMidLines = YES;
-    self.maskImageView.needScaleCrop = YES;
-    self.maskImageView.showCrossLines = YES;
-    self.maskImageView.cropAreaCornerWidth = 40;
-    self.maskImageView.cropAreaCornerHeight = 40;
-    self.maskImageView.minSpace = 30;
-    self.maskImageView.cropAreaCornerLineColor = [UIColor colorWithWhite:1 alpha:1];
-    self.maskImageView.cropAreaBorderLineColor = [UIColor colorWithWhite:1 alpha:0.7];
-    self.maskImageView.cropAreaCornerLineWidth = 3;
-    self.maskImageView.cropAreaBorderLineWidth = 1;
-    self.maskImageView.cropAreaMidLineWidth = 30;
-    self.maskImageView.cropAreaMidLineHeight = 1;
-    self.maskImageView.cropAreaCrossLineColor = [UIColor colorWithWhite:1 alpha:0.5];
-    self.maskImageView.cropAreaCrossLineWidth = 1;
-    self.maskImageView.cropAspectRatio = 662/1010.0;
-    
-}
+//- (void)setUpMaskImageView {
+//    
+//    self.maskImageView.showMidLines = YES;
+//    self.maskImageView.needScaleCrop = YES;
+//    self.maskImageView.showCrossLines = YES;
+//    self.maskImageView.cropAreaCornerWidth = 40;
+//    self.maskImageView.cropAreaCornerHeight = 40;
+//    self.maskImageView.minSpace = 30;
+//    self.maskImageView.cropAreaCornerLineColor = [UIColor colorWithWhite:1 alpha:1];
+//    self.maskImageView.cropAreaBorderLineColor = [UIColor colorWithWhite:1 alpha:0.7];
+//    self.maskImageView.cropAreaCornerLineWidth = 3;
+//    self.maskImageView.cropAreaBorderLineWidth = 1;
+//    self.maskImageView.cropAreaMidLineWidth = 30;
+//    self.maskImageView.cropAreaMidLineHeight = 1;
+//    self.maskImageView.cropAreaCrossLineColor = [UIColor colorWithWhite:1 alpha:0.5];
+//    self.maskImageView.cropAreaCrossLineWidth = 1;
+//    self.maskImageView.cropAspectRatio = 662/1010.0;
+//    
+//}
 
 //设置背景图
 - (void)setupCutImageView:(UIImage *)image fromPhotoLib:(BOOL)isFromLib {
@@ -513,20 +528,24 @@
     }
     
     [self.languageBtn setTitle:[[ActionViewController languageName:self.recLanguage] stringByAppendingString:@"▼"] forState:UIControlStateNormal];
-    if (isFromLib) {
-        
-        self.cutImageView.userInteractionEnabled = YES;
-        
-    }else{
-        
-        self.cutImageView.userInteractionEnabled = NO;
-        
-    }
+//    if (isFromLib) {
+//        
+//        self.cutImageView.userInteractionEnabled = YES;
+//        
+//    }else{
+//        
+//        self.cutImageView.userInteractionEnabled = NO;
+//        
+//    }
     
     self.sourceImageView.hidden = NO;
     self.cropRect.hidden = NO;
     
     _adjustedImage = image;
+    
+    self.originImage = image;
+    
+    self.imageOrientation = image.imageOrientation;
     
     [self.sourceImageView setImage:_adjustedImage];
     CGRect cropFrame=CGRectMake(_sourceImageView.contentFrame.origin.x,_sourceImageView.contentFrame.origin.y,_sourceImageView.contentFrame.size.width+30,_sourceImageView.contentFrame.size.height+30);
@@ -541,8 +560,8 @@
 }
 - (IBAction)transferClicked:(UIButton *)sender {
     //向右转90'
-    _sourceImageView.transform = CGAffineTransformRotate (_sourceImageView.transform, M_PI_2);
-    _cropRect.transform = CGAffineTransformRotate (_cropRect.transform, M_PI_2);
+//    _sourceImageView.transform = CGAffineTransformRotate (_sourceImageView.transform, M_PI_2);
+//    _cropRect.transform = CGAffineTransformRotate (_cropRect.transform, M_PI_2);
     if (self.imageOrientation == UIImageOrientationUp) {
         
         self.imageOrientation = UIImageOrientationRight;
@@ -557,6 +576,20 @@
         self.imageOrientation = UIImageOrientationUp;
     }
 
+    UIImage * nimage = [UIImage scaleAndRotateImage:[self.originImage fixOrientation:self.imageOrientation]];
+    [_sourceImageView setImage:nimage];
+    _adjustedImage = nimage;
+    
+    
+    CGRect cropFrame=CGRectMake(_sourceImageView.contentFrame.origin.x,_sourceImageView.contentFrame.origin.y,_sourceImageView.contentFrame.size.width+30,_sourceImageView.contentFrame.size.height+30);
+    //
+    [_cropRect setFrame:cropFrame];
+    [_cropRect resetFrame];
+    
+    [self detectEdges];
+    //    [self dectEdgeForImage];
+    _initialRect = self.sourceImageView.frame;
+    final_Rect =self.sourceImageView.frame;
 }
 -(void)addLoadingView
 {
@@ -785,133 +818,133 @@
 
 }
 
-- (CGRect)TransformTheRect{
-    
-    CGFloat x;
-    CGFloat y;
-    CGFloat width;
-    CGFloat height;
-    
-    CGFloat cropAreaViewX = V_X(self.maskImageView.cropAreaView);
-    CGFloat cropAreaViewY = V_Y(self.maskImageView.cropAreaView);
-    CGFloat cropAreaViewW = V_W(self.maskImageView.cropAreaView);
-    CGFloat cropAreaViewH = V_H(self.maskImageView.cropAreaView);
-    
-    CGFloat bgImageViewX  = V_X(self.cutImageView.bgImageView);
-    CGFloat bgImageViewY  = V_Y(self.cutImageView.bgImageView);
-    CGFloat bgImageViewW  = V_W(self.cutImageView.bgImageView);
-    CGFloat bgImageViewH  = V_H(self.cutImageView.bgImageView);
-    
-    if (self.imageOrientation == UIImageOrientationUp) {
-        
-        
-        if (cropAreaViewX< bgImageViewX) {
-            
-            x = 0;
-            width = cropAreaViewW - (bgImageViewX - cropAreaViewX);
-        }else{
-            
-            x = cropAreaViewX-bgImageViewX;
-            width = cropAreaViewW;
-        }
-        
-        if (cropAreaViewY< bgImageViewY) {
-            
-            y = 0;
-            height = cropAreaViewH - (bgImageViewY - cropAreaViewY);
-        }else{
-            
-            y = cropAreaViewY-bgImageViewY;
-            height = cropAreaViewH;
-        }
-        
-        self.size = CGSizeMake(bgImageViewW, bgImageViewH);
-    }else if (self.imageOrientation == UIImageOrientationRight){
-        
-        if (cropAreaViewY<bgImageViewY) {
-            
-            x = 0;
-            width = cropAreaViewH - (bgImageViewY - cropAreaViewY);
-        }else{
-            
-            x = cropAreaViewY - bgImageViewY;
-            width = cropAreaViewH;
-        }
-        
-        CGFloat newCardViewX = cropAreaViewX + cropAreaViewW;
-        CGFloat newBgImageViewX = bgImageViewX + bgImageViewW;
-        
-        if (newCardViewX>newBgImageViewX) {
-            y = 0;
-            height = cropAreaViewW - (newCardViewX - newBgImageViewX);
-        }else{
-            
-            y = newBgImageViewX - newCardViewX;
-            height = cropAreaViewW;
-        }
-        
-        self.size = CGSizeMake(bgImageViewH, bgImageViewW);
-    }else if (self.imageOrientation == UIImageOrientationLeft){
-        
-        if (cropAreaViewX < bgImageViewX) {
-            
-            y = 0;
-            height = cropAreaViewW - (bgImageViewX - cropAreaViewX);
-        }else{
-            
-            y = cropAreaViewX-bgImageViewX;
-            height = cropAreaViewW;
-        }
-        
-        CGFloat newCardViewY = cropAreaViewY + cropAreaViewH;
-        CGFloat newBgImageViewY = bgImageViewY + bgImageViewH;
-        
-        if (newCardViewY< newBgImageViewY) {
-            
-            x = newBgImageViewY - newCardViewY;
-            width = cropAreaViewH;
-        }else{
-            
-            x = 0;
-            width = cropAreaViewH - (newCardViewY - newBgImageViewY);
-        }
-        
-        self.size = CGSizeMake(bgImageViewH, bgImageViewW);
-    }else{
-        
-        CGFloat newCardViewX = cropAreaViewX + cropAreaViewW;
-        CGFloat newBgImageViewX = bgImageViewX + bgImageViewW;
-        
-        CGFloat newCardViewY = cropAreaViewY + cropAreaViewH;
-        CGFloat newBgImageViewY = bgImageViewY + bgImageViewH;
-        
-        if (newCardViewX < newBgImageViewX) {
-            
-            x = newBgImageViewX - newCardViewX;
-            width = cropAreaViewW;
-        }else{
-            
-            x = 0;
-            width = cropAreaViewW - (newCardViewX - newBgImageViewX);
-        }
-        
-        if (newCardViewY < newBgImageViewY) {
-            
-            y = newBgImageViewY - newCardViewY;
-            height = cropAreaViewH;
-            
-        }else{
-            
-            y = 0;
-            height = cropAreaViewH - (newCardViewY - newBgImageViewY);
-        }
-        
-        self.size = CGSizeMake(bgImageViewW, bgImageViewH);
-    }
-    
-    return CGRectMake(x, y, width, height);
-}
-
+//- (CGRect)TransformTheRect{
+//    
+//    CGFloat x;
+//    CGFloat y;
+//    CGFloat width;
+//    CGFloat height;
+//    
+//    CGFloat cropAreaViewX = V_X(self.maskImageView.cropAreaView);
+//    CGFloat cropAreaViewY = V_Y(self.maskImageView.cropAreaView);
+//    CGFloat cropAreaViewW = V_W(self.maskImageView.cropAreaView);
+//    CGFloat cropAreaViewH = V_H(self.maskImageView.cropAreaView);
+//    
+//    CGFloat bgImageViewX  = V_X(self.cutImageView.bgImageView);
+//    CGFloat bgImageViewY  = V_Y(self.cutImageView.bgImageView);
+//    CGFloat bgImageViewW  = V_W(self.cutImageView.bgImageView);
+//    CGFloat bgImageViewH  = V_H(self.cutImageView.bgImageView);
+//    
+//    if (self.imageOrientation == UIImageOrientationUp) {
+//        
+//        
+//        if (cropAreaViewX< bgImageViewX) {
+//            
+//            x = 0;
+//            width = cropAreaViewW - (bgImageViewX - cropAreaViewX);
+//        }else{
+//            
+//            x = cropAreaViewX-bgImageViewX;
+//            width = cropAreaViewW;
+//        }
+//        
+//        if (cropAreaViewY< bgImageViewY) {
+//            
+//            y = 0;
+//            height = cropAreaViewH - (bgImageViewY - cropAreaViewY);
+//        }else{
+//            
+//            y = cropAreaViewY-bgImageViewY;
+//            height = cropAreaViewH;
+//        }
+//        
+//        self.size = CGSizeMake(bgImageViewW, bgImageViewH);
+//    }else if (self.imageOrientation == UIImageOrientationRight){
+//        
+//        if (cropAreaViewY<bgImageViewY) {
+//            
+//            x = 0;
+//            width = cropAreaViewH - (bgImageViewY - cropAreaViewY);
+//        }else{
+//            
+//            x = cropAreaViewY - bgImageViewY;
+//            width = cropAreaViewH;
+//        }
+//        
+//        CGFloat newCardViewX = cropAreaViewX + cropAreaViewW;
+//        CGFloat newBgImageViewX = bgImageViewX + bgImageViewW;
+//        
+//        if (newCardViewX>newBgImageViewX) {
+//            y = 0;
+//            height = cropAreaViewW - (newCardViewX - newBgImageViewX);
+//        }else{
+//            
+//            y = newBgImageViewX - newCardViewX;
+//            height = cropAreaViewW;
+//        }
+//        
+//        self.size = CGSizeMake(bgImageViewH, bgImageViewW);
+//    }else if (self.imageOrientation == UIImageOrientationLeft){
+//        
+//        if (cropAreaViewX < bgImageViewX) {
+//            
+//            y = 0;
+//            height = cropAreaViewW - (bgImageViewX - cropAreaViewX);
+//        }else{
+//            
+//            y = cropAreaViewX-bgImageViewX;
+//            height = cropAreaViewW;
+//        }
+//        
+//        CGFloat newCardViewY = cropAreaViewY + cropAreaViewH;
+//        CGFloat newBgImageViewY = bgImageViewY + bgImageViewH;
+//        
+//        if (newCardViewY< newBgImageViewY) {
+//            
+//            x = newBgImageViewY - newCardViewY;
+//            width = cropAreaViewH;
+//        }else{
+//            
+//            x = 0;
+//            width = cropAreaViewH - (newCardViewY - newBgImageViewY);
+//        }
+//        
+//        self.size = CGSizeMake(bgImageViewH, bgImageViewW);
+//    }else{
+//        
+//        CGFloat newCardViewX = cropAreaViewX + cropAreaViewW;
+//        CGFloat newBgImageViewX = bgImageViewX + bgImageViewW;
+//        
+//        CGFloat newCardViewY = cropAreaViewY + cropAreaViewH;
+//        CGFloat newBgImageViewY = bgImageViewY + bgImageViewH;
+//        
+//        if (newCardViewX < newBgImageViewX) {
+//            
+//            x = newBgImageViewX - newCardViewX;
+//            width = cropAreaViewW;
+//        }else{
+//            
+//            x = 0;
+//            width = cropAreaViewW - (newCardViewX - newBgImageViewX);
+//        }
+//        
+//        if (newCardViewY < newBgImageViewY) {
+//            
+//            y = newBgImageViewY - newCardViewY;
+//            height = cropAreaViewH;
+//            
+//        }else{
+//            
+//            y = 0;
+//            height = cropAreaViewH - (newCardViewY - newBgImageViewY);
+//        }
+//        
+//        self.size = CGSizeMake(bgImageViewW, bgImageViewH);
+//    }
+//    
+//    return CGRectMake(x, y, width, height);
+//}
+//
 
 //旋转照片
 -(UIImage *)rotateImageEx:(CGImageRef)imgRef orientation:(UIImageOrientation) orient

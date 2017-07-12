@@ -318,6 +318,9 @@ float DegreesToRadians(float angle) {
 - (void)showToView:(UIView *)pointView InView:(UIView *)view withActions:(NSArray<PopoverAction *> *)actions {
     // 判断 pointView 是偏上还是偏下
     _sView = view;
+    
+    _windowWidth = view.frame.size.width;
+    _windowHeight = view.frame.size.height;
     CGRect pointViewRect = [pointView.superview convertRect:pointView.frame toView:_sView];
     CGFloat pointViewUpLength = CGRectGetMinY(pointViewRect);
     CGFloat pointViewDownLength = _windowHeight - CGRectGetMaxY(pointViewRect);
