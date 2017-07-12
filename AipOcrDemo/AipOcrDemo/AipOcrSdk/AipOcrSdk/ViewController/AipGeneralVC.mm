@@ -129,6 +129,9 @@
 @property (nonatomic,strong)NSUserDefaults * myUserDefault;
 @property (weak, nonatomic) IBOutlet UIButton *citieBtn;
 
+
+@property (nonatomic)BOOL validCrop;
+
 @end
 
 @implementation AipGeneralVC
@@ -265,7 +268,7 @@
     
     [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(orientationChanged:) name:UIDeviceOrientationDidChangeNotification object:nil];
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
+//    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
     
     if (!firstIn) {
         return;
@@ -291,6 +294,11 @@
    
 }
 
+-(UIStatusBarStyle)preferredStatusBarStyle
+{
+    return UIStatusBarStyleLightContent;
+}
+
 - (void)viewDidAppear:(BOOL)animated{
     
     [super viewDidAppear:animated];
@@ -308,7 +316,7 @@
 //    [self.cameraController stopRunningCamera];
     [self.cameraViewController stop];
 //    [[UIApplication sharedApplication]setApplicationSupportsShakeToEdit:NO];
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
+//    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
 }
 
 -(void)getDeviceOrientation
@@ -437,10 +445,13 @@
 //还原初始值
 - (void)reset{
     
+    _validCrop = NO;
     _cropImage = nil;
     
     self.sourceImageView.hidden = YES;
     self.cropRect.hidden = YES;
+    
+    self.citieBtn.hidden = NO;
     
     _adjustedImage = nil;
     
@@ -536,6 +547,8 @@
     
     self.sourceImageView.hidden = NO;
     self.cropRect.hidden = NO;
+    
+    self.citieBtn.hidden = YES;
     
    
     
@@ -678,6 +691,7 @@
         dispatch_async(dispatch_queue_create(NULL, NULL), ^{
             [self cropAction];
             dispatch_async(dispatch_get_main_queue(), ^{
+//                _sourceImageView.image = _cropImage;
 //                _sourceImageView.image = [self grayImage:_cropImage];
                 [weakSelf uploadAndRecText];
             });
@@ -696,6 +710,9 @@
 
 -(void)uploadAndRecText
 {
+    if (!_validCrop) {
+        return;
+    }
     [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
     [SVProgressHUD showWithStatus:@"识别中..."];
     
@@ -740,7 +757,16 @@
         //            [self.delegate ocrOnFail:err];
         //        }
         dispatch_async(dispatch_get_main_queue(), ^{
-            [SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"识别失败 %li %@",[err code],[err localizedDescription]]];
+//            [SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"识别失败 %li %@",[err code],[err localizedDescription]]];
+            
+            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示"
+                                                                                     message:[NSString stringWithFormat:@"识别失败 %li %@",[err code],[err localizedDescription]]
+                                                                              preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *doneAlertAction = [UIAlertAction actionWithTitle:@"知道了" style:UIAlertActionStyleDefault handler:^(UIAlertAction *  action) {
+                [alertController dismissViewControllerAnimated:YES completion:nil];
+            }];
+            [alertController addAction:doneAlertAction];
+            [self presentViewController:alertController animated:YES completion:nil];
         });
     }];
 }
@@ -1824,12 +1850,13 @@ cv::Mat debugSquares( std::vector<std::vector<cv::Point> > squares, cv::Mat imag
         undistorted.release();
         
         
-        
+        _validCrop = YES;
     }
     else{
         UIAlertView  *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"无效的区域" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alertView show];
         
+        _validCrop = NO;
     }
     
 }
@@ -1838,8 +1865,8 @@ cv::Mat debugSquares( std::vector<std::vector<cv::Point> > squares, cv::Mat imag
 -(UIImage *)grayImage:(UIImage *)processedImage{
     cv::Mat grayImage = [MMOpenCVHelper cvMatGrayFromAdjustedUIImage:processedImage];
     
-    cv::medianBlur(grayImage, grayImage, 7);
-    cv::adaptiveThreshold(grayImage, grayImage, 255, cv::ADAPTIVE_THRESH_GAUSSIAN_C, cv::THRESH_BINARY, 11, 2);
+    cv::medianBlur(grayImage, grayImage, 5);
+    cv::adaptiveThreshold(grayImage, grayImage, 255, cv::ADAPTIVE_THRESH_GAUSSIAN_C, cv::THRESH_BINARY, 7, 2);
     
     
 //    cv::GaussianBlur(grayImage, grayImage, cvSize(11,11), 0);

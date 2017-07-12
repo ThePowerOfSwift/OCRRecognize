@@ -101,7 +101,7 @@
     [self.view addSubview:adBtn];
     adBtn.layer.cornerRadius = 5;
     adBtn.layer.masksToBounds = YES;
-    [adBtn setTitle:@"关注我的微博" forState:UIControlStateNormal];
+    [adBtn setTitle:@"微博反馈" forState:UIControlStateNormal];
     [adBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [adBtn addTarget:self action:@selector(focusAuthorWeibo) forControlEvents:UIControlEventTouchUpInside];
 
@@ -111,9 +111,9 @@
 -(void)toAuthorPage
 {
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 9) {
-        SFSafariViewController * sv = [[SFSafariViewController alloc] initWithURL:[NSURL URLWithString:[@"http://weibo.com/u/1860159237" stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
+        SFSafariViewController * sv = [[SFSafariViewController alloc] initWithURL:[NSURL URLWithString:@"http://weibo.com/u/1860159237"]];
         //        sv.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
+//        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
         [self presentViewController:sv animated:YES completion:^{
             
         }];
@@ -270,9 +270,9 @@
     NSString * searchStr = @"http://uzero.cn/ipoem/ios_opensource.html";;
     
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 9) {
-        SFSafariViewController * sv = [[SFSafariViewController alloc] initWithURL:[NSURL URLWithString:[searchStr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
+        SFSafariViewController * sv = [[SFSafariViewController alloc] initWithURL:[NSURL URLWithString:searchStr]];
         //        sv.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
+//        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
         [self presentViewController:sv animated:YES completion:^{
             
         }];

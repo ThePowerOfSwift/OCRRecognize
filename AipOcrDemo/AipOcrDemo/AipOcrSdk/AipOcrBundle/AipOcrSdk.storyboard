@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -280,18 +279,6 @@
                             <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="K13-8J-9JA" customClass="IPDFCameraViewController">
                                 <rect key="frame" x="0.0" y="70" width="375" height="597"/>
                                 <subviews>
-                                    <button opaque="NO" alpha="0.59999999999999998" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zVm-RZ-CCH">
-                                        <rect key="frame" x="170" y="464" width="35" height="35"/>
-                                        <accessibility key="accessibilityConfiguration" label="自动识别边界"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="35" id="06q-Lf-Cig"/>
-                                            <constraint firstAttribute="height" constant="35" id="NQv-MB-Z8u"/>
-                                        </constraints>
-                                        <state key="normal" backgroundImage="citie.png"/>
-                                        <connections>
-                                            <action selector="citieClicked:" destination="qVB-bS-VcD" eventType="touchUpInside" id="yOQ-mm-d4a"/>
-                                        </connections>
-                                    </button>
                                     <button hidden="YES" opaque="NO" alpha="0.59999999999999998" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qhg-fD-w7m">
                                         <rect key="frame" x="137.5" y="12" width="100" height="30"/>
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -308,9 +295,7 @@
                                 <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstItem="Qhg-fD-w7m" firstAttribute="centerX" secondItem="K13-8J-9JA" secondAttribute="centerX" id="ZSU-xV-hZX"/>
-                                    <constraint firstItem="zVm-RZ-CCH" firstAttribute="centerX" secondItem="K13-8J-9JA" secondAttribute="centerX" id="k4k-ga-lVC"/>
                                     <constraint firstItem="Qhg-fD-w7m" firstAttribute="top" secondItem="K13-8J-9JA" secondAttribute="top" constant="12" id="mpS-DX-hFx"/>
-                                    <constraint firstAttribute="bottom" secondItem="zVm-RZ-CCH" secondAttribute="bottom" constant="98" id="yY5-2l-avf"/>
                                 </constraints>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="yVS-Aq-YOC" appends="YES" id="t3W-d0-pr1"/>
@@ -372,6 +357,18 @@
                                     <constraint firstItem="x4H-6Q-TiY" firstAttribute="centerY" secondItem="JDl-3I-2O3" secondAttribute="centerY" id="y0Q-XQ-1yY"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" alpha="0.59999999999999998" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zVm-RZ-CCH">
+                                <rect key="frame" x="170" y="524" width="35" height="35"/>
+                                <accessibility key="accessibilityConfiguration" label="自动识别边界"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="35" id="06q-Lf-Cig"/>
+                                    <constraint firstAttribute="height" constant="35" id="NQv-MB-Z8u"/>
+                                </constraints>
+                                <state key="normal" backgroundImage="citie.png"/>
+                                <connections>
+                                    <action selector="citieClicked:" destination="qVB-bS-VcD" eventType="touchUpInside" id="yOQ-mm-d4a"/>
+                                </connections>
+                            </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c7U-eV-ZOX">
                                 <rect key="frame" x="0.0" y="667" width="375" height="60"/>
                                 <subviews>
@@ -425,6 +422,7 @@
                             <constraint firstAttribute="bottom" secondItem="K13-8J-9JA" secondAttribute="bottom" id="4LN-WC-B5D"/>
                             <constraint firstItem="9eE-H5-UtU" firstAttribute="top" secondItem="pEK-B6-uAC" secondAttribute="top" id="Bfo-3B-drP" customClass="IOSpeScaleLayoutConstraint"/>
                             <constraint firstItem="mOa-jl-1X9" firstAttribute="top" secondItem="pEK-B6-uAC" secondAttribute="top" constant="64" id="C4B-RP-auY"/>
+                            <constraint firstItem="JDl-3I-2O3" firstAttribute="top" secondItem="zVm-RZ-CCH" secondAttribute="bottom" constant="10" id="EPF-NZ-SJG"/>
                             <constraint firstItem="Nzl-RZ-X6n" firstAttribute="top" secondItem="mQS-vR-TOi" secondAttribute="bottom" id="MY3-78-ajB"/>
                             <constraint firstItem="JDl-3I-2O3" firstAttribute="leading" secondItem="pEK-B6-uAC" secondAttribute="leading" id="Mdh-Zv-d2H"/>
                             <constraint firstItem="9eE-H5-UtU" firstAttribute="leading" secondItem="pEK-B6-uAC" secondAttribute="leading" id="N9l-8Q-045" customClass="IOSpeScaleLayoutConstraint"/>
@@ -446,6 +444,7 @@
                             <constraint firstAttribute="trailing" secondItem="Nzl-RZ-X6n" secondAttribute="trailing" id="qfF-qi-SFZ"/>
                             <constraint firstItem="mOa-jl-1X9" firstAttribute="leading" secondItem="pEK-B6-uAC" secondAttribute="leading" id="ti3-AT-jD2"/>
                             <constraint firstItem="Ekk-cC-N2A" firstAttribute="leading" secondItem="pEK-B6-uAC" secondAttribute="leading" id="vDG-8F-mSu"/>
+                            <constraint firstItem="zVm-RZ-CCH" firstAttribute="centerX" secondItem="pEK-B6-uAC" secondAttribute="centerX" id="vXh-NG-vEw"/>
                             <constraint firstAttribute="trailing" secondItem="c7U-eV-ZOX" secondAttribute="trailing" id="yvP-X8-vRY"/>
                         </constraints>
                     </view>

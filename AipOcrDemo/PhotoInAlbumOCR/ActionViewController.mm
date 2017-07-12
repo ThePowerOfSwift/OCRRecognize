@@ -120,6 +120,8 @@
 @property (nonatomic,strong)NSUserDefaults * myUserDefault;
 @property (weak, nonatomic) IBOutlet UIButton *languageBtn;
 
+@property (nonatomic)BOOL validCrop;
+
 
 //@property (strong,nonatomic) CIImage * sciImage;
 
@@ -632,6 +634,15 @@
 //            [SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"识别失败 %li %@",[err code],[err localizedDescription]]];
             [self.loadingView removeFromSuperview];
             [self.indicator removeFromSuperview];
+            
+            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示"
+                                                                                     message:[NSString stringWithFormat:@"识别失败 %li %@",[err code],[err localizedDescription]]
+                                                                              preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *doneAlertAction = [UIAlertAction actionWithTitle:@"知道了" style:UIAlertActionStyleDefault handler:^(UIAlertAction *  action) {
+                [alertController dismissViewControllerAnimated:YES completion:nil];
+            }];
+            [alertController addAction:doneAlertAction];
+            [self presentViewController:alertController animated:YES completion:nil];
         });
     }];
 }
@@ -646,6 +657,11 @@
 //    __weak __typeof(self) weakSelf = self;
 //    dispatch_async(dispatch_queue_create(NULL, NULL), ^{
         [self cropAction];
+    if (!_validCrop) {
+        [self.loadingView removeFromSuperview];
+        [self.indicator removeFromSuperview];
+        return;
+    }
 //        dispatch_async(dispatch_get_main_queue(), ^{
             [self uploadAndRecText];
 //        });
@@ -1558,11 +1574,21 @@ cv::Mat debugSquares( std::vector<std::vector<cv::Point> > squares, cv::Mat imag
         undistorted.release();
         
         
-        
+        _validCrop = YES;
     }
     else{
-//        UIAlertView  *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"无效的区域" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-//        [alertView show];
+        
+        _validCrop = NO;
+
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示"
+                                                                                 message:@"无效的选区"
+                                                                          preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *doneAlertAction = [UIAlertAction actionWithTitle:@"知道了" style:UIAlertActionStyleDefault handler:^(UIAlertAction *  action) {
+            [alertController dismissViewControllerAnimated:YES completion:nil];
+        }];
+        [alertController addAction:doneAlertAction];
+        [self presentViewController:alertController animated:YES completion:nil];
+        
         
     }
     

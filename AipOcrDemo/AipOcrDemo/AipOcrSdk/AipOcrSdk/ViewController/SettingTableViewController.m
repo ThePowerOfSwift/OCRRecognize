@@ -33,7 +33,12 @@
     [super viewWillAppear:animated];
     self.navigationController.navigationBarHidden = NO;
     
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
+//    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
+}
+
+-(UIStatusBarStyle)preferredStatusBarStyle
+{
+    return UIStatusBarStyleDefault;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -91,9 +96,9 @@
     else
     {
         if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 9) {
-            SFSafariViewController * sv = [[SFSafariViewController alloc] initWithURL:[NSURL URLWithString:[@"http://xinle.co/2017/07/04/iphone-%E4%B8%8A%E7%9A%84%E5%9B%BE%E7%89%87%E6%96%87%E5%AD%97%E8%AF%86%E5%88%AB-ocr-%E5%BA%94%E7%94%A8%EF%BC%8C%E5%AE%83%E5%8F%AF%E8%83%BD%E6%98%AF%E6%9C%80%E5%BF%AB%E6%8D%B7%E6%96%B9%E4%BE%BF/" stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
+            SFSafariViewController * sv = [[SFSafariViewController alloc] initWithURL:[NSURL URLWithString:@"http://xinle.co/2017/07/04/baimiaoocr/"]];
             //        sv.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-            [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
+//            [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
             [self presentViewController:sv animated:YES completion:^{
                 
             }];
