@@ -664,6 +664,8 @@
 //上传图片识别结果
 - (IBAction)pressCheckChoose:(id)sender {
     
+//    _sourceImageView.image = [self grayImage:_sourceImageView.image];
+    
     //ytodo tips: MyLocal(@"识别中...")
     
 //    if (!_cropImage) {
@@ -676,6 +678,7 @@
         dispatch_async(dispatch_queue_create(NULL, NULL), ^{
             [self cropAction];
             dispatch_async(dispatch_get_main_queue(), ^{
+//                _sourceImageView.image = [self grayImage:_cropImage];
                 [weakSelf uploadAndRecText];
             });
         });
@@ -726,9 +729,11 @@
         //        if ([self.delegate respondsToSelector:@selector(ocrOnGeneralSuccessful:)]) {
         //            [self.delegate ocrOnGeneralSuccessful:result];
         //        }
+        
         dispatch_async(dispatch_get_main_queue(), ^{
             [SVProgressHUD dismiss];
             [weakSelf toResultVC:result];
+//            _sourceImageView.image = _cropImage;
         });
     } failHandler:^(NSError *err) {
         //        if ([self.delegate respondsToSelector:@selector(ocrOnFail:)]) {
@@ -1357,6 +1362,9 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     UIImage *image = [info valueForKey:UIImagePickerControllerOriginalImage];
+    
+    NSData * data = UIImageJPEGRepresentation(image, 0);
+    image = [UIImage imageWithData:data];
     NSAssert(image, @" ");
     if (image) {
         
@@ -1831,7 +1839,7 @@ cv::Mat debugSquares( std::vector<std::vector<cv::Point> > squares, cv::Mat imag
     cv::Mat grayImage = [MMOpenCVHelper cvMatGrayFromAdjustedUIImage:processedImage];
     
     cv::medianBlur(grayImage, grayImage, 7);
-    cv::adaptiveThreshold(grayImage, grayImage, 245, cv::ADAPTIVE_THRESH_GAUSSIAN_C, cv::THRESH_BINARY, 11, 2);
+    cv::adaptiveThreshold(grayImage, grayImage, 255, cv::ADAPTIVE_THRESH_GAUSSIAN_C, cv::THRESH_BINARY, 11, 2);
     
     
 //    cv::GaussianBlur(grayImage, grayImage, cvSize(11,11), 0);

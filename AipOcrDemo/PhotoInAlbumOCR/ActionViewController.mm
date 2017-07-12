@@ -146,9 +146,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-//    _aipOcrManager = [[AipOcrManager alloc] initWithAK:@"SenZ7A8G8LfUfALOScIDtnPP" andSK:@"iOsmqKm7GUVKE0tf56M58wzFCM9W8CrZ"];
+    _aipOcrManager = [[AipOcrManager alloc] initWithAK:@"SenZ7A8G8LfUfALOScIDtnPP" andSK:@"iOsmqKm7GUVKE0tf56M58wzFCM9W8CrZ"];
     
-    [[AipOcrService shardService] authWithAK:@"SenZ7A8G8LfUfALOScIDtnPP" andSK:@"iOsmqKm7GUVKE0tf56M58wzFCM9W8CrZ"];
+//    [[AipOcrService shardService] authWithAK:@"SenZ7A8G8LfUfALOScIDtnPP" andSK:@"iOsmqKm7GUVKE0tf56M58wzFCM9W8CrZ"];
     
     self.myUserDefault = [[NSUserDefaults alloc] initWithSuiteName:@"group.com.uzero.recbaimiao"];
     
@@ -224,6 +224,11 @@
 //                        data = UIImageJPEGRepresentation([UIImage imageWithData:data], 0.7);
 //                    }
                     UIImage * image = [UIImage imageWithData:data];
+                    NSData * data2 = UIImageJPEGRepresentation(image, 0);
+                    image = [UIImage imageWithData:data2];
+                    
+                    NSLog(@"data length:%lu, data2 length:%lu",data.length,data2.length);
+                    
                     UIImage * resultImg;
                     if (data.length>1000000) {
                         CGSize size = CGSizeMake(1000, 1000*image.size.height/image.size.width);
@@ -614,7 +619,7 @@
     NSDictionary *options = @{@"language_type": self.recLanguage, @"detect_direction": @"true"};
     
     __weak __typeof__(self) weakSelf = self;
-    [[AipOcrService shardService] detectTextFromImage:finalImage withOptions:options successHandler:^(id result) {
+    [_aipOcrManager detectTextFromImage:finalImage withOptions:options successHandler:^(id result) {
         NSLog(@"%@", result);
         dispatch_async(dispatch_get_main_queue(), ^{
             [weakSelf addSuccessResult:result];
