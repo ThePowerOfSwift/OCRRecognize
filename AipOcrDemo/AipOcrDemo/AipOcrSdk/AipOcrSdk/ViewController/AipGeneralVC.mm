@@ -797,7 +797,7 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             [SVProgressHUD dismiss];
             [weakSelf toResultVC:result];
-            _sourceImageView.image = _cropImage;
+//            _sourceImageView.image = _cropImage;
         });
     } failHandler:^(NSError *err) {
         //        if ([self.delegate respondsToSelector:@selector(ocrOnFail:)]) {
