@@ -585,7 +585,7 @@
     
     self.originImage = image;
     
-    self.imageOrientation = image.imageOrientation;
+    self.imageOrientation = UIImageOrientationUp;
     
     [self.sourceImageView setImage:_adjustedImage];
     CGRect cropFrame=CGRectMake(_sourceImageView.contentFrame.origin.x,_sourceImageView.contentFrame.origin.y+64-15,_sourceImageView.contentFrame.size.width+30,_sourceImageView.contentFrame.size.height+30);
