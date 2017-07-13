@@ -15,6 +15,14 @@
 #ifndef PrefixHeader_pch
 #define PrefixHeader_pch
 
+#if DEBUG
+#define NSLog( s, ... ) printf("[%s:%d] \n%s\n\n", [[[NSString stringWithUTF8String:__FILE__] \
+lastPathComponent] UTF8String], __LINE__, [[NSString stringWithFormat:(s), ##__VA_ARGS__] UTF8String] )
+#else
+#define NSLog( s, ... )
+#endif
+
+
 #define CurrentVersion [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]
 #define CurrentAPPName [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString *)kCFBundleNameKey]
 #define ContactMail @"tolecen@163.com"

@@ -82,6 +82,7 @@
     if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"youdaonote://"]]){
         [alertController addAction: [UIAlertAction actionWithTitle: @"复制并打开有道云笔记" style: UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
             if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"youdaonote://"]]) {
+                [self copyText];
                 [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"youdaonote://"]];
             }
             else
@@ -94,6 +95,7 @@
     if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"evernote://"]]) {
         [alertController addAction: [UIAlertAction actionWithTitle: @"复制并打开印象笔记" style: UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
             if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"evernote://"]]) {
+                [self copyText];
                 [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"evernote://"]];
             }
             else
@@ -107,6 +109,7 @@
     if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"wechat://"]]) {
         [alertController addAction: [UIAlertAction actionWithTitle: @"复制并打开微信" style: UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
             if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"wechat://"]]) {
+                [self copyText];
                 [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"wechat://"]];
             }
             else
@@ -120,6 +123,7 @@
     if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"weibo://"]]) {
         [alertController addAction: [UIAlertAction actionWithTitle: @"复制并打开微博" style: UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
             if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"weibo://"]]) {
+                [self copyText];
                 [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"weibo://"]];
             }
             else
