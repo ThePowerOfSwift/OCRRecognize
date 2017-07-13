@@ -132,6 +132,8 @@
 
 @property (nonatomic,strong) UIImage * originImage;
 
+@property (nonatomic)BOOL needStartCam;
+
 
 @property (nonatomic)BOOL validCrop;
 
@@ -162,6 +164,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.needStartCam = YES;
     self.myUserDefault = [[NSUserDefaults alloc] initWithSuiteName:@"group.com.uzero.recbaimiao"];
     
     self.recLanguage = [self.myUserDefault objectForKey:@"recLanguage"];
@@ -292,9 +295,8 @@
     [self.view bringSubviewToFront:_cropRect];
     
     _cropRect.hidden = YES;
-
+    
     firstIn = NO;
-   
 }
 
 -(UIStatusBarStyle)preferredStatusBarStyle
@@ -309,7 +311,12 @@
     
 //[[UIApplication sharedApplication]setApplicationSupportsShakeToEdit:YES];
     
-    [self.cameraViewController start];
+
+
+    if (self.needStartCam) {
+        [self.cameraViewController start];
+    }
+    
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -448,6 +455,7 @@
 //还原初始值
 - (void)reset{
     
+    self.needStartCam = YES;
     _validCrop = NO;
     _cropImage = nil;
     self.originImage = nil;
@@ -1440,6 +1448,8 @@
     image = [UIImage imageWithData:data];
     NSAssert(image, @" ");
     if (image) {
+        
+        self.needStartCam = NO;
         
         [self setupCutImageView:image fromPhotoLib:YES];
         
