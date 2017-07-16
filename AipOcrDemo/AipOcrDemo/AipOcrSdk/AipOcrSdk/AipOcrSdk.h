@@ -22,5 +22,3 @@ FOUNDATION_EXPORT const unsigned char AipOcrSdkVersionString[];
 #import "AipOcrDelegate.h"
 
 
-
-

@@ -151,6 +151,7 @@
     [super viewDidLoad];
     
     _aipOcrManager = [[AipOcrManager alloc] initWithAK:@"SenZ7A8G8LfUfALOScIDtnPP" andSK:@"iOsmqKm7GUVKE0tf56M58wzFCM9W8CrZ"];
+//    [[AipOcrService shardService] authWithAK:@"5hM3gBr5a1M9YFBmwUZBwDTZ" andSK:@"8CBMBalNp0CeuU2POttakt7HESKb0axs"];
     
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
     {

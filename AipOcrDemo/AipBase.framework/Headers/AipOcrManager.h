@@ -17,7 +17,16 @@
 
 - (instancetype) initWithAK: (NSString *)ak andSK: (NSString *)sk;
 
-- (instancetype) initWithToken: (NSString *)token;
+//- (instancetype) initWithToken: (NSString *)token;
+
+/**
+ * 获取身份证前端检测Token
+ * @param successHandler
+ * @param failHandler
+ */
+
+- (void)_getIdcardTokenWithSuccessHandler:(void (^)(NSString *token))successHandler
+                              failHandler:(void (^)(NSError *error))failHandler;
 
 /**
  * 通用位置识别

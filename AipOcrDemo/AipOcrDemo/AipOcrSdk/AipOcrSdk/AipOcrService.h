@@ -15,11 +15,28 @@
 @property (atomic, assign) bool retry;
 
 
+/**
+ * 使用授权文件授权(推荐)
+ * @param licenseFileContent 授权文件内容
+ */
 - (void) authWithLicenseFileData: (NSData *)licenseFileContent;
 
+
+/**
+ * 使用Api Key, Secret Key授权
+ * @param ak
+ * @param sk
+ */
 - (void) authWithAK: (NSString *)ak andSK: (NSString *)sk;
 
-- (void) authWithToken: (NSString *)token;
+/**
+ * 获取身份证检测Token
+ * @param successHandler 成功回调
+ * @param failHandler 失败回调
+ */
+
+- (void )getTokenSuccessHandler:(void (^)(NSString *token))successHandler
+                    failHandler:(void (^)(NSError *error))failHandler;
 
 
 /**
@@ -102,10 +119,10 @@
 
 /**
  * 网图识别
- * @param image
- * @param options
- * @param successHandler
- * @param failHandler
+ * @param image 需要识别的图片
+ * @param options 额外参数
+ * @param successHandler 成功回调
+ * @param failHandler 失败回调
  */
 - (void)detectWebImageFromImage:(UIImage *)image
                     withOptions:(NSDictionary *)options

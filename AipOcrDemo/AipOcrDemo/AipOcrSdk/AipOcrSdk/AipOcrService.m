@@ -27,8 +27,21 @@
     _aipOcrManager = [[AipOcrManager alloc] initWithLicenseFileData:licenseFileContent];
 }
 
-- (void)authWithToken:(NSString *)token {
-    _aipOcrManager = [[AipOcrManager alloc] initWithToken:token];
+- (void )getTokenSuccessHandler:(void (^)(NSString *token))successHandler
+                    failHandler:(void (^)(NSError *error))failHandler{
+    
+    [_aipOcrManager _getIdcardTokenWithSuccessHandler:^(NSString *token) {
+        
+        if (successHandler) {
+            successHandler(token);
+        }
+    } failHandler:^(NSError *error) {
+        
+        if (failHandler) {
+            failHandler(error);
+        }
+    }];
+    
 }
 
 - (void)detectTextFromImage:(UIImage *)image

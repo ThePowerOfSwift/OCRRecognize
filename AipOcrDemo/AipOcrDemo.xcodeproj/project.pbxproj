@@ -24,10 +24,6 @@
 		970344CE1F1294BB00BFE0F1 /* PopoverAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 970344C91F1294BB00BFE0F1 /* PopoverAction.m */; };
 		970344D01F1294BB00BFE0F1 /* PopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 970344CB1F1294BB00BFE0F1 /* PopoverView.m */; };
 		970344D21F1294BB00BFE0F1 /* PopoverViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 970344CD1F1294BB00BFE0F1 /* PopoverViewCell.m */; };
-		9739D11C1F0DA5AB00DEEE45 /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9739D11B1F0DA5AB00DEEE45 /* opencv2.framework */; };
-		9739D11D1F0DA5AB00DEEE45 /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9739D11B1F0DA5AB00DEEE45 /* opencv2.framework */; };
-		9739D11F1F0DA7F100DEEE45 /* libjpeg.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9739D11E1F0DA7F100DEEE45 /* libjpeg.a */; };
-		9739D1201F0DA7F100DEEE45 /* libjpeg.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9739D11E1F0DA7F100DEEE45 /* libjpeg.a */; };
 		9739D1221F0DA84700DEEE45 /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9739D1211F0DA84700DEEE45 /* libstdc++.tbd */; };
 		9739D1231F0DA85500DEEE45 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9753BC931EFA091400593950 /* CoreImage.framework */; };
 		9739D1251F0DA85A00DEEE45 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9739D1241F0DA85A00DEEE45 /* AssetsLibrary.framework */; };
@@ -96,6 +92,10 @@
 		9753BC961EFA091900593950 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9753BC951EFA091900593950 /* UIKit.framework */; };
 		9753BC981EFA091F00593950 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9753BC971EFA091F00593950 /* CoreFoundation.framework */; };
 		9753BC9A1EFA092300593950 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9753BC991EFA092300593950 /* Foundation.framework */; };
+		97ADCD311F1AFB2600C9D1C4 /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97ADCD301F1AFB2600C9D1C4 /* opencv2.framework */; };
+		97ADCD321F1AFB2600C9D1C4 /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97ADCD301F1AFB2600C9D1C4 /* opencv2.framework */; };
+		97ADCD341F1AFCF000C9D1C4 /* libjpeg.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 97ADCD331F1AFCF000C9D1C4 /* libjpeg.a */; };
+		97ADCD351F1AFCF000C9D1C4 /* libjpeg.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 97ADCD331F1AFCF000C9D1C4 /* libjpeg.a */; };
 		97ADFDD11EFA5B7500C5E461 /* SVIndefiniteAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 97ADFDC81EFA5B7500C5E461 /* SVIndefiniteAnimatedView.m */; };
 		97ADFDD21EFA5B7500C5E461 /* SVProgressAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 97ADFDCA1EFA5B7500C5E461 /* SVProgressAnimatedView.m */; };
 		97ADFDD31EFA5B7500C5E461 /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 97ADFDCC1EFA5B7500C5E461 /* SVProgressHUD.bundle */; };
@@ -126,8 +126,6 @@
 		97F2B8761F1364FC003DF358 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 973A80E71EFFAFAC00C00D1C /* libz.tbd */; };
 		97F2B87A1F136874003DF358 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97F2B8791F136874003DF358 /* MobileCoreServices.framework */; };
 		97F2B87F1F13A4D8003DF358 /* AipBase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97F2B87D1F13A4D8003DF358 /* AipBase.framework */; };
-		97F2B8821F13A4E8003DF358 /* AipOcrSdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97F2B8801F13A4E8003DF358 /* AipOcrSdk.framework */; };
-		97F2B8831F13A50B003DF358 /* AipOcrSdk.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 97F2B8801F13A4E8003DF358 /* AipOcrSdk.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		97F2B8841F13A50B003DF358 /* AipBase.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 97F2B87D1F13A4D8003DF358 /* AipBase.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		97FEE1731EFA143700D3585E /* AipCutImageEXView.m in Sources */ = {isa = PBXBuildFile; fileRef = 97FEE1701EFA143700D3585E /* AipCutImageEXView.m */; };
 		97FEE1741EFA143700D3585E /* AipImageEXView.m in Sources */ = {isa = PBXBuildFile; fileRef = 97FEE1721EFA143700D3585E /* AipImageEXView.m */; };
@@ -170,7 +168,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				97F2B8831F13A50B003DF358 /* AipOcrSdk.framework in Embed Frameworks */,
 				97F2B8841F13A50B003DF358 /* AipBase.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -204,8 +201,6 @@
 		9727A5A51EF4E9CE00E63E99 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		9727A5AA1EF513F700E63E99 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		9727A5AB1EF513F700E63E99 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
-		9739D11B1F0DA5AB00DEEE45 /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = opencv2.framework; sourceTree = "<group>"; };
-		9739D11E1F0DA7F100DEEE45 /* libjpeg.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libjpeg.a; sourceTree = "<group>"; };
 		9739D1211F0DA84700DEEE45 /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
 		9739D1241F0DA85A00DEEE45 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		9739D1261F0DA86500DEEE45 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -286,6 +281,8 @@
 		9753BC951EFA091900593950 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		9753BC971EFA091F00593950 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		9753BC991EFA092300593950 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		97ADCD301F1AFB2600C9D1C4 /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = opencv2.framework; sourceTree = "<group>"; };
+		97ADCD331F1AFCF000C9D1C4 /* libjpeg.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libjpeg.a; sourceTree = "<group>"; };
 		97ADFDC71EFA5B7500C5E461 /* SVIndefiniteAnimatedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVIndefiniteAnimatedView.h; sourceTree = "<group>"; };
 		97ADFDC81EFA5B7500C5E461 /* SVIndefiniteAnimatedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVIndefiniteAnimatedView.m; sourceTree = "<group>"; };
 		97ADFDC91EFA5B7500C5E461 /* SVProgressAnimatedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressAnimatedView.h; sourceTree = "<group>"; };
@@ -332,7 +329,6 @@
 		97F0BFA41F13265A0046558B /* IPDFRectangleFeature.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IPDFRectangleFeature.m; sourceTree = "<group>"; };
 		97F2B8791F136874003DF358 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		97F2B87D1F13A4D8003DF358 /* AipBase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AipBase.framework; sourceTree = "<group>"; };
-		97F2B8801F13A4E8003DF358 /* AipOcrSdk.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AipOcrSdk.framework; path = AipOcrDemo/AipOcrSdk.framework; sourceTree = "<group>"; };
 		97FEE16F1EFA143700D3585E /* AipCutImageEXView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AipCutImageEXView.h; sourceTree = "<group>"; };
 		97FEE1701EFA143700D3585E /* AipCutImageEXView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AipCutImageEXView.m; sourceTree = "<group>"; };
 		97FEE1711EFA143700D3585E /* AipImageEXView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AipImageEXView.h; sourceTree = "<group>"; };
@@ -362,17 +358,16 @@
 			files = (
 				97F2B87A1F136874003DF358 /* MobileCoreServices.framework in Frameworks */,
 				97F2B8761F1364FC003DF358 /* libz.tbd in Frameworks */,
+				97ADCD351F1AFCF000C9D1C4 /* libjpeg.a in Frameworks */,
 				97F2B8751F1364F7003DF358 /* Foundation.framework in Frameworks */,
 				97F2B8741F1364F0003DF358 /* UIKit.framework in Frameworks */,
 				9739D1271F0DA86500DEEE45 /* CoreGraphics.framework in Frameworks */,
 				9739D1251F0DA85A00DEEE45 /* AssetsLibrary.framework in Frameworks */,
+				97ADCD321F1AFB2600C9D1C4 /* opencv2.framework in Frameworks */,
 				97F2B87F1F13A4D8003DF358 /* AipBase.framework in Frameworks */,
 				9739D1231F0DA85500DEEE45 /* CoreImage.framework in Frameworks */,
 				9739D1221F0DA84700DEEE45 /* libstdc++.tbd in Frameworks */,
-				9739D11D1F0DA5AB00DEEE45 /* opencv2.framework in Frameworks */,
 				973A80E41EFFAF7B00C00D1C /* UMMobClick.framework in Frameworks */,
-				9739D1201F0DA7F100DEEE45 /* libjpeg.a in Frameworks */,
-				97F2B8821F13A4E8003DF358 /* AipOcrSdk.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -388,8 +383,8 @@
 				973A80EA1EFFAFC700C00D1C /* libsqlite3.tbd in Frameworks */,
 				973A80E81EFFAFAC00C00D1C /* libz.tbd in Frameworks */,
 				973A80E61EFFAFA700C00D1C /* CoreTelephony.framework in Frameworks */,
-				9739D11F1F0DA7F100DEEE45 /* libjpeg.a in Frameworks */,
-				9739D11C1F0DA5AB00DEEE45 /* opencv2.framework in Frameworks */,
+				97ADCD341F1AFCF000C9D1C4 /* libjpeg.a in Frameworks */,
+				97ADCD311F1AFB2600C9D1C4 /* opencv2.framework in Frameworks */,
 				9753BC9A1EFA092300593950 /* Foundation.framework in Frameworks */,
 				9753BC981EFA091F00593950 /* CoreFoundation.framework in Frameworks */,
 				973A80E31EFFAF7B00C00D1C /* UMMobClick.framework in Frameworks */,
@@ -704,10 +699,9 @@
 		FFDAF40B1E49C99000AB65B7 = {
 			isa = PBXGroup;
 			children = (
-				97F2B8801F13A4E8003DF358 /* AipOcrSdk.framework */,
+				97ADCD331F1AFCF000C9D1C4 /* libjpeg.a */,
+				97ADCD301F1AFB2600C9D1C4 /* opencv2.framework */,
 				97F2B87D1F13A4D8003DF358 /* AipBase.framework */,
-				9739D11E1F0DA7F100DEEE45 /* libjpeg.a */,
-				9739D11B1F0DA5AB00DEEE45 /* opencv2.framework */,
 				973A80E21EFFAF7B00C00D1C /* UMMobClick.framework */,
 				FFDAF4161E49C99000AB65B7 /* AipOcrDemo */,
 				975215361EF9F746009272B2 /* PhotoInAlbumOCR */,
@@ -1045,6 +1039,7 @@
 				CODE_SIGN_ENTITLEMENTS = PhotoInAlbumOCR/PhotoInAlbumOCR.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 4225KQ7WC5;
+				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1075,6 +1070,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 4225KQ7WC5;
+				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1197,7 +1193,7 @@
 				CODE_SIGN_ENTITLEMENTS = AipOcrDemo/AipOcrDemo.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 4225KQ7WC5;
-				ENABLE_BITCODE = NO;
+				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/AipOcrDemo",
@@ -1233,7 +1229,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 4225KQ7WC5;
-				ENABLE_BITCODE = NO;
+				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/AipOcrDemo",
