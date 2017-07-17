@@ -27,9 +27,12 @@
     syncBtn.frame = CGRectMake(0, 0, CGRectGetWidth(syncBtn.frame), CGRectGetHeight(syncBtn.frame));
 //    [syncBtn setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
     [syncBtn addTarget:self action:@selector(copyText) forControlEvents:UIControlEventTouchUpInside];
-    UILongPressGestureRecognizer * longP = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(showMoreAction)];
-    longP.minimumPressDuration = 0.8;
-    [syncBtn addGestureRecognizer:longP];
+    
+    if ([[UIDevice currentDevice] userInterfaceIdiom] != UIUserInterfaceIdiomPad){
+        UILongPressGestureRecognizer * longP = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(showMoreAction)];
+        longP.minimumPressDuration = 0.8;
+        [syncBtn addGestureRecognizer:longP];
+    }
     
     UIBarButtonItem *rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:syncBtn];
     self.navigationItem.rightBarButtonItem = rightBarButtonItem;
