@@ -24,6 +24,7 @@
 		970344CE1F1294BB00BFE0F1 /* PopoverAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 970344C91F1294BB00BFE0F1 /* PopoverAction.m */; };
 		970344D01F1294BB00BFE0F1 /* PopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 970344CB1F1294BB00BFE0F1 /* PopoverView.m */; };
 		970344D21F1294BB00BFE0F1 /* PopoverViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 970344CD1F1294BB00BFE0F1 /* PopoverViewCell.m */; };
+		970E8F561F1B5E7800E9297C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FFDAF41B1E49C99000AB65B7 /* AppDelegate.m */; };
 		9739D1221F0DA84700DEEE45 /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9739D1211F0DA84700DEEE45 /* libstdc++.tbd */; };
 		9739D1231F0DA85500DEEE45 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9753BC931EFA091400593950 /* CoreImage.framework */; };
 		9739D1251F0DA85A00DEEE45 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9739D1241F0DA85A00DEEE45 /* AssetsLibrary.framework */; };
@@ -134,7 +135,6 @@
 		97FEE17B1EFA1F7900D3585E /* trans@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 97FEE1771EFA1F7900D3585E /* trans@2x.png */; };
 		97FEE17C1EFA1F7900D3585E /* trans@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 97FEE1781EFA1F7900D3585E /* trans@3x.png */; };
 		FFDAF4191E49C99000AB65B7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FFDAF4181E49C99000AB65B7 /* main.m */; };
-		FFDAF41C1E49C99000AB65B7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FFDAF41B1E49C99000AB65B7 /* AppDelegate.m */; };
 		FFDAF41F1E49C99000AB65B7 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FFDAF41E1E49C99000AB65B7 /* ViewController.m */; };
 		FFDAF4221E49C99000AB65B7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FFDAF4201E49C99000AB65B7 /* Main.storyboard */; };
 		FFDAF4271E49C99000AB65B7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FFDAF4251E49C99000AB65B7 /* LaunchScreen.storyboard */; };
@@ -281,6 +281,7 @@
 		9753BC951EFA091900593950 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		9753BC971EFA091F00593950 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		9753BC991EFA092300593950 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		979B07CC1F1D07130073A8D1 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/MainInterface.strings"; sourceTree = "<group>"; };
 		97ADCD301F1AFB2600C9D1C4 /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = opencv2.framework; sourceTree = "<group>"; };
 		97ADCD331F1AFCF000C9D1C4 /* libjpeg.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libjpeg.a; sourceTree = "<group>"; };
 		97ADFDC71EFA5B7500C5E461 /* SVIndefiniteAnimatedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVIndefiniteAnimatedView.h; sourceTree = "<group>"; };
@@ -844,6 +845,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
 			);
 			mainGroup = FFDAF40B1E49C99000AB65B7;
 			productRefGroup = FFDAF4151E49C99000AB65B7 /* Products */;
@@ -941,6 +943,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				970E8F561F1B5E7800E9297C /* AppDelegate.m in Sources */,
 				970344C41F126E7F00BFE0F1 /* IPDFCameraViewController.m in Sources */,
 				97ADFE401EFAB0E500C5E461 /* IQUITextFieldView+Additions.m in Sources */,
 				9753BC561EFA067900593950 /* AipImageView.m in Sources */,
@@ -969,7 +972,6 @@
 				9753BC511EFA067900593950 /* IOSpeScaleLayoutButton.m in Sources */,
 				FFDAF41F1E49C99000AB65B7 /* ViewController.m in Sources */,
 				97ADFE4A1EFAB0E500C5E461 /* IQToolbar.m in Sources */,
-				FFDAF41C1E49C99000AB65B7 /* AppDelegate.m in Sources */,
 				9753BC531EFA067900593950 /* IOSpeScaleLayoutLabel.m in Sources */,
 				9753BC541EFA067900593950 /* AipCameraPreviewView.m in Sources */,
 				97ADFE431EFAB0E500C5E461 /* IQUIWindow+Hierarchy.m in Sources */,
@@ -1005,6 +1007,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				9752153B1EF9F746009272B2 /* Base */,
+				979B07CC1F1D07130073A8D1 /* zh-Hans */,
 			);
 			name = MainInterface.storyboard;
 			sourceTree = "<group>";

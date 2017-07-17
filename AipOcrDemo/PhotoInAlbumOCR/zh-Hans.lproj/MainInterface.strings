@@ -1,0 +1,21 @@
+
+/* Class = "UINavigationItem"; title = "框选要识别的部分"; ObjectID = "3HJ-uW-3hn"; */
+"3HJ-uW-3hn.title" = "框选要识别的部分";
+
+/* Class = "UILabel"; text = "复制成功"; ObjectID = "DOg-3b-zvw"; */
+"DOg-3b-zvw.text" = "复制成功";
+
+/* Class = "UIButton"; normalTitle = "中/英▼"; ObjectID = "M6L-ZX-Pjg"; */
+"M6L-ZX-Pjg.normalTitle" = "中/英▼";
+
+/* Class = "UIViewController"; title = "Image"; ObjectID = "ObA-dk-sSI"; */
+"ObA-dk-sSI.title" = "Image";
+
+/* Class = "UIBarButtonItem"; title = "完成"; ObjectID = "WYi-yp-eM6"; */
+"WYi-yp-eM6.title" = "完成";
+
+/* Class = "UITextView"; text = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda."; ObjectID = "eyK-Vo-ffz"; */
+"eyK-Vo-ffz.text" = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.";
+
+/* Class = "UIBarButtonItem"; title = "复制"; ObjectID = "rIt-FS-zVs"; */
+"rIt-FS-zVs.title" = "复制";

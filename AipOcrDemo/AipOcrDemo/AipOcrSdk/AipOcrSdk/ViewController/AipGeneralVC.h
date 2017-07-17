@@ -44,6 +44,8 @@
 -(void)detectEdges;
 //- (void) closeWithCompletion:(void (^)(void))completion;
 
+-(void)takePhotoPage;
+-(void)selectPhotoPage;
 
 
 +(UIViewController *)ViewControllerWithDelegate:(id<AipOcrDelegate>)delegate;

@@ -222,6 +222,45 @@
    
    
 }
+
+-(void)takePhotoPage
+{
+    [self.navigationController popToRootViewControllerAnimated:NO];
+    [self reset];
+    if (self.presentedViewController) {
+        [self.presentedViewController dismissViewControllerAnimated:NO completion:^{
+            
+        }];
+    }
+    
+        
+}
+
+-(void)selectPhotoPage
+{
+    [self.navigationController popToRootViewControllerAnimated:NO];
+    [self reset];
+    
+    [SVProgressHUD showWithStatus:@"加载相册..."];
+    
+    if ([UIImagePickerController isSourceTypeAvailable:(UIImagePickerControllerSourceTypePhotoLibrary)]) {
+        
+        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+        picker.delegate = self;
+        picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        //model 一个 View
+        [self presentViewController:picker animated:YES completion:^{
+            
+            [SVProgressHUD dismiss];
+        }];
+    }
+    else {
+        NSAssert(NO, @" ");
+        [SVProgressHUD dismiss];
+    }
+}
+
+
 - (IBAction)gestureRec:(UITapGestureRecognizer *)sender {
     
     if (sender.state == UIGestureRecognizerStateRecognized)
@@ -1456,6 +1495,8 @@
         [picker dismissViewControllerAnimated:YES completion:nil];
     }
 }
+
+
 
 //UIAlertViewDelegate
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {

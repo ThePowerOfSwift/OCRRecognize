@@ -20,12 +20,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AipOcrDemo/AppDelegate.m"
-            timestampString = "520073530.615401"
+            timestampString = "521889747.036365"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "57"
             endingLineNumber = "57"
-            landmarkName = "-application:openURL:options:"
+            landmarkName = "-toWhichPage:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -36,12 +36,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AipOcrDemo/AipOcrSdk/AipOcrSdk/ViewController/AipGeneralVC.mm"
-            timestampString = "521633374.21973"
+            timestampString = "521889747.036623"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "430"
             endingLineNumber = "430"
-            landmarkName = "-initCropFrame"
+            landmarkName = "-languageBtnClicked:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -52,12 +52,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AipOcrDemo/AipOcrSdk/AipOcrSdk/ViewController/AipGeneralVC.mm"
-            timestampString = "521633374.221029"
+            timestampString = "521889747.036679"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "432"
             endingLineNumber = "432"
-            landmarkName = "-initCropFrame"
+            landmarkName = "-languageBtnClicked:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -68,12 +68,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AipOcrDemo/AipOcrSdk/AipOcrSdk/ViewController/AipGeneralVC.mm"
-            timestampString = "521633374.222054"
+            timestampString = "521889747.036728"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "328"
             endingLineNumber = "328"
-            landmarkName = "-viewWillDisappear:"
+            landmarkName = "-viewWillAppear:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -84,12 +84,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AipOcrDemo/AipOcrSdk/AipOcrSdk/ViewController/AipGeneralVC.mm"
-            timestampString = "521633374.223055"
+            timestampString = "521889747.036775"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "325"
             endingLineNumber = "325"
-            landmarkName = "-viewWillDisappear:"
+            landmarkName = "-viewWillAppear:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -100,12 +100,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AipOcrDemo/AipOcrSdk/AipOcrSdk/ViewController/AipGeneralVC.mm"
-            timestampString = "521633374.224038"
+            timestampString = "521889747.03682"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "326"
             endingLineNumber = "326"
-            landmarkName = "-viewWillDisappear:"
+            landmarkName = "-viewWillAppear:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -116,11 +116,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PhotoInAlbumOCR/ActionViewController.mm"
-            timestampString = "521861221.866214"
+            timestampString = "521995859.757069"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "658"
-            endingLineNumber = "658"
+            startingLineNumber = "713"
+            endingLineNumber = "713"
             landmarkName = "-uploadAndRecText"
             landmarkType = "7">
          </BreakpointContent>
@@ -132,11 +132,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PhotoInAlbumOCR/ActionViewController.mm"
-            timestampString = "521861221.866214"
+            timestampString = "521995859.757069"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "660"
-            endingLineNumber = "660"
+            startingLineNumber = "715"
+            endingLineNumber = "715"
             landmarkName = "-uploadAndRecText"
             landmarkType = "7">
          </BreakpointContent>
@@ -148,11 +148,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PhotoInAlbumOCR/ActionViewController.mm"
-            timestampString = "521861221.866214"
+            timestampString = "521995859.757069"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "667"
-            endingLineNumber = "667"
+            startingLineNumber = "722"
+            endingLineNumber = "722"
             landmarkName = "-uploadAndRecText"
             landmarkType = "7">
          </BreakpointContent>
@@ -174,11 +174,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PhotoInAlbumOCR/ActionViewController.mm"
-            timestampString = "521861221.866214"
+            timestampString = "521995859.757069"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1477"
-            endingLineNumber = "1477"
+            startingLineNumber = "1532"
+            endingLineNumber = "1532"
             landmarkName = "debugSquares( std::vector&lt;std::vector&lt;cv::Point&gt; &gt; squares, cv::Mat image )"
             landmarkType = "9">
          </BreakpointContent>
@@ -190,11 +190,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AipOcrDemo/AipOcrSdk/AipOcrSdk/ViewController/AipGeneralVC.mm"
-            timestampString = "521633374.225081"
+            timestampString = "521992328.710674"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1609"
-            endingLineNumber = "1609"
+            startingLineNumber = "1611"
+            endingLineNumber = "1611"
             landmarkName = "-detectEdges"
             landmarkType = "7">
          </BreakpointContent>
@@ -206,11 +206,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AipOcrDemo/AipOcrSdk/AipOcrSdk/ViewController/AipGeneralVC.mm"
-            timestampString = "521633374.225984"
+            timestampString = "521992328.710674"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1615"
-            endingLineNumber = "1615"
+            startingLineNumber = "1617"
+            endingLineNumber = "1617"
             landmarkName = "-detectEdges"
             landmarkType = "7">
          </BreakpointContent>
@@ -222,11 +222,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PhotoInAlbumOCR/ActionViewController.mm"
-            timestampString = "521861221.866214"
+            timestampString = "521995859.757069"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1322"
-            endingLineNumber = "1322"
+            startingLineNumber = "1377"
+            endingLineNumber = "1377"
             landmarkName = "-detectEdges"
             landmarkType = "7">
          </BreakpointContent>
@@ -238,11 +238,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "PhotoInAlbumOCR/ActionViewController.mm"
-            timestampString = "521861221.866214"
+            timestampString = "521995859.757069"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1328"
-            endingLineNumber = "1328"
+            startingLineNumber = "1383"
+            endingLineNumber = "1383"
             landmarkName = "-detectEdges"
             landmarkType = "7">
          </BreakpointContent>
@@ -286,13 +286,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AipOcrDemo/AipOcrSdk/AipOcrSdk/ViewController/AipGeneralVC.mm"
-            timestampString = "521633374.226924"
+            timestampString = "521992328.710674"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1816"
-            endingLineNumber = "1816"
-            landmarkName = "-cropAction"
-            landmarkType = "7">
+            startingLineNumber = "1818"
+            endingLineNumber = "1818"
+            landmarkName = "debugSquares( std::vector&lt;std::vector&lt;cv::Point&gt; &gt; squares, cv::Mat image )"
+            landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -302,13 +302,45 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AipOcrDemo/AipOcrSdk/AipOcrSdk/ViewController/AipGeneralVC.mm"
-            timestampString = "521633374.227822"
+            timestampString = "521992328.710674"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1818"
-            endingLineNumber = "1818"
-            landmarkName = "-cropAction"
-            landmarkType = "7">
+            startingLineNumber = "1820"
+            endingLineNumber = "1820"
+            landmarkName = "debugSquares( std::vector&lt;std::vector&lt;cv::Point&gt; &gt; squares, cv::Mat image )"
+            landmarkType = "9">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "debugSquares(std::__1::vector&lt;std::__1::vector&lt;cv::Point_&lt;int&gt;, std::__1::allocator&lt;cv::Point_&lt;int&gt; &gt; &gt;, std::__1::allocator&lt;std::__1::vector&lt;cv::Point_&lt;int&gt;, std::__1::allocator&lt;cv::Point_&lt;int&gt; &gt; &gt; &gt; &gt;, cv::Mat)"
+                  moduleName = "AipOcrDemo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Tolecen/Projects/OCRRecognize/AipOcrDemo/AipOcrDemo/AipOcrSdk/AipOcrSdk/ViewController/AipGeneralVC.mm"
+                  timestampString = "521992247.549746"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1823"
+                  endingLineNumber = "1823"
+                  offsetFromSymbolStart = "2142">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "debugSquares(std::__1::vector&lt;std::__1::vector&lt;cv::Point_&lt;int&gt;, std::__1::allocator&lt;cv::Point_&lt;int&gt; &gt; &gt;, std::__1::allocator&lt;std::__1::vector&lt;cv::Point_&lt;int&gt;, std::__1::allocator&lt;cv::Point_&lt;int&gt; &gt; &gt; &gt; &gt;, cv::Mat)"
+                  moduleName = "AipOcrDemo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Tolecen/Projects/OCRRecognize/AipOcrDemo/AipOcrDemo/AipOcrSdk/AipOcrSdk/ViewController/AipGeneralVC.mm"
+                  timestampString = "521992247.551894"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1823"
+                  endingLineNumber = "1823"
+                  offsetFromSymbolStart = "2247">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -366,12 +398,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AipOcrDemo/AipOcrSdk/AipOcrSdk/ViewController/AipGeneralVC.mm"
-            timestampString = "521633374.228765"
+            timestampString = "521889747.037193"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1442"
             endingLineNumber = "1442"
-            landmarkName = "-imagePickerController:didFinishPickingMediaWithInfo:"
+            landmarkName = "-deviceOrientationCanChange"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -382,7 +414,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AipOcrDemo/AipOcrSdk/AipOcrSdk/ViewController/AipGeneralVC.mm"
-            timestampString = "521633374.229682"
+            timestampString = "521889747.037239"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "170"

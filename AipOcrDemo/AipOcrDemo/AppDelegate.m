@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "UMMobClick/MobClick.h"
+#import "AipGeneralVC.h"
 @interface AppDelegate ()
 
 @end
@@ -21,9 +22,46 @@
     
     [MobClick startWithConfigure:UMConfigInstance];//配置以上参数后调用此方法初始化SDK！
     // Override point for customization after application launch.
+    
+//    [self configShortCutItems];
     return YES;
 }
 
+- (void)configShortCutItems {
+    NSMutableArray *shortcutItems = [NSMutableArray array];
+    UIApplicationShortcutItem *item1 = [[UIApplicationShortcutItem alloc] initWithType:@"1" localizedTitle:@"相机拍照识别" localizedSubtitle:nil icon:[UIApplicationShortcutIcon iconWithType:UIApplicationShortcutIconTypeSearch] userInfo:nil];
+    UIApplicationShortcutItem *item2 = [[UIApplicationShortcutItem alloc] initWithType:@"2" localizedTitle:@"相册图片识别" localizedSubtitle:nil icon:[UIApplicationShortcutIcon iconWithType:UIApplicationShortcutIconTypeFavorite] userInfo:nil];
+
+    if (item1&&item2) {
+        [shortcutItems addObject:item1];
+        [shortcutItems addObject:item2];
+        
+        [[UIApplication sharedApplication] setShortcutItems:shortcutItems];
+    }
+    
+}
+// 处理shortcutItem
+- (void)application:(UIApplication *)application performActionForShortcutItem:(UIApplicationShortcutItem *)shortcutItem completionHandler:(void (^)(BOOL))completionHandler {
+    
+    //    [[NSNotificationCenter defaultCenter] postNotificationName:@"SelectVC" object:[NSNumber numberWithInteger:shortcutItem.type.integerValue]];
+    [self toWhichPage:shortcutItem.type.integerValue];
+}
+
+-(void)toWhichPage:(NSInteger)type
+{
+
+        
+    UIStoryboard *mainSB = [UIStoryboard storyboardWithName:@"AipOcrSdk" bundle:[NSBundle bundleForClass:[self class]]];
+    
+    AipGeneralVC *vc = [mainSB instantiateViewControllerWithIdentifier:@"AipGeneralVC"];
+        
+    if (type==1) {
+        [vc takePhotoPage];
+    }
+    else if (type==2){
+        [vc selectPhotoPage];
+    }
+}
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
