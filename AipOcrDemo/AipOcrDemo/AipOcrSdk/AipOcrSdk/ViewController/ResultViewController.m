@@ -8,6 +8,7 @@
 
 #import "ResultViewController.h"
 #import "SVProgressHUD.h"
+#define MyLocal(x, ...) NSLocalizedString(x, nil)
 @interface ResultViewController ()<UIActionSheetDelegate>
 @property (nonatomic,strong)UITextView * textV;
 @end
@@ -17,11 +18,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = @"识别结果";
+    self.title = MyLocal(@"result",nil);
     
     UIButton *syncBtn = [UIButton buttonWithType:UIButtonTypeCustom];
 //    [syncBtn setImage:[UIImage imageNamed:@"copyText.png"] forState:UIControlStateNormal];
-    [syncBtn setTitle:@"复制" forState:UIControlStateNormal];
+    [syncBtn setTitle:MyLocal(@"copy",nil) forState:UIControlStateNormal];
     [syncBtn setTitleColor:[UIColor colorWithRed:0 green:122/255.f blue:1 alpha:1] forState:UIControlStateNormal];
     [syncBtn sizeToFit];
     syncBtn.frame = CGRectMake(0, 0, CGRectGetWidth(syncBtn.frame), CGRectGetHeight(syncBtn.frame));
@@ -68,7 +69,7 @@
     pasteboard.string=self.textV.text;
     
     [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
-    [SVProgressHUD showSuccessWithStatus:@"复制成功"];
+    [SVProgressHUD showSuccessWithStatus:MyLocal(@"copy_success",nil)];
     
 //    [self showMoreAction];
 }
@@ -80,14 +81,14 @@
 //    [actionSheet showInView:self.view];
     
     
-    UIAlertController * alertController = [UIAlertController alertControllerWithTitle: @"复制并执行操作"                                                                             message: nil                                                                       preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertController * alertController = [UIAlertController alertControllerWithTitle: MyLocal(@"copy_and_open",nil)                                                                             message: nil                                                                       preferredStyle:UIAlertControllerStyleActionSheet];
     
-    [alertController addAction: [UIAlertAction actionWithTitle: @"仅复制" style: UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+    [alertController addAction: [UIAlertAction actionWithTitle: MyLocal(@"just_copy",nil) style: UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
         [self copyText];
         }
     ]];
     if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"youdaonote://"]]){
-        [alertController addAction: [UIAlertAction actionWithTitle: @"复制并打开有道云笔记" style: UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        [alertController addAction: [UIAlertAction actionWithTitle: MyLocal(@"copy_open_youdao",nil) style: UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
             if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"youdaonote://"]]) {
                 [self copyText];
                 [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"youdaonote://"]];
@@ -100,7 +101,7 @@
         ]];
     }
     if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"evernote://"]]) {
-        [alertController addAction: [UIAlertAction actionWithTitle: @"复制并打开印象笔记" style: UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        [alertController addAction: [UIAlertAction actionWithTitle: MyLocal(@"copy_open_evernote",nil) style: UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
             if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"evernote://"]]) {
                 [self copyText];
                 [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"evernote://"]];
@@ -114,7 +115,7 @@
     }
     
     if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"wechat://"]]) {
-        [alertController addAction: [UIAlertAction actionWithTitle: @"复制并打开微信" style: UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        [alertController addAction: [UIAlertAction actionWithTitle: MyLocal(@"copy_open_weibo",nil) style: UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
             if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"wechat://"]]) {
                 [self copyText];
                 [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"wechat://"]];
@@ -128,7 +129,7 @@
     }
     
     if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"weibo://"]]) {
-        [alertController addAction: [UIAlertAction actionWithTitle: @"复制并打开微博" style: UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        [alertController addAction: [UIAlertAction actionWithTitle: MyLocal(@"copy_open_wechat",nil) style: UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
             if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"weibo://"]]) {
                 [self copyText];
                 [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"weibo://"]];

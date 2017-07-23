@@ -113,12 +113,20 @@
     NSError *error = nil;
     AVCaptureDeviceInput* input = [AVCaptureDeviceInput deviceInputWithDevice:device error:&error];
     session.sessionPreset = AVCaptureSessionPresetPhoto;
-    [session addInput:input];
+    
+    if (input) {
+        [session addInput:input];
+    }
+    else
+    {
+        
+    }
     
     AVCaptureVideoDataOutput *dataOutput = [[AVCaptureVideoDataOutput alloc] init];
     [dataOutput setAlwaysDiscardsLateVideoFrames:YES];
     [dataOutput setVideoSettings:@{(id)kCVPixelBufferPixelFormatTypeKey:@(kCVPixelFormatType_32BGRA)}];
     [dataOutput setSampleBufferDelegate:self queue:_captureQueue];
+    
     [session addOutput:dataOutput];
     
     self.stillImageOutput = [[AVCaptureStillImageOutput alloc] init];

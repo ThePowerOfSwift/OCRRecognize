@@ -1,0 +1,33 @@
+
+/* Class = "UIButton"; accessibilityLabel = "退出"; ObjectID = "3uc-vA-TtU"; */
+"3uc-vA-TtU.accessibilityLabel" = "退出";
+
+/* Class = "UIButton"; accessibilityLabel = "闪光灯"; ObjectID = "FYu-ia-exw"; */
+"FYu-ia-exw.accessibilityLabel" = "闪光灯";
+
+/* Class = "UIButton"; accessibilityLabel = "相册"; ObjectID = "OAr-f2-xk3"; */
+"OAr-f2-xk3.accessibilityLabel" = "相册";
+
+/* Class = "UIButton"; accessibilityLabel = "旋转"; ObjectID = "TbB-zo-xcv"; */
+"TbB-zo-xcv.accessibilityLabel" = "旋转";
+
+/* Class = "UIButton"; accessibilityLabel = "识别"; ObjectID = "geO-4o-qUK"; */
+"geO-4o-qUK.accessibilityLabel" = "识别";
+
+/* Class = "UILabel"; text = "拍摄要识别的区域"; ObjectID = "npV-Nn-2eB"; */
+"npV-Nn-2eB.text" = "拍摄要识别的区域";
+
+/* Class = "UIButton"; accessibilityLabel = "设置"; ObjectID = "qyH-cS-XJj"; */
+"qyH-cS-XJj.accessibilityLabel" = "设置";
+
+/* Class = "UIButton"; normalTitle = "中/英▼"; ObjectID = "ryS-BH-RZB"; */
+"ryS-BH-RZB.normalTitle" = "中/英▼";
+
+/* Class = "UILabel"; text = "对齐身份正面"; ObjectID = "sLl-2e-2zy"; */
+"sLl-2e-2zy.text" = "对齐身份正面";
+
+/* Class = "UIButton"; accessibilityLabel = "拍照"; ObjectID = "x4H-6Q-TiY"; */
+"x4H-6Q-TiY.accessibilityLabel" = "拍照";
+
+/* Class = "UIButton"; accessibilityLabel = "自动识别边界"; ObjectID = "zVm-RZ-CCH"; */
+"zVm-RZ-CCH.accessibilityLabel" = "自动识别边界";

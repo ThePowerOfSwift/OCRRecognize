@@ -41,6 +41,7 @@
 #define V_W(v)      v.frame.size.width
 
 
+
 @interface MagnifierView2 : UIView {
     //    CGPoint touchPoint;
 }
@@ -137,12 +138,12 @@
 
 +(NSString *)languageName:(NSString *)key
 {
-    NSDictionary * dict = @{@"CHN_ENG":@"中/英",
-                            @"FRE":@"法语",
-                            @"GER":@"德语",
-                            @"SPA":@"西班牙语",
-                            @"RUS":@"俄语",
-                            @"JAP":@"日语",
+    NSDictionary * dict = @{@"CHN_ENG":MyLocal(@"language_type_CH_EN",nil),
+                            @"FRE":MyLocal(@"language_type_FRE",nil),
+                            @"GER":MyLocal(@"language_type_GER",nil),
+                            @"SPA":MyLocal(@"language_type_SPA",nil),
+                            @"RUS":MyLocal(@"language_type_RUS",nil),
+                            @"JAP":MyLocal(@"language_type_JAP",nil),
                             };
     return dict[key];
 }
@@ -175,7 +176,7 @@
     
 //    [self prefersStatusBarHidden];
     
-    self.title = @"框选要识别的部分";
+    self.title = MyLocal(@"select_text",nil);
     
     
     
@@ -215,7 +216,7 @@
     toolBarV.backgroundColor = [UIColor colorWithHexString:@"e5e7e8"];
     UIButton * btn = [UIButton buttonWithType:UIButtonTypeCustom];
     [btn setFrame:CGRectMake(self.view.frame.size.width-80, 0, 80, 40)];
-    [btn setTitle:@"完成" forState:UIControlStateNormal];
+    [btn setTitle:MyLocal(@"done",nil) forState:UIControlStateNormal];
     [toolBarV addSubview:btn];
     [btn setTitleColor:[UIColor colorWithHexString:@"1e90f1"] forState:UIControlStateNormal];
     self.textv.inputAccessoryView = toolBarV;
@@ -353,37 +354,37 @@
 }
 - (IBAction)languageBtnClicked:(UIButton *)sender {
     __weak __typeof(self) weakSelf = self;
-    PopoverAction *action1 = [PopoverAction actionWithTitle:@"中/英" handler:^(PopoverAction *action) {
+    PopoverAction *action1 = [PopoverAction actionWithTitle:MyLocal(@"language_type_CH_EN",nil) handler:^(PopoverAction *action) {
         weakSelf.recLanguage = @"CHN_ENG";
         [self.languageBtn setTitle:[[ActionViewController languageName:weakSelf.recLanguage] stringByAppendingString:@"▼"] forState:UIControlStateNormal];
         [self saveCurrentLanToUserdeafult];
         // 该Block不会导致内存泄露, Block内代码无需刻意去设置弱引用.
     }];
-    PopoverAction *action2 = [PopoverAction actionWithTitle:@"法语" handler:^(PopoverAction *action) {
+    PopoverAction *action2 = [PopoverAction actionWithTitle:MyLocal(@"language_type_FRE",nil) handler:^(PopoverAction *action) {
         // 该Block不会导致内存泄露, Block内代码无需刻意去设置弱引用.
         weakSelf.recLanguage = @"FRE";
         [self.languageBtn setTitle:[[ActionViewController languageName:weakSelf.recLanguage] stringByAppendingString:@"▼"] forState:UIControlStateNormal];
         [self saveCurrentLanToUserdeafult];
     }];
-    PopoverAction *action3 = [PopoverAction actionWithTitle:@"德语" handler:^(PopoverAction *action) {
+    PopoverAction *action3 = [PopoverAction actionWithTitle:MyLocal(@"language_type_GER",nil) handler:^(PopoverAction *action) {
         // 该Block不会导致内存泄露, Block内代码无需刻意去设置弱引用.
         weakSelf.recLanguage = @"GER";
         [self.languageBtn setTitle:[[ActionViewController languageName:weakSelf.recLanguage] stringByAppendingString:@"▼"] forState:UIControlStateNormal];
         [self saveCurrentLanToUserdeafult];
     }];
-    PopoverAction *action4 = [PopoverAction actionWithTitle:@"西班牙语" handler:^(PopoverAction *action) {
+    PopoverAction *action4 = [PopoverAction actionWithTitle:MyLocal(@"language_type_SPA",nil) handler:^(PopoverAction *action) {
         // 该Block不会导致内存泄露, Block内代码无需刻意去设置弱引用.
         weakSelf.recLanguage = @"SPA";
         [self.languageBtn setTitle:[[ActionViewController languageName:weakSelf.recLanguage] stringByAppendingString:@"▼"] forState:UIControlStateNormal];
         [self saveCurrentLanToUserdeafult];
     }];
-    PopoverAction *action5 = [PopoverAction actionWithTitle:@"俄语" handler:^(PopoverAction *action) {
+    PopoverAction *action5 = [PopoverAction actionWithTitle:MyLocal(@"language_type_RUS",nil) handler:^(PopoverAction *action) {
         // 该Block不会导致内存泄露, Block内代码无需刻意去设置弱引用.
         weakSelf.recLanguage = @"RUS";
         [self.languageBtn setTitle:[[ActionViewController languageName:weakSelf.recLanguage] stringByAppendingString:@"▼"] forState:UIControlStateNormal];
         [self saveCurrentLanToUserdeafult];
     }];
-    PopoverAction *action6 = [PopoverAction actionWithTitle:@"日语" handler:^(PopoverAction *action) {
+    PopoverAction *action6 = [PopoverAction actionWithTitle:MyLocal(@"language_type_JAP",nil) handler:^(PopoverAction *action) {
         // 该Block不会导致内存泄露, Block内代码无需刻意去设置弱引用.
         weakSelf.recLanguage = @"JAP";
         [self.languageBtn setTitle:[[ActionViewController languageName:weakSelf.recLanguage] stringByAppendingString:@"▼"] forState:UIControlStateNormal];
@@ -724,10 +725,10 @@
             [self.loadingView removeFromSuperview];
             [self.indicator removeFromSuperview];
             
-            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示"
-                                                                                     message:[NSString stringWithFormat:@"识别失败 %li %@",[err code],[err localizedDescription]]
+            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:MyLocal(@"messge_title",nil)
+                                                                                     message:[NSString stringWithFormat:@"%@ %li %@",MyLocal(@"rec_fail",nil),[err code],[err localizedDescription]]
                                                                               preferredStyle:UIAlertControllerStyleAlert];
-            UIAlertAction *doneAlertAction = [UIAlertAction actionWithTitle:@"知道了" style:UIAlertActionStyleDefault handler:^(UIAlertAction *  action) {
+            UIAlertAction *doneAlertAction = [UIAlertAction actionWithTitle:MyLocal(@"ok",nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *  action) {
                 [alertController dismissViewControllerAnimated:YES completion:nil];
             }];
             [alertController addAction:doneAlertAction];
@@ -793,10 +794,10 @@
     NSMutableString *message = [NSMutableString string];
     if(result[@"words_result"]){
         if ([result[@"words_result"] count]==0) {
-            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示"
-                                                                                     message:@"没有识别出文字哦"
+            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:MyLocal(@"messge_title",nil)
+                                                                                     message:MyLocal(@"no_text",nil)
                                                                               preferredStyle:UIAlertControllerStyleAlert];
-            UIAlertAction *doneAlertAction = [UIAlertAction actionWithTitle:@"知道了" style:UIAlertActionStyleDefault handler:^(UIAlertAction *  action) {
+            UIAlertAction *doneAlertAction = [UIAlertAction actionWithTitle:MyLocal(@"ok",nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *  action) {
                 [alertController dismissViewControllerAnimated:YES completion:nil];
             }];
             [alertController addAction:doneAlertAction];
@@ -1669,10 +1670,10 @@ cv::Mat debugSquares( std::vector<std::vector<cv::Point> > squares, cv::Mat imag
         
         _validCrop = NO;
 
-        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示"
-                                                                                 message:@"无效的选区"
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:MyLocal(@"messge_title",nil)
+                                                                                 message:MyLocal(@"invalid_rect",nil)
                                                                           preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *doneAlertAction = [UIAlertAction actionWithTitle:@"知道了" style:UIAlertActionStyleDefault handler:^(UIAlertAction *  action) {
+        UIAlertAction *doneAlertAction = [UIAlertAction actionWithTitle:MyLocal(@"ok",nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *  action) {
             [alertController dismissViewControllerAnimated:YES completion:nil];
         }];
         [alertController addAction:doneAlertAction];

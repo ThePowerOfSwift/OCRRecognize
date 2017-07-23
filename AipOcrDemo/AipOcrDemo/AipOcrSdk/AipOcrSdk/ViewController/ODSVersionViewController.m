@@ -12,6 +12,9 @@
 #import "sys/utsname.h"
 #import <SafariServices/SafariServices.h>
 #define NaviH  64.f
+
+#define MyLocal(x, ...) NSLocalizedString(x, nil)
+
 @interface ODSVersionViewController ()<MFMailComposeViewControllerDelegate>
 {
 //    UIImageView * bgImgV;
@@ -25,7 +28,7 @@
     self.view.backgroundColor = [UIColor whiteColor];
 
     
-    self.title = @"版本信息";
+    self.title = MyLocal(@"feedback",ni);
     
 
     
@@ -37,7 +40,7 @@
     
 
     
-    NSString *logStr = [NSString stringWithFormat:@"%@ %@",CurrentAPPName,CurrentVersion];
+    NSString *logStr = [NSString stringWithFormat:@"%@ %@",MyLocal(@"appname",nil),CurrentVersion];
     UILabel *logLable = [[UILabel alloc] initWithFrame:CGRectMake((ODSScreenWidth-160)/2.0f, 40+80+30+NaviH, 160, 30)];
     logLable.textColor = [UIColor lightGrayColor];
     logLable.font = [UIFont systemFontOfSize:17];
@@ -63,7 +66,7 @@
     phoneLable.textColor = [UIColor lightGrayColor];
     phoneLable.font = [UIFont systemFontOfSize:15];
     phoneLable.backgroundColor = [UIColor clearColor];
-    phoneLable.text = @"意见反馈";
+    phoneLable.text = MyLocal(@"feedback",ni);
     [self.view addSubview:phoneLable];
     
     
@@ -71,7 +74,7 @@
     [phoneNumBtn setTitleColor:[UIColor colorWithRed:93/255.f green:159/255.f blue:60/255.f alpha:1] forState:UIControlStateNormal];
     phoneNumBtn.titleLabel.font= [UIFont systemFontOfSize:15];
     phoneNumBtn.titleLabel.adjustsFontSizeToFitWidth = YES;
-    [phoneNumBtn setTitle:@"点击这里反馈意见" forState:UIControlStateNormal];
+    [phoneNumBtn setTitle:MyLocal(@"clickfeedback",ni) forState:UIControlStateNormal];
     [phoneNumBtn addTarget:self action:@selector(suggestionVC) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:phoneNumBtn];
     
@@ -89,7 +92,7 @@
     [kaiyuanBtn setBackgroundColor:[UIColor clearColor]];
     [kaiyuanBtn.titleLabel setFont:[UIFont systemFontOfSize:15]];
     [self.view addSubview:kaiyuanBtn];
-    [kaiyuanBtn setTitle:@"开源组件" forState:UIControlStateNormal];
+    [kaiyuanBtn setTitle:MyLocal(@"opensource",nil) forState:UIControlStateNormal];
     [kaiyuanBtn setTitleColor:[UIColor colorWithRed:0.027 green:0.58 blue:0.757 alpha:0.8] forState:UIControlStateNormal];
     [kaiyuanBtn addTarget:self action:@selector(toKaiyuanPage) forControlEvents:UIControlEventTouchUpInside];
     
@@ -101,7 +104,7 @@
     [self.view addSubview:adBtn];
     adBtn.layer.cornerRadius = 5;
     adBtn.layer.masksToBounds = YES;
-    [adBtn setTitle:@"微博反馈" forState:UIControlStateNormal];
+    [adBtn setTitle:MyLocal(@"followweibo",nil) forState:UIControlStateNormal];
     [adBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [adBtn addTarget:self action:@selector(focusAuthorWeibo) forControlEvents:UIControlEventTouchUpInside];
 

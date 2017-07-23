@@ -1,0 +1,59 @@
+/* 
+  Localizable.strings
+  AipOcrDemo
+
+  Created by Tolecen on 2017/7/23.
+  Copyright © 2017年 Tolecen. All rights reserved.
+*/
+
+"language_type_CH_EN" = "CN/EN";
+"language_type_FRE" = "French";
+"language_type_GER" = "German";
+"language_type_SPA" = "Spanish";
+"language_type_RUS" = "Russian";
+"language_type_JAP" = "Japanese";
+
+
+"select_text" = "select text area";
+"done" = "Done";
+
+"messge_title" = "Message";
+"rec_fail" = "Recognize failed";
+"no_text" = "No text recognized";
+"invalid_rect" = "Invalid area";
+
+"ok" = "OK";
+
+"loading_album" = "Loading Images...";
+
+"edge_detect_enabled" = "Enabled edge detect";
+"edge_detect_disabled" = "Disabled edge detect";
+
+"take_photo" = "Take photo";
+
+"crop_image" = "Crop image...";
+
+"recognizing" = "recognizing...";
+
+"result" = "Result";
+
+"copy" = "Copy";
+"copy_success" = "Copy Success";
+"copy_and_open" = "Copy and Open";
+"just_copy" = "Just copy";
+"copy_open_youdao" = "Copy and open Youdaonote";
+"copy_open_evernote" = "Copy and open Evernote";
+"copy_open_weibo" = "Copy and open Weibo";
+"copy_open_wechat" = "Copy and open Wechat";
+
+
+"setting" = "Setting";
+"about" = "About ScanScan";
+"feedback" = "Feedback";
+"givestars" = "Give me stars";
+"clickfeedback" = "Click here to feedback";
+"opensource" = "open resources";
+"followweibo" = "Follow Weibo";
+
+
+"appname" = "ScanScan";

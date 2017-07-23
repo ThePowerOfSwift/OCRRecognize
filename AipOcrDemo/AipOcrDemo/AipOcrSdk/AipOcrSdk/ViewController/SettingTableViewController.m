@@ -9,6 +9,7 @@
 #import "SettingTableViewController.h"
 #import "ODSVersionViewController.h"
 #import <SafariServices/SafariServices.h>
+#define MyLocal(x, ...) NSLocalizedString(x, nil)
 @interface SettingTableViewController ()
 
 @end
@@ -18,7 +19,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = @"设置";
+    self.title = MyLocal(@"setting",nil);
     
    
     
@@ -66,14 +67,14 @@
 
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     if (indexPath.section==0) {
-        cell.textLabel.text = @"关于白描";
+        cell.textLabel.text = MyLocal(@"about",nil);
     }
     else if (indexPath.section==1){
-        cell.textLabel.text = @"意见反馈";
+        cell.textLabel.text = MyLocal(@"feedback",nil);
     }
     else
     {
-        cell.textLabel.text = @"好评鼓励";
+        cell.textLabel.text = MyLocal(@"givestars",nil);
     }
     // Configure the cell...
     

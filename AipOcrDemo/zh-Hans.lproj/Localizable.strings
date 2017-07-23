@@ -1,0 +1,58 @@
+/*
+ Localizable.strings
+ AipOcrDemo
+ 
+ Created by Tolecen on 2017/7/23.
+ Copyright © 2017年 Tolecen. All rights reserved.
+*/
+
+"language_type_CH_EN" = "中/英";
+"language_type_FRE" = "法语";
+"language_type_GER" = "德语";
+"language_type_SPA" = "西班牙语";
+"language_type_RUS" = "俄语";
+"language_type_JAP" = "日语";
+
+
+"select_text" = "框选要识别的部分";
+"done" = "完成";
+
+"messge_title" = "提示";
+"rec_fail" = "识别失败";
+"no_text" = "没有识别出文字哦";
+"invalid_rect" = "无效的选区";
+
+"ok" = "知道了";
+
+"loading_album" = "加载相册...";
+
+"edge_detect_enabled" = "边缘检测打开";
+"edge_detect_disabled" = "边缘检测关闭";
+
+"take_photo" = "拍摄要识别的区域";
+
+"crop_image" = "裁剪图片...";
+
+"recognizing" = "识别中...";
+
+"result" = "识别结果";
+
+"copy" = "复制";
+"copy_success" = "复制成功";
+"copy_and_open" = "复制并执行操作";
+"just_copy" = "仅复制";
+"copy_open_youdao" = "复制并打开有道云笔记";
+"copy_open_evernote" = "复制并打开印象笔记";
+"copy_open_weibo" = "复制并打开微博";
+"copy_open_wechat" = "复制并打开微信";
+
+"setting" = "设置";
+"about" = "关于白描";
+"feedback" = "意见反馈";
+"givestars" = "好评鼓励";
+"clickfeedback" = "点击这里反馈意见";
+"opensource" = "开源组件";
+"followweibo" = "微博反馈";
+
+"appname" = "白描";
+

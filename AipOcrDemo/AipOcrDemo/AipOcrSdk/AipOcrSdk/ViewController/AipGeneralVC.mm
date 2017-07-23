@@ -150,12 +150,12 @@
 
 +(NSString *)languageName:(NSString *)key
 {
-    NSDictionary * dict = @{@"CHN_ENG":@"中/英",
-                            @"FRE":@"法语",
-                            @"GER":@"德语",
-                            @"SPA":@"西班牙语",
-                            @"RUS":@"俄语",
-                            @"JAP":@"日语",
+    NSDictionary * dict = @{@"CHN_ENG":MyLocal(@"language_type_CH_EN",nil),
+                            @"FRE":MyLocal(@"language_type_FRE",nil),
+                            @"GER":MyLocal(@"language_type_GER",nil),
+                            @"SPA":MyLocal(@"language_type_SPA",nil),
+                            @"RUS":MyLocal(@"language_type_RUS",nil),
+                            @"JAP":MyLocal(@"language_type_JAP",nil),
                             };
     return dict[key];
 }
@@ -241,7 +241,7 @@
     [self.navigationController popToRootViewControllerAnimated:NO];
     [self reset];
     
-    [SVProgressHUD showWithStatus:@"加载相册..."];
+    [SVProgressHUD showWithStatus:MyLocal(@"loading_album",nil)];
     
     if ([UIImagePickerController isSourceTypeAvailable:(UIImagePickerControllerSourceTypePhotoLibrary)]) {
         
@@ -406,44 +406,44 @@
 - (IBAction)citieClicked:(UIButton *)sender {
     BOOL enable = !self.cameraViewController.isBorderDetectionEnabled;
     [sender setBackgroundImage:[UIImage imageNamed:enable?@"citie_sel":@"citie"] forState:UIControlStateNormal];
-    [self showDedectBtnWithTitle:enable?@"边缘检测打开":@"边缘检测关闭"];
+    [self showDedectBtnWithTitle:enable?MyLocal(@"edge_detect_enabled",nil):MyLocal(@"edge_detect_disabled",nil)];
     
     self.cameraViewController.enableBorderDetection = enable;
 }
 
 - (IBAction)languageBtnClicked:(id)sender {
     __weak __typeof(self) weakSelf = self;
-    PopoverAction *action1 = [PopoverAction actionWithTitle:@"中/英" handler:^(PopoverAction *action) {
+    PopoverAction *action1 = [PopoverAction actionWithTitle:MyLocal(@"language_type_CH_EN",nil) handler:^(PopoverAction *action) {
         weakSelf.recLanguage = @"CHN_ENG";
         [self.languageBtn setTitle:[[AipGeneralVC languageName:weakSelf.recLanguage] stringByAppendingString:@"▼"] forState:UIControlStateNormal];
         [self saveCurrentLanToUserdeafult];
         // 该Block不会导致内存泄露, Block内代码无需刻意去设置弱引用.
     }];
-    PopoverAction *action2 = [PopoverAction actionWithTitle:@"法语" handler:^(PopoverAction *action) {
+    PopoverAction *action2 = [PopoverAction actionWithTitle:MyLocal(@"language_type_FRE",nil) handler:^(PopoverAction *action) {
         // 该Block不会导致内存泄露, Block内代码无需刻意去设置弱引用.
         weakSelf.recLanguage = @"FRE";
         [self.languageBtn setTitle:[[AipGeneralVC languageName:weakSelf.recLanguage] stringByAppendingString:@"▼"] forState:UIControlStateNormal];
         [self saveCurrentLanToUserdeafult];
     }];
-    PopoverAction *action3 = [PopoverAction actionWithTitle:@"德语" handler:^(PopoverAction *action) {
+    PopoverAction *action3 = [PopoverAction actionWithTitle:MyLocal(@"language_type_GER",nil) handler:^(PopoverAction *action) {
         // 该Block不会导致内存泄露, Block内代码无需刻意去设置弱引用.
         weakSelf.recLanguage = @"GER";
         [self.languageBtn setTitle:[[AipGeneralVC languageName:weakSelf.recLanguage] stringByAppendingString:@"▼"] forState:UIControlStateNormal];
         [self saveCurrentLanToUserdeafult];
     }];
-    PopoverAction *action4 = [PopoverAction actionWithTitle:@"西班牙语" handler:^(PopoverAction *action) {
+    PopoverAction *action4 = [PopoverAction actionWithTitle:MyLocal(@"language_type_SPA",nil) handler:^(PopoverAction *action) {
         // 该Block不会导致内存泄露, Block内代码无需刻意去设置弱引用.
         weakSelf.recLanguage = @"SPA";
         [self.languageBtn setTitle:[[AipGeneralVC languageName:weakSelf.recLanguage] stringByAppendingString:@"▼"] forState:UIControlStateNormal];
         [self saveCurrentLanToUserdeafult];
     }];
-    PopoverAction *action5 = [PopoverAction actionWithTitle:@"俄语" handler:^(PopoverAction *action) {
+    PopoverAction *action5 = [PopoverAction actionWithTitle:MyLocal(@"language_type_RUS",nil) handler:^(PopoverAction *action) {
         // 该Block不会导致内存泄露, Block内代码无需刻意去设置弱引用.
         weakSelf.recLanguage = @"RUS";
         [self.languageBtn setTitle:[[AipGeneralVC languageName:weakSelf.recLanguage] stringByAppendingString:@"▼"] forState:UIControlStateNormal];
         [self saveCurrentLanToUserdeafult];
     }];
-    PopoverAction *action6 = [PopoverAction actionWithTitle:@"日语" handler:^(PopoverAction *action) {
+    PopoverAction *action6 = [PopoverAction actionWithTitle:MyLocal(@"language_type_JAP",nil) handler:^(PopoverAction *action) {
         // 该Block不会导致内存泄露, Block内代码无需刻意去设置弱引用.
         weakSelf.recLanguage = @"JAP";
         [self.languageBtn setTitle:[[AipGeneralVC languageName:weakSelf.recLanguage] stringByAppendingString:@"▼"] forState:UIControlStateNormal];
@@ -514,7 +514,7 @@
     
     self.cameraViewController.hidden = NO;
     [self.cameraViewController start];
-    self.titleL.text = @"拍摄要识别的区域";
+    self.titleL.text = MyLocal(@"take_photo",nil);
     self.languageBtn.hidden = YES;
     
     
@@ -777,7 +777,7 @@
     
 //    if (!_cropImage) {
         [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
-        [SVProgressHUD showWithStatus:@"裁剪图片..."];
+        [SVProgressHUD showWithStatus:MyLocal(@"crop_image",nil)];
         
         
         
@@ -808,7 +808,7 @@
         return;
     }
     [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
-    [SVProgressHUD showWithStatus:@"识别中..."];
+    [SVProgressHUD showWithStatus:MyLocal(@"recognizing",nil)];
     
     //    self.cutImageView.bgImageView.image = _cropImage;
     
@@ -853,10 +853,10 @@
         dispatch_async(dispatch_get_main_queue(), ^{
 //            [SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"识别失败 %li %@",[err code],[err localizedDescription]]];
             [SVProgressHUD dismiss];
-            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示"
-                                                                                     message:[NSString stringWithFormat:@"识别失败 %li %@",[err code],[err localizedDescription]]
+            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:MyLocal(@"messge_title",nil)
+                                                                                     message:[NSString stringWithFormat:@"%@ %li %@",MyLocal(@"rec_fail",nil),[err code],[err localizedDescription]]
                                                                               preferredStyle:UIAlertControllerStyleAlert];
-            UIAlertAction *doneAlertAction = [UIAlertAction actionWithTitle:@"知道了" style:UIAlertActionStyleDefault handler:^(UIAlertAction *  action) {
+            UIAlertAction *doneAlertAction = [UIAlertAction actionWithTitle:MyLocal(@"ok",nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *  action) {
                 [alertController dismissViewControllerAnimated:YES completion:nil];
             }];
             [alertController addAction:doneAlertAction];
@@ -872,10 +872,10 @@
     NSMutableString *message = [NSMutableString string];
     if(result[@"words_result"]){
         if ([result[@"words_result"] count]==0) {
-            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示"
-                                                                                     message:@"没有识别出文字哦"
+            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:MyLocal(@"messge_title",nil)
+                                                                                     message:MyLocal(@"no_text",nil)
                                                                               preferredStyle:UIAlertControllerStyleAlert];
-            UIAlertAction *doneAlertAction = [UIAlertAction actionWithTitle:@"知道了" style:UIAlertActionStyleDefault handler:^(UIAlertAction *  action) {
+            UIAlertAction *doneAlertAction = [UIAlertAction actionWithTitle:MyLocal(@"ok",nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *  action) {
                 [alertController dismissViewControllerAnimated:YES completion:nil];
             }];
             [alertController addAction:doneAlertAction];
@@ -1951,7 +1951,7 @@ cv::Mat debugSquares( std::vector<std::vector<cv::Point> > squares, cv::Mat imag
         _validCrop = YES;
     }
     else{
-        UIAlertView  *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"无效的区域" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        UIAlertView  *alertView = [[UIAlertView alloc] initWithTitle:MyLocal(@"messge_title",nil) message:MyLocal(@"invalid_rect",nil) delegate:nil cancelButtonTitle:MyLocal(@"ok",nil) otherButtonTitles:nil];
         [alertView show];
         
         _validCrop = NO;
